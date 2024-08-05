@@ -1,0 +1,125 @@
+<template name="ScoringScorerManagement">
+	{{Scorings}}
+	<div class="ui grid scorer-management-grid">
+	  <div class="twelve wide column scorer-management-column">
+	  	<div class="scorer-management-top">
+	  		<div class="one-sim-at-a-time">
+	  			<input type="checkbox" class="chbx-one-sim-at-a-time" id="chbx_one_sim_at_a_time" checked="{{OSAAT}}">
+	  			Scorers must score only one simulation at a time
+	  		</div>
+	  	</div>
+	    <div class="scorer-management-container">
+	      <table class="ui celled sortable small tbl-scorer-management table table-stripped table-condensed" 
+	      cellspacing="0" cellpadding="0">
+	        <thead>
+	          <tr>
+		        	<th class="th-scorer-name">Name</th>
+	            <th class="th-scorer-status">Status</th>
+	            <th class="th-waived-sims">Waived Sims</th>
+	            <th class="th-last-scored">Last Scored</th>
+	            <th class="th-scorer-workload">Work-load</th>
+	            <th class="th-scorer-buffer">Buffer</th>
+	            <th class="th-scorer-action">Action</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	{{#each Scorers}}
+	        	<tr class="tr-simulation">
+	        		<td class="td-scorer-name" id="td_scorer_name_{{this._id}}">{{this.name}}</td>
+	        		<td class="td-scorer-status">
+	        			{{#if eq this.status 'on'}}<button class="ui mini green button btn-toggle-status" data-status="on"  
+	        			data-tooltip="Click to change Status to OFF" data-position="right center" data-inverted="">ON</button>
+	        			{{else}}<button class="ui mini red button btn-toggle-status" data-status="off" 
+	        			data-tooltip="Click to change Status to ON" data-position="right center" data-inverted="">OFF</button>{{/if}}
+	        		</td>
+							<td class="td-waived-sims">
+								{{#each this.waived}}
+									<div class="ui label label-waived-sim">{{this.name}}
+										<i class="delete icon i-remove-waived-sim" 
+										data-sid="{{this.sid}}" data-uid="{{../_id}}"></i>
+									</div>
+								{{/each}}
+								<button class="ui mini basic teal button btn-add-waived" data-uid="{{this._id}}">Add</button>
+							</td>							
+							<td class="td-last-scored">
+								{{this.lastScored.simulationName}}<br>[{{dateFormatNHMS this.lastScored.scoredAt}}]
+							</td>							
+							<td class="td-scorer-workload">{{this.score}}</td>							
+							<td class="td-scorer-buffer">
+								<input type="text" value="{{this.buffer}}" id="buffer_{{this._id}}">
+							</td>
+							<td class="td-scorer-action">
+								<button class="ui mini basic blue button btn-save-workload-buffer" 
+								id="btn_save_buffer_{{this._id}}" type="button">Save</button>
+								<button class="ui mini basic teal button btn-view-workload-details" 
+								id="btn_view_workload_details_{{this._id}}" type="button">View Details</button>
+								<button class="ui mini basic orange button btn-reset-workload" 
+								id="btn_reset_workload_{{this._id}}" type="button">Reset Work-load</button>
+							</td>
+	        	</tr>
+	        	<tr class="tr-details" id="tr_details_{{this._id}}">
+	        		<td class="td-details" colspan="7">Details</td>
+	        	</tr>
+	        	{{/each}}
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+
+		<div class="four wide column scorer-management-log">
+			<!--<div class="log-top">Log</div>-->
+			<div class="log-container">
+				<ul class="ul-logs">
+					<!--<li class="li-log">Scorers' workload has been reset</li>-->
+				</ul>
+			</div>
+		</div>
+
+		<div class="ui modal waived-simulations">
+		  <div class="header">Simulation Waiver</div>
+		  <div class="content">
+		    <p>
+					{{>Template.dynamic template=ScoringScorerManagementSimWaiver}}
+		    </p>
+		  </div>
+		  <div class="actions">
+		    <div class="ui cancel button">Close</div>
+		  </div>
+		</div>
+
+		<div class="ui modal reset-workload">		  
+		  {{>Template.dynamic template=ScoringScorerManagementWorkloadReset}}
+		</div>
+
+	</div>		
+</template>
+
+<template name="ScoringScorerManagementSimulationWaiver">
+	<ul class="ul-simulations">
+		{{#each Simulations}}
+			<li class="li-simulation">								
+				{{#if (inArray Waived this.id)}}
+				<input type="checkbox" class="chkbx-waived-sim" id="chkbx_sim_waiver_{{this.id}}" checked> {{this.name}}	
+				{{else}}
+				<input type="checkbox" class="chkbx-waived-sim" id="chkbx_sim_waiver_{{this.id}}"> {{this.name}}
+				{{/if}}
+			</li>
+		{{/each}}
+	</ul>	
+</template>
+
+<template name="ScoringScorerManagementWorkloadReset">
+	<div class="header">{{Scorer.name}}'s Work-load</div>
+	<div class="content">
+	  <p>
+			<div class="workload-resetter">
+				Reset to <input type="text" id="input_reset_workload" data-uid="{{Scorer._id}}" data-scrname="{{Scorer.name}}">	
+			</div>
+	  </p>
+	</div>
+	<div class="actions">
+		<div class="ui tiny basic red cancel button">Cancel</div>
+	  <div class="ui tiny basic blue button btn-save-reset-workload">Save</div>
+	</div>	
+</template>
+

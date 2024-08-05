@@ -1,0 +1,33 @@
+<template name="DatadumpManagement">
+
+  <div class="ui grid breadcrumb-grid">
+    <div class="fifteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <a class="section">Datadump</a>
+        <i class="divider"> / </i>
+        <div class="section">{{session 'DatadumpManagement.tab.name'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui padded grid datadump-management-grid-container">
+    <div class="sixteen wide column datadump-management-column-container">
+
+      <div class="ui top attached tabular menu datadump-management-menu">
+        <a class="active first item" data-tab="first">Unidentified Findings Results</a>
+        <a class="second item" data-tab="second">Findings Comparison Report</a>
+        <a class="third item" data-tab="third">Findings Comparison</a>
+      </div>
+      <div class="ui bottom attached active tab first segment" data-tab="first">
+        {{>Template.dynamic template=UnidentifiedFindingsResults}}
+      </div>
+      <div class="ui bottom attached tab second segment" data-tab="second">
+        {{>Template.dynamic template=FindingsComparisonReport}}
+      </div>
+      <div class="ui bottom attached tab third segment" data-tab="third">        
+        {{>Template.dynamic template=FindingsComparisonSummary}}
+      </div>      
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,77 @@
+.protocols-grid {
+  .protocol-list-container {
+
+    .tbl-protocols {
+      font-size: 0.9em;
+
+      tr.tr-protocol {
+        cursor: move;
+      }
+
+      tr.tr-protocol.deleted {
+        display: none;
+      }
+
+      th, td.td-action {
+        text-align: center;
+      }
+
+      td {
+        font-size: 0.9em;
+      }
+
+      th.th-name {
+        width: 30%;
+      }
+      th.th-action {
+        width: 240px;
+      }
+
+      .input-protocol-name.inactive,
+      .protocol-file.inactive {
+        color: #909291;
+      }
+
+      .td-action {
+        .btn-status {
+          width: 100px;
+        }
+      }
+    }
+  }
+
+  .protocol-form-container {
+    .protocol-form-title,
+    .protocol-form-buttons {
+      text-align: center;
+    }
+
+    .file-info {
+      display: none;
+      font-size: 0.9em;
+
+      span.file-info-label {
+        display: inline-block;
+        width: 60px;
+        text-align: right;
+        margin-right: 7px;
+        font-weight: bold;
+      }
+    }
+
+    .protocol-file-upload-progress {
+      margin: 10px auto !important;
+      width: 90%;
+
+      .bar {
+        height: 10px !important;
+
+        .progress {
+          font-size: 0.7em;
+        }      
+      }
+
+    }
+
+  }
+}

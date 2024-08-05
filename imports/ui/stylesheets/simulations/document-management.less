@@ -1,0 +1,256 @@
+#accordion_doc_management {
+  box-shadow: none;
+  width: 100% !important;
+
+  .title {
+    color: rgba(0, 0, 0, 1);
+    border-top: none;
+    /*border-bottom: 1px solid rgba(34, 36, 38, 0.15);*/
+  }
+
+  .num-documents {
+    font-weight: normal;
+  }
+
+  .document-folder-action, 
+  .document-action, 
+  .file-action {
+    margin-top: -5px;
+    float: right;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .document-add-button-container {
+    /*text-align: right;*/
+    margin-bottom: -10px;
+
+    .btn-save-document-order {
+      margin-left: 3em;
+    }
+  }
+
+  .doc-item {
+    font-size: 0.9em;
+
+    .title {
+      /*padding: 3px 10px;*/ /* when wanting more condensed doc layout */
+
+      .trigger {
+        .ui.basic.label {
+          font-size: 0.8em;
+          padding: 4px 0px 3px 2px;        
+        }
+
+        i.icon {
+          margin: 0;
+        }
+
+        span.label {
+          background-color: #dfe1e2;
+          padding: 3px 7px;
+          border-radius: 5px;        
+        }
+      }
+
+      .document-action {
+        button {
+          /*padding: 4px 4px;*/ /* when wanting more condensed doc layout */
+        }
+      }
+    }
+
+    .num-files {
+      font-size: 0.9em;
+      font-weight: normal;      
+      color: #707273;
+    }
+
+    .document-file-add-button-container {    
+      margin-bottom: -10px;
+
+      .btn-add-document-file {
+        margin-left: 8px;
+      }
+    }
+
+    .document-file-content {
+      padding: 0.7em;
+    }
+
+    .medication-content {
+
+      .medication-table {
+        display: inline-block;
+        width: 80%;
+        margin: 0 2px 0 30px;
+        padding: 5px 10px;
+        font-size: 0.9em;
+        border-radius: 0.28571429rem;
+        background: #ffffff;
+        box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), 0px 0px 0px 1px rgba(34, 36, 38, 0.15);
+
+        table {
+          th {          
+            text-align: right;
+            padding-right: 15px;  
+            padding-bottom: 5px; 
+            font-size: 0.91em;       
+          }
+
+          td {
+            padding-bottom: 5px;
+
+            input {
+              height: 25px;
+              width: 100px;            
+            }
+          }
+
+          tr.hidden_pills_prescribed {
+            display: none;
+          }
+        }
+      }
+
+      .medication-action {
+        display: inline-block;
+        vertical-align: top;
+
+        button {
+          padding: 0.4em 0.9em;
+          border-radius: 10px;
+        }
+      }
+
+    }
+
+  }
+
+  .btn-status {
+    width: 100px;
+  }
+
+  .deleted {
+    display: none;
+  }
+
+   .inactive {
+    color: #909291;
+  }
+}
+
+.container.folder-button {
+  text-align: right;
+
+  button.btn-add-folder {
+    margin: -10px 0 10px;
+  }
+}
+
+.document-management-shape {
+/*  width: 440px;
+  height: 440px;*/
+
+  .ui.card {
+    /*width: 100%;*/
+    min-width: 440px;
+    min-height: 240px;    
+  
+    .header, .meta {
+      text-align: center;
+    }
+
+    .meta {
+      font-size: 0.8em;
+      margin-bottom: 15px;
+    }
+
+    .visible.hidden {
+      visibility: hidden;
+    }
+  }
+}
+
+.document-add-form-container {
+  .medication-fields {
+    display: none !important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+
+    .tbl-medication-fields {
+
+      th {
+        width: 15em;
+        text-align: right;
+        padding-right: 15px;        
+      }
+
+      th, td {
+        font-size: 0.92em;
+        padding-bottom: 5px;
+      }
+
+      input {
+        width: 100px;
+        height: 25px;
+      }
+
+      #new_hidden_pills_prescribed {
+        display: none;
+      }
+    }
+  }
+
+  .medication-type-fields {
+    input, label {
+      font-size: 0.9em;
+      color: #000;
+    }
+  }
+}
+
+.document-file-add-form-container {
+  .file-info {
+    display: none;
+    font-size: 0.9em;
+
+    span.file-info-label {
+      display: inline-block;
+      width: 60px;
+      text-align: right;
+      margin-right: 7px;
+      font-weight: bold;
+    }
+  }
+
+  .document-file-upload-progress {
+    margin-top: 10px !important;
+
+    .bar {
+      height: 10px !important;
+
+      .progress {
+        font-size: 0.7em;
+      }      
+    }
+
+  }  
+}
+
+#doc_viewer {
+  width: 800px;
+  height: 600px;
+}
+
+.show-block { /* for beating "display: none !important" */
+  display: block !important;
+}
+
+.hide-block { /* when "display: none" not working */
+  display: none !important;
+}
+

@@ -1,0 +1,134 @@
+<template name="DocumentFolderColors">
+
+	<div class="doc-folder-colors-top-container">
+		<div class="doc-folder-colors-top-left-container">
+			<button class="ui mini teal basic button btn-initiate-colors" 
+				data-tooltip="Load color data for documents and folders">Initiate Color-Editing Mode</button>   
+		</div>
+		<div class="doc-folder-colors-top-right-container">
+			<select class="ui mini search dropdown simulations" multiple="">
+	  		<option value="">Select Simulation(s)</option>
+				{{#each Simulations}}
+				<option value="{{this.id}}">{{this.name}}</option>
+				{{/each}}
+			</select>
+			<!--<button class="ui mini yellow basic button btn-simulations-action btn-clear-simulations-dropdown" 
+				data-tooltip="Remove all selected simulations">Clear</button>-->
+			<button class="ui mini teal basic button btn-simulations-action btn-filter-by-simulations" 
+				data-tooltip="Update results for this selected simulations">Submit</button>
+			<button class="ui mini primary basic button btn-show-all" 
+				data-tooltip="Show all folders and documents">Show All</button>  	
+			</div>		
+	</div>	
+
+  <div class="ui grid doc-folder-colors-grid">
+
+    <div class="five wide column doc-folder-colors-column">    	
+			<div class="ui styled accordion">
+				{{#each Folders1}}
+			  <div class="title">
+			    <i class="dropdown circular icon"></i>
+			    <span class="folder-name" id="fname_{{this.id}}">{{this.name}}</span>
+			    <div class="doc-count-container" id="count_{{this.id}}">
+			    	<span class="colored-docs-count {{#if this.all_docs_colored}}green{{else}}red{{/if}}">{{this.colored_docs_count}}</span>/
+			    	<span class="docs-count">{{this.docs_count}}</span>
+			    </div>			    
+			    <input type="text" class="input-color-picker folder" value="{{this.color}}" 
+			    id="f_{{this.id}}" data-fid="{{this.id}}" data-name="{{this.name}}" data-dids="{{this.doc_ids}}">
+			  </div>
+			  <div class="content">
+			    <p class="transition hidden">
+						<div class="ui relaxed divided list">
+
+							{{#each this.docs}}
+						  <div class="item" id="d_{{this.id}}">
+						    <i class="small file pdf outline icon"></i>
+						    <div class="content">
+						      <a class="header">{{this.name}}</a>
+						      <div class="description"></div>
+						    </div>
+						    <input type="text" class="input-color-picker doc" value="{{this.color}}" 
+						    data-fid="{{../id}}" data-name="{{this.name}}" id="d_{{this.id}}">
+						  </div>
+						  {{/each}}
+						</div>			    	
+			    </p>
+			  </div>
+			  {{/each}}
+			</div>
+    </div>
+
+    <div class="five wide column doc-folder-colors-column">    	
+			<div class="ui styled accordion">
+				{{#each Folders2}}
+			  <div class="title">
+			    <i class="dropdown circular icon"></i>
+			    <span class="folder-name" id="fname_{{this.id}}">{{this.name}}</span>
+			    <div class="doc-count-container" id="count_{{this.id}}">
+			    	<span class="colored-docs-count {{#if this.all_docs_colored}}green{{else}}red{{/if}}">
+			    	{{this.colored_docs_count}}</span>/
+			    	<span class="docs-count">{{this.docs_count}}</span>
+			    </div>			    
+			    <input type="text" class="input-color-picker folder" value="{{this.color}}" 
+			    id="f_{{this.id}}" data-fid="{{this.id}}" data-name="{{this.name}}" data-dids="{{this.doc_ids}}">
+			  </div>
+			  <div class="content">
+			    <p class="transition hidden">
+						<div class="ui relaxed divided list">
+
+							{{#each this.docs}}
+						  <div class="item" id="d_{{this.id}}">
+						    <i class="small file pdf outline icon"></i>
+						    <div class="content">
+						      <a class="header">{{this.name}}</a>
+						      <div class="description"></div>
+						    </div>
+						    <input type="text" class="input-color-picker doc" value="{{this.color}}" 
+						    data-fid="{{../id}}" data-name="{{this.name}}" id="d_{{this.id}}">
+						  </div>
+						  {{/each}}
+						</div>			    	
+			    </p>
+			  </div>
+			  {{/each}}
+			</div>
+    </div>
+
+    <div class="five wide column doc-folder-colors-column">    	
+			<div class="ui styled accordion">
+				{{#each Folders3}}
+			  <div class="title">
+			    <i class="dropdown circular icon"></i>
+			    <span class="folder-name" id="fname_{{this.id}}">{{this.name}}</span>
+			    <div class="doc-count-container" id="count_{{this.id}}">
+			    	<span class="colored-docs-count {{#if this.all_docs_colored}}green{{else}}red{{/if}}">
+			    	{{this.colored_docs_count}}</span>/
+			    	<span class="docs-count">{{this.docs_count}}</span>
+			    </div>
+			    <input type="text" class="input-color-picker folder" value="{{this.color}}" 
+			    id="f_{{this.id}}" data-fid="{{this.id}}" data-name="{{this.name}}" data-dids="{{this.doc_ids}}">
+			  </div>
+			  <div class="content">
+			    <p class="transition hidden">
+						<div class="ui relaxed divided list">
+
+							{{#each this.docs}}
+						  <div class="item" id="d_{{this.id}}">
+						    <i class="small file pdf outline icon"></i>
+						    <div class="content">
+						      <a class="header">{{this.name}}</a>
+						      <div class="description"></div>
+						    </div>
+						    <input type="text" class="input-color-picker doc" value="{{this.color}}" 
+						    data-fid="{{../id}}" data-name="{{this.name}}" id="d_{{this.id}}">
+						  </div>
+						  {{/each}}
+						</div>			    	
+			    </p>
+			  </div>
+			  {{/each}}
+			</div>
+    </div>          
+
+  </div>
+</template>

@@ -1,0 +1,145 @@
+<template name="UBAComplianceCalculationIndividual">
+
+  <div class="ui form">
+    <div class="fields">
+      <div class="field">
+        <label>Simulations</label>
+        <select class="ui dropdown sel-comp-calc-individual-simulation" 
+        id="sel_comp_calc_individual_simulation">
+          <option value="-1">Select Simulation</option>
+          {{#each Simulations}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="field">
+        <label>Source user</label>        
+        <div class="ui search uba-comp-calc-individual-source-user-search">
+          <input class="prompt uba-comp-calc-individual-user" type="text" placeholder="Name" 
+          id="uba_comp_calc_individual_source_user">
+          <div class="results"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Target user</label>        
+        <div class="ui search uba-comp-calc-individual-target-user-search">
+          <input class="prompt uba-comp-calc-individual-user" type="text" placeholder="Name" 
+          id="uba_comp_calc_individual_target_user">
+          <div class="results"></div>
+        </div>        
+      </div>
+
+      <div class="field comp-calc-buttons">
+        <button class="ui teal mini basic button btn-compare-comp-calc-individual">Compare</button>
+        {{#with Total}}
+        <button class="ui orange mini basic button btn-reset-comp-calc">Reset</button>
+        {{/with}}                      
+      </div>
+
+    </div>
+  </div>
+  
+  {{#with Total}}
+  <div class="ui grid">
+    <div class="fifteen wide column">
+      <div class="uba-comp-calc-individual-summary">
+        <span class="label">Calculations:</span> {{Total.total}}
+        <span class="label">Match:</span> {{Total.matchPercent}}% ({{Total.match}}/{{Total.total}}) 
+        <span class="label">Identical incorrect answers:</span> 
+        {{Total.errorMatchPercent}}% ({{Total.errorMatch}}/{{Total.errorBoth}})
+        <span class="label">Time overlapped within 1 minute:</span>
+        {{Total.tDup1mPercent}}% ({{Total.tDup1m}}/{{Total.tDupTotal}})
+        <span class="label">Time overlapped within 5 minutes:</span>
+        {{Total.tDup5mPercent}}% ({{Total.tDup5m}}/{{Total.tDupTotal}})        
+      </div>   
+    </div>
+  </div>
+
+  <div class="ui grid uba-comp-calc-individual-table">
+    <div class="fifteen wide column">
+      
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Calculation</th>
+            <th>Soure User</th>
+            <th>Target User</th>
+            <th>Match</th>
+            <th>Answer</th>
+            <th>Source Created at</th>
+            <th>Source Modified at</th>            
+            <th>Target Created at</th>
+            <th>Target Modified at</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each Results}}
+          <tr>
+            <td colspan="5" class="document-name">{{this.docName}}</td>
+            <td colspan="4">&nbsp;</td>
+          </tr>
+          {{#if this.source.[0]}}
+          <tr>
+            <td>Taken by subject</td>
+            <td class="{{#if eq this.sourceResult.[0] 'Correct'}}correct{{else}}incorrect{{/if}}">
+            {{this.source.[0]}}</td>
+            <td class="{{#if eq this.targetResult.[0] 'Correct'}}correct{{else}}incorrect{{/if}}">
+            {{this.target.[0]}}</td>
+            <td class="{{#if this.comp.[0]}}match{{else}}dismatch{{/if}}">
+            {{#if this.comp.[0]}}TRUE{{else}}FALSE{{/if}}</td>
+            <td>{{this.answer.[0]}}</td>
+            <td class="{{this.cAtClass}}">{{dateFormatHMS this.suCAt}}</td>
+            <td class="{{this.mAtClass}}">{{dateFormatHMS this.suMAt}}</td>
+            <td>{{dateFormatHMS this.tuCAt}}</td>
+            <td>{{dateFormatHMS this.tuMAt}}</td>
+          </tr>
+          {{/if}}
+          {{#if this.source.[1]}}
+          <tr>
+            <td>Should been taken by subject</td>
+            <td class="{{#if eq this.sourceResult.[1] 'Correct'}}correct{{else}}incorrect{{/if}}">
+            {{this.source.[1]}}</td>
+            <td class="{{#if eq this.targetResult.[1] 'Correct'}}correct{{else}}incorrect{{/if}}">
+            {{this.target.[1]}}</td>
+            <td class="{{#if this.comp.[1]}}match{{else}}dismatch{{/if}}">
+            {{#if this.comp.[1]}}TRUE{{else}}FALSE{{/if}}</td>
+            <td>{{this.answer.[1]}}</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>            
+          </tr>
+          {{/if}}
+          {{#if this.source.[2]}}
+          <tr>
+            <td>Percent Compliance</td>
+            <td class="{{#if eq this.sourceResult.[2] 'Correct'}}correct{{else}}incorrect{{/if}}">
+            {{this.source.[2]}}</td>
+            <td class="{{#if eq this.targetResult.[2] 'Correct'}}correct{{else}}incorrect{{/if}}">
+            {{this.target.[2]}}</td>
+            <td class="{{#if this.comp.[2]}}match{{else}}dismatch{{/if}}">
+            {{#if this.comp.[2]}}TRUE{{else}}FALSE{{/if}}</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>            
+          </tr>
+          {{/if}}          
+        {{/each}}
+<!--           <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>{{Total.percent}}%</td>
+          </tr> -->
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  {{/with}}
+
+</template>

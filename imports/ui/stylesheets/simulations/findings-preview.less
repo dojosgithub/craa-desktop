@@ -1,0 +1,176 @@
+.findings-preview-modal {
+
+  .header {
+    font-weight: normal;
+    font-size: 1em;
+
+    .select-file-label {
+      padding-right: 10px;
+      font-size: 0.9em;
+      font-weight: bold;    
+    }
+
+    .field {
+      #findings_preview_file {
+        font-weight: normal;
+        font-size: 0.7em;
+        /*width: 50%;*/
+        width: 9em;
+        color: #fff;
+      }
+
+      #_findings_preview_file {
+        display: inline-block;
+        font-size: 0.7em;
+        font-weight: normal;        
+/*        position: absolute;
+        left: 395px;
+        top: 21px;
+        background-color: #fff;  */      
+      }
+    }
+
+    .btn-import-field {
+      float: right;
+      margin-right: 5em;
+    }
+  }
+
+  .findings-preview-content {
+
+    padding: 0.5em 0.6em 2.5rem 0.6em !important;
+
+    #findings_preview {
+      width:100%;
+      font-size: 0.95em;
+      margin-bottom: 5px;
+
+      td.search-result {
+          background: #dcfbd0;
+          /*color: #583707;*/
+      }
+
+      td.finding-exists-same-sim {
+        background: #d0fbf8;
+      }
+      td.finding-exists-different-sim {
+        background: #ffff00;
+      }      
+      td.doc-not-in-this-sim {
+        background: #f59781;
+      }
+      td.doc-null {
+        background: #b1b0ad;
+      }
+      td.doc-different {
+        background: #f0d1f3;
+      }
+      td.wrong-domain-name {
+        background: #e63737;
+        color: #fff;
+      }
+
+    }
+
+    .num-findings {
+      display: none;
+      margin-left: 10px;
+
+      .in-this-sim {
+        display: inline-block;
+        background-color: #d0fbf8;
+        margin-left: 20px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+
+        #num_findings_in_this_sim {
+          font-weight: bold;
+        }
+      }
+
+      .in-other-sim {
+        display: inline-block;
+        background-color: #ffff00;
+        margin-left: 10px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+
+        #num_findings_in_other_sim {
+          font-weight: bold;
+        }        
+      }
+
+      .doc-not-in-this-sim {
+        display: inline-block;
+        background-color: #f59781;
+        margin-left: 10px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;       
+      }
+
+      .doc-null {
+        display: inline-block;        
+        background-color: #b1b0ad;
+        margin-left: 10px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;       
+      }
+
+      .doc-diff {
+        display: inline-block;        
+        background-color: #f0d1f3;
+        margin-left: 10px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;       
+      }
+
+      .wrong-domain-name {
+        display: inline-block;        
+        background-color: #e63737;
+        margin-left: 10px;
+        padding: 2px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #fff;       
+      }
+
+    }
+
+    .findings-preview-search {
+      display: none;
+      // text-align: center;
+      margin-left: 8%;
+
+      #search_field {        
+        border-radius: 15px;
+        height: 30px;
+      }
+
+      .results {
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+
+    #findings_preview {
+      margin-top: 5px;
+    }
+
+/*    table.htCore {
+      td { //-- to trim, but not working
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }*/
+
+  }
+}
+
+

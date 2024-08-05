@@ -1,0 +1,24 @@
+<template name="TraineeLogs">
+  <div class="ui grid breadcrumb-grid">
+    <div class="fifteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <div class="active section">Training</div>
+      </div>
+    </div>
+  </div>  
+  <div class="ui grid trainee-logs-grid">
+    <div class="fourteen wide column trainee-logs-column">
+      <div class="trainee-log-export-note">
+        <span>*Export: please go to 'Export'.</span>
+      </div>
+      {{> tabular table=TabularTables.TBLTrainingModuleUserLogs selector=traineeLogSelector 
+      id="tbl_trainee_log" class="table table-striped table-bordered table-condensed"}}
+
+    </div>
+    <div class="two wide column">
+<!--       <div class="content"> 
+        Trainees Online
+      </div> -->
+    </div>
+  </div>
+</template>

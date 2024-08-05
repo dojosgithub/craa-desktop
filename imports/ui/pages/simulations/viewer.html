@@ -1,0 +1,14 @@
+<template name="Viewer">
+  <object id="obj" data="" type="application/pdf" width="100%" height="100%">
+  alt : <a href="{{session 'docFile'}}">Click this to view the document.</a>
+</object> 
+
+<script>
+  var params = location.href.split('?')[1].split('&');
+  // console.log(params);
+// /docs/sample.pdf?#zoom=55&scrollbar=0&toolbar=0&navpanes=0
+  var objElem = document.getElementById('obj');
+  objElem.data = params[0].split("=")[1] + "?#zoom=75&toolbar=0&view=FitH,0&pagemode=thumbs";
+</script>
+
+</template>

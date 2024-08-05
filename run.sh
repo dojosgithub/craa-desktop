@@ -1,0 +1,1 @@
+MONGO_URL=mongodb+srv://CRAADBUser:1IN76KjEVnmlthPB@craaclusterv2.dsxea.mongodb.net/craa_v21_db?retryWrites=true&w=majority  meteor --mobile-server=http://127.0.0.1:3000

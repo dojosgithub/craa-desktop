@@ -1,0 +1,91 @@
+.ui.grid.findings-selected.main .left .ui.accordion.simulations {
+  padding: 0;
+}
+.ui.grid.findings-selected.main .left .ui.accordion.simulations .content .list .item {
+  margin-left: 1em;
+}
+.ui.grid.findings-selected.main .left .ui.accordion.simulations .content .list .item .content {
+  padding: 0;
+}
+.ui.grid.findings-selected.main .left .ui.accordion.simulations .content .list .item .content .button {
+  padding: 0.4em 1em;
+}
+.ui.grid.findings-selected.main .left .ui.accordion.simulations .content .list .item.active {
+  background-color: #dee6bd;
+}
+.ui.grid.findings-selected.main .right .findings-main-top-container label {
+  width: 300px;
+}
+.ui.grid.findings-selected.main .right .findings-main-top-container button {
+  margin-left: 1em;
+  width: 150px;
+}
+.ui.grid.findings-selected.main .right .title {
+  font-weight: bold;
+}
+.ui.grid.findings-selected.main .right .findings-selected-list .findings-selected-title {
+  color: #e86f30;
+}
+.ui.grid.findings-selected.main .right .findings-title {
+  margin-top: 3em;
+}
+.ui.grid.findings-selected.main .right .sort-option-container {
+  margin: 0 0 10px 0;
+  text-align: right;
+}
+.ui.grid.findings-selected.main .right .sort-option-container #sel_sort_option {
+  margin: 0 0.5em;
+}
+.ui.grid.findings-selected.main .right .sort-option-container .btn-sort-findings {
+  height: 25px;
+  line-height: 5px;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected,
+.ui.grid.findings-selected.main .right .tbl-findings {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93em;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected th,
+.ui.grid.findings-selected.main .right .tbl-findings th,
+.ui.grid.findings-selected.main .right .tbl-findings-selected td,
+.ui.grid.findings-selected.main .right .tbl-findings td {
+  border: 1px solid #c1c7c7;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected td,
+.ui.grid.findings-selected.main .right .tbl-findings td {
+  padding: 5px;
+  text-align: center;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected .td-id,
+.ui.grid.findings-selected.main .right .tbl-findings .td-id {
+  background-color: #f7f9f6;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected .td-domain,
+.ui.grid.findings-selected.main .right .tbl-findings .td-domain,
+.ui.grid.findings-selected.main .right .tbl-findings-selected .td-action,
+.ui.grid.findings-selected.main .right .tbl-findings .td-action {
+  text-align: center;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected thead > tr {
+  background-color: #f7f5f3;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected .th-threshold {
+  width: 70px;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected .th-status {
+  width: 80px;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected .th-action {
+  width: 350px;
+}
+.ui.grid.findings-selected.main .right .tbl-findings-selected .td-threshold input {
+  width: 30px;
+  text-align: right;
+}
+.ui.grid.findings-selected.main .right .tbl-findings .tr-selected {
+  background-color: #eaefdc;
+}
+.findings-selected-modal .findings-selected-dropdown {
+  width: 100%;
+}

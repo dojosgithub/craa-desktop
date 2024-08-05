@@ -1,0 +1,70 @@
+<template name="UBACollaborationAudit">
+  <div class="collaboration-audit-top-container">
+
+    <div class="percent-options">
+      <span>Show
+        <select class="ui mini inline dropdown filter-dropdown country-filter-dropdown" id="country_filter_dropdown">          
+          <option value="1">all</option>
+          <option value="2">Same country only</option>          
+      </select>        
+        <select class="ui mini inline dropdown filter-dropdown sim-filter-dropdown" id="sim_filter_dropdown">          
+          <option value="1">all</option>
+          <option value="2">Baseline only</option>
+          <option value="3">Followup only</option>
+      </select>         
+        <select class="ui mini inline dropdown filter-dropdown mode-filter-dropdown" id="mode_filter_dropdown">          
+          <option value="1">all</option>
+          <option value="2">reviewed</option>
+          <option value="3">not-reviewed</option>
+          <option value="4">collaborated</option>
+          <option value="5">has-comments</option>
+          <option value="6">excluded</option>
+      </select>        
+        <select class="ui mini inline dropdown filter-dropdown percent-filter-dropdown" id="percent_filter_dropdown">          
+            <option value="100">100 percent</option>
+            <option value="90">above 90</option>
+            <option value="80" selected>above 80</option>
+        </select>
+        <button class="ui blue basic mini button btn-update-data">
+          <i class="icon cogs"></i> update</button>    
+          
+          <button class="ui teal basic mini button btn-export-collaboration-audit-data">
+            <i class="file excel icon"></i> export</button>           
+      </span>
+    </div>      
+  </div>
+  <div class="ui grid collaboration-audit-grid">
+    <div class="sixteen wide column collaboration-audit-column">
+    	
+      {{> tabular table=TabularTables.CollaborationAuditTable 
+        class="ui teal selectable celled table table-striped table-condensed" 
+        selector=collaborationAuditSelector id="tbl_collaboration_audit"}} 
+
+    </div>
+  </div>
+ 
+ {{#with CommentModalObject}}
+  <div class="ui tiny modal collaboration-audit-comment-modal">
+    <div class="header">
+      {{this.cName}} - {{this.buName}}<br />
+      {{this.simName}}<br />
+      {{this.u1fname}} {{this.u1lname}} / {{this.u2fname}} {{this.u2lname}}<br />
+      {{this.percent}}%
+    </div>
+    <div class="content">
+      <p>
+        <form class="ui comment form">
+          <div class="field">
+            <textarea id="collaboration_audit_comment"></textarea>
+          </div>
+        </form>        
+      </p>
+    </div>
+    <div class="actions">
+      <div class="ui approve button btn-save-comment">Save</div>      
+      <div class="ui cancel button">Cancel</div>
+    </div>
+  </div>
+  {{/with}}
+
+</template>

@@ -1,0 +1,29 @@
+<template name="Regions">
+
+  <div class="ui grid breadcrumb-grid breadcrumb-grid-regions">
+    <div class="fifteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <a class="section" href="/{{session '___aR'}}/regions">Regions</a>
+        <i class="divider"> / </i>
+        <div class="section section-region">{{session 'Regions.tab.name'}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui grid regions-grid">
+    <div class="fifteen wide column regions-column">
+      
+      <div class="ui top attached tabular menu regions-menu">        
+        <a class="active first item" data-tab="first">PRAHS</a>
+        <a class="second item" data-tab="second">Quintiles</a>        
+      </div>
+      <div class="ui bottom active attached tab first segment region-tab-segment" data-tab="first">
+        {{>Template.dynamic template=RegionsPRAHS}}
+      </div>
+      <div class="ui bottom attached tab second segment region-tab-segment" data-tab="second">        
+        {{>Template.dynamic template=RegionsQuintiles}}
+      </div>
+
+    </div>
+  </div>
+</template>

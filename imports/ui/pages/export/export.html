@@ -1,0 +1,24 @@
+<template name="Export">
+  <div class="ui grid breadcrumb-grid">
+    <div class="fifteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <div class="active section">Export</div>
+      </div>
+    </div>
+  </div>
+  <div class="ui grid export-grid">
+    <div class="fifteen wide column export-column">
+      
+      <div class="ui top attached tabular menu export-menu">        
+        <a class="active first item" data-tab="first">Monitoring Notes / Assessee Log</a>
+        <a class="second item" data-tab="second">User Emails</a>        
+      </div>     
+      <div class="ui bottom active attached tab first segment" data-tab="first">
+        {{>Template.dynamic template=ExportMonitoringNotes}}
+      </div>
+      <div class="ui bottom attached tab sescond segment" data-tab="second">
+        {{>Template.dynamic template=ExportEmails}}
+      </div>
+    </div>
+  </div>
+</template>

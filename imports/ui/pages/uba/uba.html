@@ -1,0 +1,36 @@
+<template name="UBA">
+  <div class="ui centered grid uba-grid-container">
+    <div class="fifteen wide column uba-column uba-findings-individual-column">      
+      <div class="ui top attached tabular menu">            
+        <a class="active item" data-tab="first">Findings: Individual</a>        
+        <a class="item" data-tab="second">Compliance Calculation: Individual</a>
+        <a class="item" data-tab="third">Monitoring Notes: Individual</a>
+        <a class="item" data-tab="fourth">Findings: BU</a>
+        <a class="item" data-tab="fifth">Collaboration Audit</a>
+        <a class="item" data-tab="sixth">ETL</a>
+        <!-- <a class="item" data-tab="fifth">Monitoring Notes cf. Findings</a> -->
+      </div>
+      <div class="ui bottom attached active  tab segment first" data-tab="first">
+        {{>Template.dynamic template=FindingsIndividual}}
+      </div>
+      <div class="ui bottom attached tab segment second" data-tab="second">
+        {{>Template.dynamic template=ComplianceCalculationIndividual}}
+      </div>
+      <div class="ui bottom attached tab segment third" data-tab="third">
+        {{>Template.dynamic template=MonitoringNotesIndividual}}
+      </div> 
+      <div class="ui bottom attached tab segment fourth" data-tab="fourth">
+        {{>Template.dynamic template=FindingsBU}}
+      </div>
+      <div class="ui bottom attached tab segment fifth" data-tab="fifth">
+        {{>Template.dynamic template=CollaborationAudit}}
+      </div>
+      <div class="ui bottom attached tab segment sixth" data-tab="sixth">
+        {{>Template.dynamic template=CollaborationAuditETL}}
+      </div>       
+      <!--<div class="ui bottom attached tab segment fifth" data-tab="fifth">
+        {{>Template.dynamic template=MonitoringNotesCfFindings}}
+      </div>-->      
+    </div>
+  </div>
+</template>

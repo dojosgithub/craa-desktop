@@ -1,0 +1,30 @@
+<template name="Users">
+
+  <div class="ui grid breadcrumb-grid">
+    <div class="fifteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <a class="section" href="/{{session '___aR'}}/users">Users</a>
+        <i class="divider"> / </i>
+        <div class="section">User Permission
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui grid users-grid-container">
+    <div class="fifteen wide column users-column-container">
+
+      <div class="ui top attached tabular menu users-menu">        
+        <a class="active first item" data-tab="first">User Permission</a>
+        <a class="second item" data-tab="second">v1 Users</a>
+      </div>  
+  
+      <div class="ui bottom attached active tab first segment" data-tab="first">
+        {{>Template.dynamic template=UserPermission}}        
+      </div>
+      <div class="ui bottom attached tab second segment" data-tab="second">
+        {{>Template.dynamic template=V1Users}}        
+      </div>      
+    </div>
+  </div>
+
+</template>

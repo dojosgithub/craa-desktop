@@ -1,0 +1,140 @@
+.scoring-qa-sidebar, .scoring-qa-settings-sidebar {
+	width: 25%;	
+
+	.scoring-qa-settings-grid {	  
+	  margin: 0.5em 0;
+	  // .rpp-checkbox-column {
+	  //   padding-left: 0px !important;
+	  //   padding-right: 30px !important;
+	  // }
+
+		.scoring-qa-settings-container {
+
+			.ui.horizontal.divider {
+				.icon {
+					color: #b7b6b6;
+					font-size: 0.8em;
+				}
+			}
+
+			.sim-info-container {
+				.tbl-info {
+					width: 100%;					
+
+					th {
+						text-align: right;
+					}
+
+					td {
+						padding-left: 0.5em;					
+					}
+				}
+			}
+
+			.select-this-sim-container {
+				margin-top: 2em;
+
+			  .qasim-label-column {
+			    display: inline-block;
+			    text-align: left;
+			    padding-left: 10px;
+			    font-size: 1em;   
+			    vertical-align: top;   
+			  }
+
+				.onoffswitch {
+				  display: inline-block;
+				  margin-left: 2em;
+				  position: relative; width: 40px;
+				  -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+				}
+				.onoffswitch-checkbox {
+					display: none;
+				}
+				.onoffswitch-label {
+			    display: block; overflow: hidden; cursor: pointer;
+			    height: 21px; padding: 0; line-height: 21px;
+			    border: 0px solid #E3E3E3; border-radius: 24px;
+			    background-color: #E0DDDD;
+				}
+				.onoffswitch-label:before {
+				    content: "";
+				    display: block; width: 24px; margin: -1.5px;
+				    background: #A1A1A1;
+				    position: absolute; top: 0; bottom: 0;
+				    right: 20px;
+				    border-radius: 24px;
+				    box-shadow: 0 6px 12px 0px #757575;
+				}
+				.onoffswitch-checkbox:checked + .onoffswitch-label {
+				    background-color: #B8DAF0;
+				}
+				.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+				   border-color: #B8DAF0;
+				}
+				.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+				    margin-left: 0;
+				}
+				.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+				    right: 0px; 
+				    background-color: #27A1CA; 
+				    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+				}
+
+			} //-- select-this-sim-container
+
+			.scorers-container {
+				margin-top: 2em;
+
+				.instructions {
+					margin-left: 2em;
+				}
+
+				ul.ul-scorers, ul.ul-admins {
+					list-style-type: none;
+					margin-left: 1em;
+
+					li.li-scorer {
+						margin-bottom: 0.2em;
+
+						.name {
+							padding-left: 0.2em;
+						}
+					}
+				}
+
+				ul.ul-admins {
+					margin-top: 1.5em;
+				}
+
+				.scorers-buttons {
+					margin: 1.6em 0 0 6em;
+				}
+
+			} //-- scorers-container
+
+
+		} //-- scoring-qa-settings-container
+
+
+	} //-- scoring-qa-settings-grid
+
+} //-- scoring-qa-sidebar
+
+.pusher.scoring-qa-pusher {
+	transform-origin: 5% 25% !important;
+	min-height: 115% !important;
+}
+
+.push.scoring-qa-pusher.overflow-y-auto {
+	overflow: auto !important;
+}
+
+#pusher {
+	overflow-y: auto !important;
+}
+
+#pusher:after {
+	height: 190% !important;
+}
+

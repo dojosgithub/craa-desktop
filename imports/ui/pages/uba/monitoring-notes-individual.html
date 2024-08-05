@@ -1,0 +1,110 @@
+<template name="UBAMonitoringNotesIndividual">
+  <div class="ui form uba-mn-individual-form">
+    <div class="fields">
+      <div class="field">
+        <label>Simulation</label>
+        <select class="ui dropdown sel-mn-individual-simulation" id="sel_mn_individual_simulation">
+          <option value="-1">Select Simulation</option>
+          {{#each Simulations}}
+          <option value="{{this.id}}" selected="{{simSelected}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="field">
+        <label>User</label>        
+        <div class="ui search uba-mn-user-search">
+          <input class="prompt uba-mn-user" type="text" placeholder="Name" 
+          id="uba_mn_user">
+          <div class="results"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <button class="ui teal mini basic button btn-include-user">Include</button>             
+      </div>
+
+      <div class="field uba-mn-included-users">
+        {{#each usersIncluded}}
+          <button class="ui label user-name btn-view-included-user" data-uid="{{this.uid}}">
+          {{this.name}} <i class="delete icon icon-remove-search-user" data-uid="{{this.uid}}"></i></button>
+        {{/each}}
+        {{#if hasIncludedUsers}}
+          <button class="ui mini teal basic button btn-view-user-note-log">View Note-log</button>
+          <button class="ui mini orange basic button btn-reset-users">Reset</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="ui row uba-mn-user-log-row">
+    <div class="fifteen wide column uba-mn-user-log-column">
+      {{#if eq hasComputed true}}
+      <div class="uba-mn-user-log-top">
+        <button class="ui teal mini basic button btn-select-table">Select Table</button>
+        <button class="ui orange mini basic button btn-export-table">Export</button>
+        {{#with Simils}}
+        <div class="top-notes">
+          [Simil >0.6: <span class="high-simil">{{Simils.high}}</span>, 
+          >0.9: <span class="higher-simil">{{Simils.higher}}</span>]
+        </div>
+        {{/with}}
+      </div>
+      {{/if}}
+      <table class="uba-mn-user-log-table" id="uba_mn_user_log_table">
+        {{#if eq hasComputed true}}
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Simulation</th>
+            <th>Action</th>
+            <th>Venue</th>
+            <th>VP1</th>
+            <th>VP2</th>
+            <th>Note</th>
+            <th>Finding</th>
+            <th class="th-simil" data-inverted="" 
+              data-tooltip="Similarity between monitoring notes and its identified findings." 
+              data-position="top center">Simil. <i class="info circle icon"></i></th>            
+            <th>Document</th>
+            <th>Page</th>
+            <th class="th-time">Time</th>
+            <th>IP</th>
+            <th>Finding ID</th>
+          </tr>
+        </thead>
+        {{/if}}
+        <tbody>
+          {{#each userLogs}}
+          <tr style="background-color: {{userColor this.uid}}">
+            <td>{{this.name}}</td>
+            <td>{{this.sname}}</td>
+            <td class="{{this.class}}">{{this.msg}}</td>
+            <td>{{this.port}}</td>
+            <td>{{this.d1}}</td>
+            <td>{{this.d2}}</td>
+            <td>{{this.note}}</td>
+            <td>{{this.finding}}</td>            
+            <td class="{{#if gte this.simil '0.9'}}higher-simil{{else}}
+            {{#if gte this.simil '0.6' true}}high-simil{{/if}}{{/if}}">{{this.simil}}</td>             
+            <td>{{this.nd}}</td>
+            <td>{{this.page}}</td>
+            <td>{{dateFormatHMS this.cAt}}</td>
+            <td>{{this.ip}}</td>
+            <td>{{this.fid}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      {{#if eq hasComputed true}}
+      {{#unless userLogs}}
+      <div class="ui container uba-mn-log-loader">
+        <div class="ui active inverted dimmer">
+          <div class="ui text loader">Computing...please wait...</div>
+        </div>
+        <p></p>
+      </div>      
+      {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+</template>

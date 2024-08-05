@@ -1,0 +1,117 @@
+<template name="FindingsComparisonSummary">
+	<div class="ui grid fc-summary-grid">
+    <div class="fifteen wide column fc-input-column">
+      <div class="ui form">
+        <div class="fields">
+
+          <div class="inline field">
+            <select name="sel_fus" id="sel_fus" class="sel-fus">
+              <option value="">Select Followup Simulation</option>
+              {{#each FollowupSims}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+            <button class="ui tiny button btn-apply-fus">Apply</button>
+          </div>
+
+          <div class="inline field">
+            <select name="sel_baseline" id="sel_baseline" class="sel-baseline">
+              <option value="">Select Baseline Simulation</option>
+              {{#each BaselineSims}}
+                <option value="{{this.id}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+            <button class="ui tiny button btn-apply-baseline">Apply</button>
+          </div>          
+        
+          <div class="inline field">
+            <select name="sel_client" id="sel_client" class="sel-client">
+              <option value="">Select Client</option>
+              {{#each Clients}}
+                <option value="{{this._id}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+            <select name="sel_bu" id="sel_bu" class="sel-bu">
+              <option value="">Select BU</option>
+              {{#each BUs}}
+                <option value="{{this._id}}">{{this.name}}</option>
+              {{/each}}
+            </select>  
+            
+            <label for="file_name" class="label-file-name">Filename: </label>
+            <input type="text" name="file_name" id="file_name" placeholder="FindingsComparison" />
+            <button class="ui tiny button btn-submit-comparison">Submit</button>
+            {{#with session 'FindingsComparisonSummary.FileToDownload'}}
+            <span class="fc-excel-file" id="fc_excel_file">
+              <a href="https://s3.amazonaws.com/craav2-us-east-1-uploads/fc_exports/{{session 'FindingsComparisonSummary.FileToDownload'}}"                  
+              class="ui primary circular mini basic icon button" 
+              data-tooltip="Download: {{session 'FindingsComparisonSummary.FileToDownload'}}" download="{{session 'FindingsComparisonSummary.FileToDownload'}}"><i class="download icon"></i></a> 
+            </span>
+            {{/with}}
+          </div>
+
+        </div>
+      </div>   
+    </div>
+  </div>
+
+  <div class="ui grid fc-output-grid">    
+    <!-- <div class="fifteen wide column fc-output-column"> -->
+      {{#with FollowupFindings}}
+      <div class="fus-findings six wide column">
+        <table class="tbl-fus-findings">
+          <thead>
+            <tr class="tr-th-fus-finding">              
+              <th class="th-entry"></th>
+              <th class="th-fus-finding">Finding</th>
+              <th class="th-fus-domain">Dom.</th>
+              <th class="th-fus-id">ID</th>
+              <th class="th-fus-baseline-id">Baseline ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each FollowupFindings}}
+            <tr class="tr-td-fus-finding">
+              <td class="td-entry">{{entry @index}}</td>
+              <td class="td-fus-finding">{{this.finding}}</td>
+              <td class="td-fus-domain">{{this.category_id}}</td>
+              <td class="td-fus-id">{{this.id}}</td>
+              <td class="td-fus-baseline-id">
+                <span class="drop-input-fus-baseline-id">                
+                  <input type="text" data-fid="{{this.id}}" class="input-fus-baseline-id">
+                </span> 
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        <!-- <ul class="ul-fus-findings" id="ul_fus_findings">
+        {{#each FollowupFindings}}
+          <li class="li-fus-finding">
+            <span class="ui label fus-finding-id">{{this.id}}</span>
+            {{this.finding}}
+            <div class="fus-baseline-map">
+              <input type="text">
+            </div>
+          </li>
+        {{/each}}
+        </ul> -->
+      </div>     
+      {{/with}}
+      {{#with BaselineFindings}}
+      <div class="baseline-findings nine wide column">
+
+        <ul class="ul-baseline-findings" id="ul_baseline_findings">
+        {{#each BaselineFindings}}
+        <li class="li-baseline-finding">
+          <span class="ui label baseline-finding-id" draggable="true" id="{{this.id}}">{{this.id}}</span>
+          <span class="ui label baseline-finding-domain-id">{{this.category_id}}</span>
+          {{this.finding}}
+        </li>
+        {{/each}}
+        </ul>
+      </div>
+      {{/with}}
+    <!-- </div> -->
+  </div>
+</template>

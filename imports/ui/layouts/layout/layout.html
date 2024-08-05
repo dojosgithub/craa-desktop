@@ -1,0 +1,21 @@
+<template name="Layout">
+  <!-- {{> Template.dynamic template=main}} -->
+  <div class="ui right vertical labeled wide sidebar menu scoring-qa-sidebar">
+  {{>Template.dynamic template=ScoringQASidebar}}
+  </div>
+  <div class="ui right vertical labeled wide sidebar menu scoring-qa-settings-sidebar">
+  {{>Template.dynamic template=ScoringQASettingsSidebar}}
+  </div>
+  <div class="ui left vertical labeled very wide sidebar menu scoring-qa-view-sidebar">
+  {{>Template.dynamic template=ScoringQAViewSidebar}}
+  </div>  
+  <div class="pusher scoring-qa-pusher" id="pusher">
+  {{>Template.dynamic template=Header}}
+  {{>Template.dynamic template=Leftbar}}
+  {{>Template.dynamic template=Main}}
+  {{>Template.dynamic template=Rightbar}}
+  {{>Template.dynamic template=Footer}}
+  {{> sAlert}}  
+  {{ > Template.dynamic template=ReviewRequest }}
+  </div>
+</template>

@@ -1,0 +1,150 @@
+.findings-top-grid {
+
+  .findings-top-column {
+    padding: 0px !important;
+
+    .findings-top-container {
+      /*text-align: right;*/
+      .num-findings-container {
+        display: inline-block;
+        margin: 14px 0 0 30px !important;
+
+        #excluded_findings {
+          margin-left: 1em;
+          background-color: #eabd56;
+          padding: 3px 5px;
+          border-radius: 5px;
+        }
+      }
+
+      .findings-temp-message-container {
+        display: inline-block;
+        margin-left: 30%;
+        color: #227d94;
+      }
+
+      .findings-sort-menu {
+        display: inline-block;
+        margin-left: 5em;
+      }
+
+      .findings-top-menu {
+        float: right;
+        margin: 10px 30px -5px;
+
+        .btn-delete-all-findings {
+          margin-left: 20px;
+        }
+      }
+    }
+
+  }
+
+}
+
+.findings-grid {
+
+  .tbl-findings {
+
+    thead {
+      line-height: 1px;
+      font-size: 0.94em;    
+    }
+
+    .tr-finding-folder {
+      text-align: center;
+      background-color: #d1e3e4;
+      line-height: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .tr-finding {
+      display: none;
+
+      .txta-finding-content {
+        resize: both;
+        height: auto;
+        min-height: 8em;
+/*        height: auto;
+        min-height: auto;*/
+      }
+
+      .btn-reset-document, .btn-reset-compare {
+        float: right;
+        margin-top: 3px;        
+        font-size: 0.6em;
+        padding: 0.68571429em 0.58571429em 0.58571429em;
+
+        i {
+          font-size: 1.3em;
+        }
+      }
+      
+    }
+
+    .tr-finding.inactive {
+      background-color: #f9e4dc;
+    }
+
+    th {
+      text-align: center !important;
+    }
+
+    th.th-id {
+      width: 50px;
+    }
+
+    th.th-severity {
+      width: 7em;
+    }
+
+    th.th-domain {
+      width: 12em;
+    }
+
+    th.th-cfr {
+      width: 150px;
+    }
+
+    th.th-ichgcp {      
+      width: 8em;
+    }
+
+    th.th-document {      
+      width: 12em;
+    }
+
+    th.th-action {
+      width: 140px;
+    }
+
+    td {
+      font-size: 0.9em;
+    }
+
+    td.td-id {
+      text-align: center;
+    }
+
+    .td-id.excluded {
+      background-color: #eabd56;
+    }
+
+    td.td-action {
+      text-align: center;
+
+      .exclude-finding-container {
+        margin-top: 5px;
+
+        .chbx-exclude-finding {
+          vertical-align: bottom;
+        }
+      }
+    }
+
+    td.inactive {
+      color: #b7b5b5;
+    }
+  }
+}

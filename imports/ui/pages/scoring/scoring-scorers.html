@@ -1,0 +1,20 @@
+<template name="ScoringScorers">
+  <div class="ui form scoring-scorer-form">
+    <div class="inline fields">
+      <div class="field">        
+        <select class="ui dropdown sel-scorers" id="sel_scorers">
+          <option value="-1">Select Scorer</option>
+          {{#each Scorers}}
+          <option value="{{this._id}}" selected="{{scorerSelected}}">{{this.profile.fullname}}</option>
+          {{/each}}
+        </select>
+      </div>           
+
+      <div class="field scorers-buttons">
+        <button class="ui teal mini basic button btn-compute-scorer-data">
+        Export</button>
+      </div>
+
+    </div>
+  </div>    
+</template>

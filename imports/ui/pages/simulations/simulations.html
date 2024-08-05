@@ -1,0 +1,90 @@
+<template name="Simulations">
+  <!-- <div class="ui grid breadcrumb-grid">
+    <div class="fourteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <div class="active section">Simulations</div>
+      </div>
+    </div>
+  </div> -->
+
+    <div class="ui grid simulations-grid-container">
+      <div class="fourteen wide column simulations-column-container">
+
+        <div class="add-simulation-container">
+          <form class="ui form form-add-simulation">
+            <div class="inline fields">
+              <div class="ten wide field">
+                <label>Name</label>
+                <input type="text" name="new_simulation_name" id="new_simulation_name" placeholder="Name">
+              </div>
+              <div class="seven wide field">
+                <label>Label</label>
+                <input type="text" name="new_simulation_label" id="new_simulation_label" placeholder="Label">
+              </div>
+              <div class="field">
+                <button class="circular mini ui teal icon button btn-add-simulation">
+                  <i class="plus icon"></i> ADD
+                </button>              
+              </div>
+
+            </div>            
+          </form>  
+        </div>
+        <table class="ui teal selectable celled table tbl-simulations">        
+          <thead>
+            <tr>
+              <th class="th-action">Action</th>
+              <th>Name</th>
+              <th>Label</th>
+              <th class="th-group" data-inverted="" 
+                data-tooltip="Simulations can be grouped together by the same group number." 
+                data-position="left center">Group <i class="info circle icon"></i></th>
+              <th class="th-created">Created</th>
+              <th class="th-modified">Modified</th>                       
+            </tr>
+          </thead>
+          <tbody>
+            {{#each Simulations}}
+            <tr class="ui form">
+              <td class="td-action" data-sid="{{id}}" data-rpp="{{this.rescue_pills_prescribed}}">            
+                <button class="tiny ui basic circular icon button btn-simulation-action btn-delete-simulation" 
+                  data-tooltip="archive | {{this.name}}" data-position="top center" 
+                  data-variation="mini">
+                  <i class="red archive icon"></i></button>              
+                <button class="tiny ui basic circular icon button btn-simulation-action btn-save-simulation" 
+                  data-tooltip="save | {{this.name}}" data-position="top center" 
+                  data-variation="mini"> 
+                  <i class="green save icon"></i></button>
+                <button class="tiny ui basic circular icon button btn-simulation-action btn-manage-simulation"
+                  data-tooltip="manage | {{this.name}}" data-position="top center" 
+                  data-variation="mini"> manage 
+                  <i class="blue chevron circle right icon"></i> </button>                    
+              </td>            
+              <td>
+                <div class="field">
+                  <input type="text" class="input-simulation-name {{id}}" value="{{name}}">
+                </div>              
+              </td>
+              <td>
+                <div class="field">
+                  <input type="text" class="input-simulation-label {{id}}" value="{{label}}">
+                </div>  
+              </td>
+              <td class="td-group">
+                <div class="field">
+                  <input type="text" class="input-simulation-group {{id}}" value="{{group}}">
+                </div>  
+              </td>              
+              <td class="date center aligned">{{dateFormatNHMS created}}</td>
+              <td class="date center aligned">{{dateFormatNHMS modified}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+</template>
+
+
+

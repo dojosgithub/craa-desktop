@@ -1,0 +1,137 @@
+.v1-users-grid {
+  margin-top: 0px !important;
+  
+  .v1-users-column {
+    #tbl_v1_users_length {
+      display: inline-block;
+      margin-top: 2em;
+      margin-left: 3em;      
+    }
+
+    .dataTables_filter {
+      margin-top: 2em;
+      float: right;
+      margin-bottom: 0.5em;      
+
+      input {
+        border-radius: 4px;
+        border: 1px solid #9a9696;
+        height: 1.8em;
+        width: 12em;        
+      }
+    }
+
+    table.dataTable {
+      /*margin: 30px auto 30px auto;*/
+      margin: 5px 30px;
+      /*width: 90%;*/
+      /*min-width: 50%;*/
+      min-width: 90%;
+    }
+
+    #tbl_v1_users {
+      width: 100% !important;
+
+      thead tr {
+        line-height: 0px;
+      }
+
+      tbody td {
+        padding: 3px 7px;
+      }
+
+      th {
+        text-align: center;
+      }
+    }
+
+    #tbl_v1_users_info {
+      margin: 0 0 3em 3em;
+      display: inline-block;
+    }
+
+    #tbl_v1_users_paginate {
+      display: inline-block;
+      margin-left: 20%;
+      /*float: right;*/
+
+      a.paginate_button { 
+        cursor: pointer;       
+        color: #000;
+        padding: 2px 7px;        
+        min-width: 100px;        
+      }
+
+      a.paginate_button.previous {
+
+      }
+
+      a.paginate_button.next {
+
+      }
+
+      a.paginate_button.disabled {
+        color: #9e9b9b;
+      }      
+
+      a.paginate_button.current {
+         // border: 1px solid #999;
+         // border-radius: 3px;
+        color: #333 !important;
+        border: 1px solid #979797;
+        background-color: white;         
+        background: -webkit-linear-gradient(#fff 0%, #dcdcdc 100%);
+        background: -o-linear-gradient(#fff 0%, #dcdcdc 100%);
+        background: linear-gradient(#fff 0%, #dcdcdc 100%);
+
+      } 
+
+    }
+  }
+
+  .v1-users-checker-column {
+    .v1-users-checker-container {
+      margin: 1em 0 0 5em;
+
+      .v1-users-checker-title {
+        margin-bottom: 0.5em;
+      }
+
+      .v1-users-checker-legends {
+        margin-bottom: 0.5em;
+        
+        button {
+          height: 20px;
+          line-height: 2px;
+          font-weight: normal;
+        }
+
+        .btn-v1 {
+          background-color: yellow;
+        }
+
+        .btn-v2 {
+          background-color: #89afe8;
+        }
+
+        .btn-both {
+          background-color: #36cc36;
+        }
+
+      }
+
+      #v1_users_checker_table {
+        .v1-user-duplicated {
+          background-color: yellow;
+        }
+        .v2-user-duplicated {
+          background-color: #89afe8;
+        }
+        .v12-user-duplicated {
+          background-color: #36cc36;
+        }                
+      }
+    }
+  }
+
+}

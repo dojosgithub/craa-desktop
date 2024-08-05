@@ -1,0 +1,112 @@
+.ui.grid.findings.top {
+
+}
+
+.ui.grid.findings.main {
+
+	.left {
+
+		.ui.accordion.simulations {
+			padding: 0;
+
+			.title {
+
+			}
+
+			.content {
+				.list {
+					.item {
+						margin-left: 1em;
+
+						.content {
+							padding: 0;
+							.button {
+								padding: 0.4em 1em;
+							}
+						}
+					}
+
+					.item.active {
+						background-color: #dee6bd;
+					}					
+				}
+			}
+		}
+	}
+
+	.right {
+
+		.findings-main-top-container {
+			padding-bottom: 0.5em;
+
+			.field-drag-option {
+				display: inline-block;
+			}
+
+			.btn-save-findings-order {
+				display: inline-block;
+				margin-left: 5%;
+			}
+
+			.findings-order-last-updated {
+    		display: inline-block;
+    		margin-left: 10%;
+    		font-size: 0.8em;
+
+    		.label {
+    			color: #bd4d4d;
+    			font-weight: bold;
+    		}				
+			}
+
+			.findings-order-export {
+				display: inline-block;
+				margin-left: 2em;
+
+				.btn-export-all-findings {
+					padding: 5px 7px;
+				}
+			}
+		}
+
+		.findings {
+			.finding-item {
+				width: 89%;
+				border: 1px solid #999;
+				border-radius: 5px;
+				padding: 3px 5px;
+				margin-bottom: 5px;
+
+				.order {
+					display: inline-block;
+					cursor: pointer;
+					vertical-align: top;
+				}
+
+				.id {
+					display: inline-block;
+					width: 40px;
+					vertical-align: top;
+				}
+
+				.finding {
+					display: inline-block;
+					width: 88%;
+					vertical-align: middle;
+					padding-left: 7px;
+				}
+			}
+
+			.findings-sortable-chosen {
+				background-color: #d7edf1;
+			}
+			.findings-sortable-ghost {				
+    		opacity: 0.1;
+    		background-color: #161617;				
+			}
+			// .findings-sortable-drag {
+			// 	background-color: red;
+			// }						
+		}
+	}
+}

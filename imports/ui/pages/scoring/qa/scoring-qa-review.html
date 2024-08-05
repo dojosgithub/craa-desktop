@@ -1,0 +1,100 @@
+<template name="ScoringQAReview">
+  <div class="ui grid scoring-qa-review-top-grid">
+    <div class="sixteen wide column scoring-qa-review-top-column">
+    <select name="sel_qa_simulations" id="sel_qa_simulations">
+      <option value="-1">Select Simulation</option>
+      {{#each QASimulations}}
+      <option value="{{this.assessmentId}}">
+        <span class="simulation-name">{{this.simulationName}}</span>
+        <span class="fullname"> [{{this.fullname}}]</span>        
+      </option>
+      {{/each}}
+    </select>
+    <button class="ui mini basic blue button btn-review-scores">VIEW</button>
+    {{#with thisAssessmentId}}
+    <button class="ui mini basic orange button btn-export-scores">Export</button>
+    {{/with}}
+    </div>
+  </div>
+  {{#with thisAssessmentId}}
+  <div class="ui grid scoring-qa-review-grid">
+    <div class="eight wide column scoring-qa-review-monitoring-notes-column">
+      <div class="monitoring-notes-container">
+        <table class="tbl-scoring tbl-scoring-monitoring-notes tbl-qa-review" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>                
+                <th rowspan="2" class="th-mn-id">MN ID</th>
+                <th rowspan="2" class="th-mn-page">Page</th>                
+                <th rowspan="2" class="th-mn-content">Monitoring Notes 
+                  (<span class="num-monitoring-notes">{{NumOfMonitoringNotes}}</span>)</th>
+                <th class="th-mn-ne" data-tooltip="Non-Error">Non-error</th>
+            </tr>
+          </thead>
+          <tbody>            
+ 
+                {{#each MonitoringNotes}}                  
+                  <tr class="tr-doc">
+                    <td class="td-doc" colspan="8">{{this.name}}</td>
+                  </tr>
+                  {{#each notes}}
+                  <tr>
+                    <td class="td-mn-id" data-tooltip="Note ID: {{this.key}}">{{this.key}}</td>
+                    <td class="td-mn-page" data-tooltip="Doc Page: {{this.page}}">{{this.page}}</td>
+                    <td class="td-mn-content">{{{nr2br this.content}}}</td>
+                    <td class="td-mn-ne" data-nid="{{NonError._id}}">
+                    </td>                    
+                  </tr>
+                  {{/each}}
+                {{/each}}  
+          </tbody>          
+        </table>
+      </div>
+    </div>
+    <div class="eight wide column scoring-qa-review-findings-column">
+      <div class="findings-container">
+        <table class="tbl-scoring tbl-scoring-findings tbl-qa-review">
+          <thead>
+            <tr>              
+              <th colspan="{{sum qaScorersCount 1}}" class="th-bh-status">Identified</th>
+              <th rowspan="2" class="th-bh-content">Findings</th>
+            </tr>
+            <tr>
+              {{#each QAScorers}}              
+              <th class="th-bh-status-sub" data-tooltip="{{this.profile.fullname}}" data-position="bottom left">
+                S{{sum @index 1}}<br><span class="percent">({{this.profile.percent}}%)</span>
+              </th>
+              {{/each}}
+              <th class="th-bh-status-sub answer" data-tooltip="Answer" data-position="bottom left">A</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each Findings}}              
+              <tr class="tr-bh-doc">
+                <td colspan="{{sum qaScorersCount 2}}" class="td-bh-doc">{{this.dname}}</td>
+              </tr>              
+               {{#each findings}}
+               <tr class="tr-finding">
+                  {{#each scorers}}
+                  <td class="td-bh-status 
+                  {{#if ne this.identified null}}{{#if eq this.identified ../answer}}correct{{else}}wrong{{/if}}{{/if}}">
+                    {{#if eq this.identified null}}
+                    <i class="icon grey minus"></i>                    
+                    {{else}}
+                    <i class="icon {{#if eq this.identified true}}green check circle{{else}}red remove{{/if}}"></i>                    
+                    {{/if}}
+                  </td>
+                  {{/each}}
+                  <td class="td-bh-status answer">
+                    <i class="icon {{#if eq this.answer true}}green check circle{{else}}red remove{{/if}}"></i>
+                  </td>                  
+                  <td class="td-bh-content">{{{this.finding}}}</td>
+              </tr>                
+              {{/each}}
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+</template>

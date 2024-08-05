@@ -1,0 +1,53 @@
+<template name="FindingsPreview">
+  <div class="header">
+    <span class="select-file-label">Select Findings Excel file to review: </span>
+    <dis class="field findings-preview-input-field">
+      <input type="file" id="findings_preview_file">
+      <div id="_findings_preview_file"></div>
+    </dis>
+    <dis class="field btn-import-field">
+      <button class="ui basic tiny button btn-submit-import-findings" disabled>Submit</button>
+    </dis>    
+  </div>
+  <div class="content findings-preview-content">
+    <div class="description">
+      <div class="num-findings">
+        <span id="num_findings"></span> Finding(s)
+        <div class="in-this-sim">
+          <span>in this sim</span>
+          <span id="num_findings_in_this_sim"></span>
+        </div>
+        <div class="in-other-sim">
+          <span>in other sim</span>
+          <span id="num_findings_in_other_sim"></span>
+        </div>
+        <div class="doc-not-in-this-sim">
+          <span>document not in this sim</span>          
+        </div>
+        <div class="doc-null">
+          <span>no document</span>          
+        </div>
+        <div class="doc-diff">
+          <span>double check document</span>          
+        </div>
+        <div class="wrong-domain-name">
+          <span>check domain name</span>          
+        </div>        
+      </div>
+<!--       <div class="one wide column ui form">
+        <div class="field">
+          <input id="search_field" type="search" placeholder="search">
+        </div>
+      </div>  -->
+      <div class="ui findings-preview-search">
+        <div class="ui icon input">
+          <input class="prompt" type="text" id="search_field" placeholder="search">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"><span id="num_results">0</span> result(s)</div>
+      </div>      
+      <div id="findings_preview"></div>
+      <div id="out"></div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,16 @@
+<template name="SimulationPreferences">
+  <div class="ui grid simulation-preferences-grid">
+    <div class="twelve wide column simulation-preferences-container">
+         
+      <div class="onoffswitch" id="rppCheckboxContainer" 
+        data-tooltip="Currently {{#if rescuePillsPrescribed}}On{{else}}Off{{/if}}">
+        <input type="checkbox" name="rescue_pills_prescribed" class="onoffswitch-checkbox" 
+          id="rescue_pills_prescribed" 
+         {{checked rescuePillsPrescribed 1}}>
+        <label class="onoffswitch-label" for="rescue_pills_prescribed"></label>               
+      </div>
+      <div class="rpp-label-column">Calculate prescribed pills for rescue medication</div>
+
+    </div>
+  </div>
+</template>

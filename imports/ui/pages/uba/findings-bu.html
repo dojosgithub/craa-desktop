@@ -1,0 +1,125 @@
+<template name="UBAFindingsBU">
+  <div class="ui form">
+    <div class="fields">
+      <div class="field">
+        <label>Client</label>
+        <select class="ui dropdown sel-findings-bu-client" id="sel_findings_bu_simulation">
+          <option value="-1">Select Client</option>
+          {{#each Clients}}
+          <option value="{{this._id}}" selected="{{clientSelected}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="field">
+        <label>BU</label>
+        <select class="ui dropdown sel-findings-bu-bu" id="sel_findings_bu_simulation">
+          <option value="-1">Select BU</option>
+          {{#each BUs}}
+          <option value="{{this._id}}" selected="{{buSelected}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="field">
+        <label>Simulation</label>
+        <select class="ui dropdown sel-findings-bu-simulation" id="sel_findings_bu_simulation">
+          <option value="-1">Select Simulation</option>
+          {{#each Simulations}}
+          <option value="{{this.id}}" selected="{{simSelected}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>            
+
+      <div class="field findings-bu-buttons">
+        <button class="ui teal mini basic button findings-bu-button btn-compute-findings-bu">Compute</button>
+        {{#with meanScore}}
+        <button class="ui orange mini basic button findings-bu-button btn-reset-findings-bu">Reset</button>
+        <button class="ui teal mini basic button findings-bu-button btn-view-top-list">View Top List</button>
+        <button class="ui teal mini basic button findings-bu-button btn-export-top-list">Export Top List</button>
+        {{/with}}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ui grid uba-findings-bu-result-grid">
+    <div class="sixteen wide column uba-findings-bu-result-column">
+      
+      <div class="uba-findings-bu-top-info">
+        * Click the match-percentage score to view Findings:Individual comparison table
+        <br>
+        ** Mark the check box for the user pair that has been investigated  
+      </div>
+      {{#if and (eq hasComputed true) (eq viewTopList true)}}
+      <div class="uba-findings-bu-top-cases">
+        <div class="mean-score">Average: {{meanScore}}</div>
+        <div class="top-scores-title">[score >= 80]</div>
+        <div class="uba-findings-bu-top-cases-table-container">
+          <table class="uba-findings-bu-top-cases-table">        
+          {{#each TopResults}}
+            {{#if eq this.[6] this.[7]}}
+            <tr>
+              <td class="td-chkb-top-scores">
+                <input type="checkbox" class="chkb-top-scores" data-u1="{{this.[2]}}" 
+                data-u2="{{this.[3]}}" data-sid="{{thisSid}}" checked="{{isCompared this.[8]}}">
+              </td>
+              <td>{{this.[0]}}</td>
+              <td>{{this.[1]}}</td>
+              <td>{{this.[6]}}</td>
+              <td>{{this.[7]}}</td>
+              <td class="match-percent {{this.[5]}}" data-n1="{{this.[0]}}" data-n2="{{this.[1]}}" 
+                 data-u1="{{this.[2]}}" data-u2="{{this.[3]}}" 
+                 data-c1="{{this.[6]}}" data-c2="{{this.[7]}}">{{this.[4]}}</td>              
+            </tr>
+            {{/if}}
+          {{/each}}
+          </table>
+        </div>
+      </div>
+      {{/if}}
+      <table class="uba-findings-bu-table">      
+        <tbody>
+
+        {{#each Results}}        
+          <tr>
+            <td class="user-name-y">{{this.[0].[0]}}</td>            
+            {{#each this}}
+              {{#if this.[4]}}
+              <td class="match-percent {{this.[5]}}" data-n1="{{this.[0]}}" data-n2="{{this.[1]}}" 
+               data-u1="{{this.[2]}}" data-u2="{{this.[3]}}" data-c1="{{this.[6]}}" data-c2="{{this.[7]}}">{{this.[4]}}</td>              
+              {{else}}
+              <td class="same-user">&nbsp;</td>
+              {{/if}}
+            {{/each}}
+          </tr>     
+        {{/each}}
+        </tbody>
+      </table>
+
+      {{#if eq hasComputed true}}
+      {{#unless Results}}
+    
+      <div class="ui container uba-findings-bu-loader">
+        <div class="ui active inverted dimmer">
+          <div class="ui text loader">Computing...please wait...</div>
+        </div>
+        <p></p>
+      </div>      
+      {{/unless}}
+      {{/if}}
+
+<!--       {{#if and (eq hasComputed true) (eq viewTopList true)}}
+      {{#unless TopResults}}
+    
+      <div class="ui container uba-findings-bu-loader">
+        <div class="ui active inverted dimmer">
+          <div class="ui text loader">Computing...please wait...</div>
+        </div>
+        <p></p>
+      </div>      
+      {{/unless}}
+      {{/if}}  -->     
+    </div>
+  </div>
+
+  <div class="uba-findings-bu-user-info"></div>
+</template>

@@ -1,0 +1,101 @@
+<template name="Protocols">
+  <div class="ui grid protocols-grid">
+    <div class="twelve wide column protocol-list-container">
+
+        <table class="ui teal selectable celled table tbl-protocols">
+          <thead>
+            <tr>
+              <th class="th-name">Name</th>
+              <th class="th-file">File</th>
+<!--               <th class="th-created">Created</th>
+              <th class="th-modified">Modified</th> -->
+              <th class="th-action">Action</th>            
+            </tr>
+          </thead>
+          <tbody id="tbody_protocol_list">
+            {{#each Protocols}}
+            {{#if eq this.status 4}}
+            <tr class="ui form tr-protocol deleted" data-pid="{{this.id}}"><td></td></tr>
+            {{else}}
+            <tr class="ui form tr-protocol" data-pid="{{this.id}}">
+              <td>
+                <div class="field">
+                  <input type="text" name="name" 
+                    class="input-protocol-name {{id}} {{#if eq this.status 0}}inactive{{/if}}" 
+                    value="{{this.protocol_name}}">
+                </div>              
+              </td>
+              <td class="td-file">
+                <span class="protocol-file {{#if eq this.status 0}}inactive{{/if}}">{{this.file_name}}</span>
+              </td>
+              <td class="td-action" data-pid="{{this.id}}">
+<!--                 <button class="ui circular mini basic icon submit button btn-view-protocol-document" 
+                  data-pid="{{this.id}}" data-tooltip="download"><i class="download icon"></i></button> -->
+                <!-- <a href="https://cdn-doc.craassessments.com/{{this.file_name}}"  -->
+                <a href="https://s3.amazonaws.com/craav2-us-east-1-uploads/documents/{{this.file_name}}" 
+                  class="ui circular mini basic icon button" 
+                  data-pid="{{this.id}}" data-tooltip="download: {{this.file_name}}" download="{{this.file_name}}"><i class="download icon"></i></a>          
+                <button class="ui circular mini basic icon submit button btn-save-protocol-name" 
+                  data-pid="{{this.id}}" data-tooltip="save"><i class="save blue icon"></i></button>              
+                {{#if eq this.status 1}}
+                <button class="ui circular mini basic button btn-status btn-update-protocol-status" 
+                  data-status="0" data-pid="{{this.id}}"><i class="lock orange icon"></i> 
+                  <span>deactivate</span></button>
+                {{else}}
+                <button class="ui circular mini basic button btn-status btn-update-protocol-status" 
+                  data-status="1" data-pid="{{this.id}}"><i class="unlock green icon"></i> 
+                  <span>activate</span></button>
+                {{/if}}
+                <button class="ui circular mini basic icon button btn-update-protocol-status" 
+                  data-status="4" data-tooltip="delete" data-pid="{{this.id}}"><i class="trash red icon"></i> 
+                  </button>
+              </td>
+            </tr>
+            {{/if}}
+            {{/each}}
+          </tbody>
+        </table>
+
+    </div>
+
+    <div class="four wide column protocol-form-container">
+      
+      <div class="ui card form" id="new_protocol_form">
+        <div class="content protocol-form-title">
+          <div class="header">New Protocol Document</div>
+        </div>
+        <div class="content">
+          <div class="field">
+            <input type="text" name="protocol_name" placeholder="Protocol Document Name">
+          </div>
+          <div class="field">
+            <input type="file" name="protocol_file" id="protocol_file">
+          </div>
+        </div>
+        <div class="description">
+          <div class="file-info">
+            <div class="file-info-name">
+              <span class="file-info-label">Name: </span><span class="file-name"></span>
+            </div>
+            <div class="file-lastmodified">
+              <span class="file-info-label">Modified: </span><span class="file-modified"></span>
+            </div>
+            <div class="file-info-size">
+              <span class="file-info-label">Size: </span><span class="file-size"></span>
+            </div>                      
+          </div>
+          {{#with ProtocolDocumentFileBeingUploaded}}
+          <div class="ui tiny progress protocol-file-upload-progress">
+            <div class="bar"><div class="progress"></div></div>  
+          </div>
+          {{/with}}          
+        </div>
+        <div class="extra content protocol-form-buttons">
+          <button class="ui mini basic orange button btn-reset-protocol-form">Reset</button>
+          <button class="ui mini basic blue button submit btn-new-protocol">Add</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>

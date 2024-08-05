@@ -1,0 +1,24 @@
+<template name="ScoringReview">
+  <div class="ui grid scoring-review-grid">
+    <div class="sixteen wide column scoring-review-column">
+      <div class="scoring-review-top-container">
+        <input type="checkbox" id="chbk_only_qa_sims" 
+          class="ui mini basic blue button btn-view-qa-sims-only"
+          checked="{{onlyQASims}}">
+          View only QA simulations        
+      </div>
+      {{> tabular table=TabularTables.ScoringReview class="table table-striped table-condensed" 
+        selector=scoringReviewSelector id="tbl_scoring_review_container"}}        
+    </div>
+<!--     <div class="four wide column scoring-column">
+      <div class="ui segment scoring-segment">
+        
+        <header class="toolbar toolbar-header">
+          <h1 class="title">{{User.fullname}}</h1>
+        </header>
+        
+        No user data to view
+      </div>  
+    </div> -->
+  </div>
+</template>

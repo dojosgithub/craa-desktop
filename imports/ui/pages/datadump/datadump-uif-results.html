@@ -1,0 +1,48 @@
+<template name="UnidentifiedFindingsResults">
+
+  <div class="ui grid uif-results-grid">
+    <div class="fifteen wide column uif-results-column">
+      
+      <div class="ui styled accordion uif-results">
+        {{#each Clients}}
+        <div class="title trigger">
+           <i class="dropdown icon"></i>
+          {{this.name}}
+        </div>
+        <div class="content">
+          <div class="accordion">
+            {{#each this.bus}}
+              <div class="title trigger">
+                 <i class="dropdown icon"></i>
+                {{this.name}}
+              </div>
+              <div class="content">
+                <div class="accordion">
+                  {{#each this.simulations}}
+                  <div class="simulation title">
+                    <span class="name">{{this.name}}</span>
+                    <span class="simulation-action-container" 
+                      data-cid="{{../../_id}}" 
+                      data-buid="{{../_id}}" 
+                      data-sid="{{this.id}}"
+                      data-cname = "{{../../name}}"
+                      data-buname = "{{../name}}"
+                      data-sname = "{{this.name}}"
+                      >
+                      <button class="ui circular mini basic button btn-export-unidentified-findings-results">
+                        <i class="file excel outline icon"></i> Export Unidentified Findings Results</button>
+                    </span>                     
+                  </div>                
+                  {{/each}}
+                </div>
+              </div>            
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+    </div>
+  </div>
+
+</template>

@@ -1,0 +1,25 @@
+<template name="ExportMonitoringNotes">
+  <div class="ui grid export-monitoring-notes-grid">
+    <div class="sixteen wide column export-monitoring-notes-column">
+      
+      {{> tabular table=TabularTables.ExportMonitoringNotes selector=selector 
+      class="table table-striped table-bordered table-condensed"}}
+
+    </div>
+  </div>
+</template>
+
+<template name="ExportMonitoringNotesAction">
+  <button class="ui mini basic blue button btn-export-monitoring-notes">
+    <i class="file excel outline icon"></i>
+    Monitoring Notes
+  </button>
+  <button class="ui mini basic teal button btn-export-assessee-log">
+    <i class="file excel outline icon"></i>
+    Assessee Log
+  </button>
+  <button class="ui mini basic orange button btn-export-trainee-log">
+    <i class="file excel outline icon"></i>
+    Training Log
+  </button>  
+</template>

@@ -1,0 +1,112 @@
+.simulations-grid-container {
+    margin-top: 0px !important;
+  .simulations-column-container {
+    margin: 0px auto;
+
+    .add-simulation-container {      
+      float: right;
+      margin: 0 10px;
+      font-size: 0.9em;
+
+      .btn-add-simulation {
+        width: 55px;
+        height: 25px;
+        line-height: 8px;        
+      }
+
+      input {
+        height: 30px;
+      }
+
+      .ui.basic.red.pointing.prompt.label.transition.visible {
+        width: 250px;
+      }
+    }
+
+    .tbl-simulations {
+      font-size: 0.9em;
+      clear: both;
+
+      tr {
+        height: 3em;
+      }
+
+      th {
+        text-align: center;
+        
+        /* for more condensed rows */ 
+        padding: 0;
+      }
+
+      td {
+        font-size: 0.93em;
+        
+        /* for more condensed rows */ 
+        padding: 0;
+        
+        input {
+          height: 1.8em;
+          border: none;
+          vertical-align: middle;          
+        }
+        button {
+          /*height: 1.6em;*/
+          width: 2em;
+          height: 2em;
+          vertical-align: middle;
+          padding: 1px 5px;
+          margin-bottom: 1px;
+          margin-right: 7px;
+          margin-top: 2px;
+        }
+        button.btn-manage-simulation {
+          margin-right: 20px;
+          width: 5.6em;
+        }
+      }
+
+      td.simulation-actions {
+        text-align: right;
+      }
+
+      th.th-group {
+        width: 100px;
+
+        i.icon {
+          color: #568bde;
+        }
+      }
+
+      td.td-group {
+        input {
+          text-align: center;
+        }
+      }
+
+      th.th-created, th.th-modified {
+        width: 170px;
+      }
+
+      th.th-action {        
+        width: 170px;
+      }
+
+      td.td-action {        
+        text-align: right;
+      }
+
+      td.date {
+        font-size: 0.83em;
+      }      
+
+      .btn-simulation-action {
+        font-size: 0.92em;
+      }
+    }
+
+  }
+}
+
+.add-simulation-modal {
+  width: 300px;
+}

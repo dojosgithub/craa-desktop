@@ -1,0 +1,165 @@
+<template name="Findings">
+  {{#each _Documents}}{{/each}}
+  <div class="ui grid findings-top-grid">
+    <div class="sixteen wide column findings-top-column">
+      <div class="container findings-top-container">
+        <div class="num-findings-container">
+          <!-- <span id="count_findings"><i class="spinner loading icon"></i></span> Finding(s) -->
+          <span id="count_findings">{{countActiveFindings}}/{{countAllFindings}}</span> Finding(s)
+          <!-- <span id="excluded_findings">{{countFindingsExcluded}} excluded</span>  -->
+        </div>
+        <div class="findings-temp-message-container">
+          <span>(Document can be removed/unlinked by putting 0 to the slot.)</span>
+        </div>
+<!--         <div class="findings-sort-menu">
+          <input type="checkbox" id="chkb_findings_group_by_document">
+          <label> Group by document</label>
+        </div> -->
+        <div class="findings-top-menu">
+          <button class="ui basic mini button btn-import-findings" 
+          disabled=""><i class="upload icon"></i> import</button>
+          <button class="ui basic mini button btn-export-findings" 
+          disabled=""><i class="download icon"></i> export</button>
+          <button class="ui red basic mini button btn-delete-all-findings" 
+          disabled=""><i class="trash icon"></i> delete all</button>    
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="ui grid findings-grid">
+    <div class="sixteen wide column finding-list-container">
+          
+      <table class="ui teal selectable celled table tbl-findings">
+        <thead>
+          <tr>            
+            <th class="th-id">id</th>
+            <th class="th-finding">Finding</th>
+            <th class="th-severity">Severity</th>
+            <th class="th-domain">Domain</th>
+            <th class="th-cfr">CFR</th>
+            <th class="th-ichgcp">ICH-GCP</th>
+            <th class="th-document">Document</th>
+            <th class="th-document">Document2</th>
+            <th class="th-action">Action</th>            
+          </tr>
+        </thead>
+        <tbody>
+          {{#each DocumentFolders}}     
+            {{#if gt (countFindingAll id) 0}}       
+            <tr class="tr-finding-folder {{this.id}}" data-dfid="{{this.id}}">
+              <td colspan="9">{{name}} <span class="count-finding">({{countFindingActive id}}/{{countFindingAll id}})</span></td>
+            </tr>
+            {{/if}}
+          {{#each Documents}}
+          {{#each Findings}}
+              {{_countAllFindings ../../id}}
+            {{#if eq this.status 1}}              
+              {{_countActiveFindings ../../id}}
+              {{#if this.excluded}}
+                {{_countExcludedFindings}}
+              {{/if}}
+            {{/if}}
+            <tr class="tr-finding ui form {{../../id}} {{#if ne this.status 1}}inactive{{/if}}" data-fid="{{this._id}}" id="finding_form_{{this._id}}">
+            <!-- <tr class="tr-finding" data-fid="{{this._id}}"> -->
+              <td class="td-id {{#if eq this.status 0}}inactive{{/if}} {{#if this.excluded}}excluded{{/if}}">{{this.id}}</td>
+              <td>
+                <!-- <div class="field finding-content-field"> -->
+                  <textarea name="txta_finding_content" class="txta-finding-content" 
+                  id="_finding_content_{{this._id}}">{{this.finding}}</textarea>
+                  <!-- <div contentEditable="true" id="finding_content_{{this._id}}">{{this.finding}}</div> -->
+                <!-- </div>                 -->
+              </td>
+              <!-- <td>{{this.severity}}</td> -->
+              <td class="field">
+                <select class="ui dropdown select-severity" name="select_severity" 
+                id="_select_severity_{{this._id}}">
+                  <option value="Major" {{selectedIf this.severity 'Major'}}>Major</option>
+                  <option value="Critical" {{selectedIf this.severity 'Critical'}}>Critical</option>
+                  <option value="Minor" {{selectedIf this.severity 'Minor'}}>Minor</option>
+                </select>
+              </td>
+              <td>
+                <div class="field" data-tooltip="{{this.category}}">                  
+                  <select class="ui dropdown select-domain" name="_select_domain" id="_select_domain_{{this._id}}">
+                    {{#each Domains}}
+                    <option value="{{this.id}}" {{selectedIf ../category this.name}}>{{this.name}}</option>
+                    {{/each}}
+                  </select> 
+                  <!-- {{this.category}} -->
+                </div>
+              </td>
+              <td>
+                <div class="field" data-tooltip="{{this.cfr}}">
+                  <input type="text" value="{{this.cfr}}" id="_input_cfr_{{this._id}}">
+                </div>
+              </td>
+              <td>
+                <div class="field" data-tooltip="{{this.ich_gcp}}">
+                  <input type="text" value="{{this.ich_gcp}}"  id="_input_ichgcp_{{this._id}}">
+                </div>                
+              </td>
+              <!-- <td>{{this.document_id}}</td> -->
+              <!-- <td>{{this.compare_with}}</td> -->
+              <td>
+                <!-- <div class="item">{{this.document_id}}</div> -->
+                <div class="item" data-tooltip="{{Document}}">{{Document}}</div>
+                <div class="ui search finding-document">
+                  <div class="ui icon input">
+                    <input class="prompt input-document" type="text" id="_input_document_{{this._id}}">
+                  </div>
+                  <div class="results"></div>
+                </div>
+                <button class="ui mini basic circular icon button btn-reset-document" 
+                  data-fid="{{this._id}}" data-tooltip="clear slot">
+                  <i class="red remove icon"></i></button>
+                
+              </td>
+              <td>
+                <!-- <div class="item">{{this.compare_with}}</div> -->
+                <div class="item" data-tooltip="{{Compare}}">{{Compare}}</div>
+                <div class="ui search finding-document2">
+                  <div class="ui icon input">
+                    <input class="prompt input-compare" type="text" id="_input_compare_{{this._id}}">
+                  </div>
+                  <div class="results"></div>
+                </div>
+                <button class="ui mini basic circular icon button btn-reset-compare" 
+                  data-fid="{{this._id}}" data-tooltip="clear slot">
+                  <i class="red remove icon"></i></button>                
+              </td>              
+              <td class="td-action" data-dfid="{{../../id}}" data-_dfid="{{../../_id}}">              
+                <button class="ui circular mini basic icon submit button btn-save-finding" 
+                  data-tooltip="save"><i class="save blue icon"></i></button>              
+                {{#if eq this.status 1}}
+                <button class="ui circular mini basic icon button btn-update-finding-status" 
+                  data-status="0" data-tooltip="deactivate"><i class="lock orange icon"></i> 
+                  </button>
+                {{else}}
+                <button class="ui circular mini basic icon button btn-update-finding-status" 
+                  data-status="1" data-tooltip="activate"><i class="unlock green icon"></i> 
+                  </button>
+                {{/if}}
+                <button class="ui circular mini basic icon button btn-update-finding-status" 
+                  data-status="4" data-tooltip="delete"><i class="trash red icon"></i> 
+                  </button>   
+                  <!-- <div class="exclude-finding-container">
+                    <input type="checkbox" class="chbx-exclude-finding" checked={{this.excluded}}> exclude             
+                  </div> -->
+              </td>
+            </tr>
+          {{/each}}
+          {{/each}}
+          {{/each}}
+        </tbody>
+      </table>
+        
+    </div>
+  </div>
+
+  <div class="ui fullscreen modal findings-preview-modal">
+    <i class="close icon"></i>  
+    <!-- {{> FindingsPreview }} -->
+    {{> Template.dynamic template=tplFindingsPreview }}
+  </div>
+
+</template>

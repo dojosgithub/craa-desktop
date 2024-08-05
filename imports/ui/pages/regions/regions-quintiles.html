@@ -1,0 +1,80 @@
+<template name="RegionsQuintiles">
+
+  <div class="ui segment regions-quintiles-segment">
+    <div class="ui grid region-grid">
+      
+      <div class="fourteen wide column region-country-column" id="region_country_column">
+      
+        <div class="ui horizontal list country-list" id="region_country_list">
+          {{#each Countries.done}}
+            {{#if inArray RegionsChecked this.quintiles_region}}            
+            <div class="ui raised red card item country-item animated jackInTheBox" 
+              data-cid="{{this._id}}" data-code="{{this.ISO3166_1_Alpha_2}}" data-origin="{{this.quintiles_region}}">
+              <button class="ui basic blue button btn-save-country-region" data-tooltip="save"> <i class="save icon"></i> </button>
+              <div class="content">
+                <div class="header">                  
+                  <i class="{{lowercase this.ISO3166_1_Alpha_2}} flag"></i>                  
+                  {{this.name}}</div>
+                <div class="inline fields">
+                  <input type="text" id="_input_quintiles_region_{{this._id}}" value="{{this.quintiles_region}}" 
+                    data-tooltip="{{this.quintiles_region}}">
+                </div>
+              </div>
+            </div>
+            {{/if}}
+          {{/each}}
+        </div>
+
+      </div>
+
+      <div class="two wide column region-legend-column" id="region_legend_column">
+        
+        <div class="list region-legend-list"  id="region_legend_list">
+          {{#each Regions}}
+          <div class="item region-legend-item">
+            <!-- <div class="ui child checkbox"> -->
+              <input type="checkbox" name="chb_region" class="chb-region" value="{{this}}" 
+                checked="{{#if inArray RegionsChecked this}}checked{{/if}}">
+              <label data-region="{{this}}">
+                <input type="text" value="{{this}}" data-ori="{{this}}" class="input-quintiles-region">
+                <button class="ui basic mini blue button btn-update-quintiles-region-name">
+                  <i class="save icon"></i>
+                </button>
+                <button class="ui basic mini red button btn-delete-quintiles-region">
+                  <i class="trash icon"></i>
+                </button>                
+              </label>
+            <!-- </div> -->
+          </div>
+          {{/each}}
+        </div>
+
+        <div class="ui tiny message">
+          <span class='note'>* </span>Note: To add a new region, add a country with it.
+        </div>        
+      </div>
+
+    </div>
+
+    <div class="ui hidden divider"></div>
+    <div class="ui horizontal list country-list">
+      {{#each Countries.yet}}
+      <div class="ui raised card item country-item" data-new="true" 
+        data-cid="{{this._id}}" data-code="{{this.ISO3166_1_Alpha_2}}">
+        <button class="ui basic blue button btn-save-country-region" 
+          data-tooltip="save"> <i class="save icon"></i> </button>
+        <div class="content">
+          <div class="header">
+            {{this.name}}</div>
+          <div class="inline fields">
+            <input type="text" id="_input_quintiles_region_{{this._id}}" value="{{this.quintiles_region}}" 
+              data-tooltip="{{this.quintiles_region}}">
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
+  </div>
+
+</template>

@@ -1,0 +1,196 @@
+<template name="FindingsRequirements">
+	
+	<div class="ui padded grid findings-requirements main">
+
+   <div class="four wide column left">
+    	
+    	<div class="ui styled accordion simulations">
+        <div class="title trigger {{#if eq (session 'FindingsRequirements.simulations.chosen') 'prehire'}}active{{/if}}">
+           <i class="dropdown icon"></i>
+          Prehire Simulations ({{PrehireCount}})
+        </div>
+        <div class="prehire content {{#if eq (session 'FindingsRequirements.simulations.chosen') 'prehire'}}active{{/if}}">
+
+					<div class="ui small middle aligned divided celled list">
+						{{#each Simulations.prehire.sims}}
+					  <div class="item {{#if eqInt (session 'FindingsRequirements.simulation.id') this.id}}active{{/if}}">
+					    <div class="right floated content">
+					      <button class="ui mini button btn-view-findings">View</button>
+					    </div>					    
+					    <div class="content">
+					      {{this.name}}
+					    </div>
+					  </div>
+					 {{/each}}
+					</div>
+
+        </div>    		
+        <div class="title trigger {{#if eq (session 'FindingsRequirements.simulations.chosen') 'baseline'}}active{{/if}}">
+           <i class="dropdown icon"></i>
+          Baseline Simulations ({{BaselineCount}})
+        </div>
+        <div class="baseline content {{#if eq (session 'FindingsRequirements.simulations.chosen') 'baseline'}}active{{/if}}">
+					<div class="ui small middle aligned divided celled list">
+						{{#each Simulations.baseline.sims}}
+					  <div class="item {{#if eqInt (session 'FindingsRequirements.simulation.id') this.id}}active{{/if}}">
+					    <div class="right floated content">
+					      <div class="ui mini button btn-view-findings">View</div>
+					    </div>					    
+					    <div class="content">
+					      {{this.name}}
+					    </div>
+					  </div>
+					 {{/each}}
+					</div>
+        </div>
+        <div class="title trigger {{#if eq (session 'FindingsRequirements.simulations.chosen') 'followup'}}active{{/if}}">
+           <i class="dropdown icon"></i>
+          Followup Simulations ({{FollowupCount}})
+        </div>
+        <div class="followup content {{#if eq (session 'FindingsRequirements.simulations.chosen') 'followup'}}active{{/if}}">
+					<div class="ui small middle aligned divided celled list">
+						{{#each Simulations.followup.sims}}
+					  <div class="item {{#if eqInt (session 'FindingsRequirements.simulation.id') this.id}}active{{/if}}">
+					    <div class="right floated content">
+					      <div class="ui mini button btn-view-findings">View</div>
+					    </div>					    
+					    <div class="content">
+					      {{this.name}}
+					    </div>
+					  </div>
+					 {{/each}}
+					</div>       	
+        </div>          		
+    	</div>
+    </div>
+
+		<div class="eleven wide column right">
+			
+    	{{#with FindingsList}}
+      <div class="findings-main-top-container">
+      	<form class="ui form form-create-requirement">
+      		<div class="inline fields">
+      			<div class="fourteen wide field">
+      				<label>Requirement Group Name: </label>
+      				<input type="text" id="findings_requirement_name">							
+							<button class="circular mini ui blue icon basic button btn-create-requirement">
+                  <i class="plus icon"></i> Create
+                </button>
+						</div>
+					</div>	
+				</form>
+      </div>
+
+      <div class="findings-requirements-list">
+      	{{#with FindingsRequirements}}
+      	<div class="title findings-requirements-title">Requirements</div>
+      	<table class="tbl-findings-requirements">
+      		<thead>
+      			<tr>
+	      			<th class="th-name">Name</th>
+	      			<th class="th-findings">Findings</th>
+	      			<th class="th-threshold">Threshold</th>
+	      			<th class="th-status">Status</th>
+	      			<th class="th-action">Action</th>
+      			</tr>
+      		</thead>
+      		<tbody>
+      			{{#each FindingsRequirements}}
+						<tr class="tr-findings-requirements" id="freq{{this._id}}">
+							<td class="td-name">{{this.name}}</td>
+							<td class="td-findings">
+							{{#each this.findings}}
+								<div class="ui label finding-label">
+									{{this}} <i class="delete icon delete-finding" id="{{this}}"></i>
+								</div>
+							{{/each}}
+							</td>
+							<td class="td-threshold">
+								<input type="text" class="input-threshold" id="freq_threshold_{{this._id}}" value="{{this.threshold}}">/
+								<span class="total" id="total_{{this._id}}">{{length this.findings}}</span>
+							</td>
+							<td class="td-status">
+								{{status this.status}}
+							</td>
+							<td class="td-action">
+								<button class="ui mini basic button btn-save-threshold">
+								  <i class="icon teal save"></i>
+								  Save Threshold
+								</button>
+								{{#if eq this.status 1}}
+								<button class="ui mini basic button btn-update-status" data-status="2">
+								  <i class="icon orange lock"></i>
+								  Deactivate
+								</button>	
+								{{else}}
+								<button class="ui mini basic button btn-update-status" data-status="1">
+								  <i class="icon lock green open"></i>
+								  Activate
+								</button>								
+								{{/if}}
+								<button class="ui mini basic button btn-update-status" data-status="4">
+								  <i class="icon red trash"></i>
+								  Delete
+								</button>								
+							</td>					
+						</tr>
+      			{{/each}}
+      		</tbody>
+      	</table>
+      	{{/with}}
+      </div>
+      
+      <div class="title findings-title">Findings</div>
+      <table class="tbl-findings">
+      	<thead>
+      		<tr>
+      			<th class="th-id">ID</th>
+      			<th class="th-finding">Finding</th>
+      			<th class="th-domain">Domain</th>
+      			<th class="th-action"></th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      {{#each FindingsList}}
+				<tr class="tr-finding {{#if inArray AllReqFindings id}}tr-required{{/if}}" id="f{{this.id}}">
+					<td class="td-id">{{this.id}}</td>
+					<td class="td-finding">{{this.finding}}</td>
+					<td class="td-domain" id="domain_{{this.category_id}}">{{this.category}}</td>
+					<td class="td-action">
+						{{#if inArray AllReqFindings id}}
+						<input type="checkbox" class="chbx-required" checked disabled>
+						{{else}}
+						<input type="checkbox" class="chbx-required">
+						{{/if}}						
+					</td>					
+				</tr>
+      {{/each}}
+      	</tbody>
+      </table>
+
+      {{/with}}
+		</div>
+
+		<div class="ui mini modal findings-requirements-modal">
+		  <i class="close icon"></i>
+		  <div class="content">
+		    <div class="description">
+
+          <select class="ui dropdown findings-requirements-dropdown" name="sel_findings_requirements" 
+          	id="sel_findings_requirements">
+	    			{{#each FindingsRequirements}}						
+						<option value="{{this._id}}">{{this.name}}</option>
+	    			{{/each}}            
+          </select>					
+
+		    </div>
+		  </div>
+		  <div class="actions">
+		    <div class="ui cancel button">Cancel</div>
+		    <div class="ui approve button">Submit</div>
+		  </div>
+		</div>
+
+  </div>
+
+</template>

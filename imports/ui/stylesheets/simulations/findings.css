@@ -1,0 +1,112 @@
+.findings-top-grid .findings-top-column {
+  padding: 0px !important;
+}
+.findings-top-grid .findings-top-column .findings-top-container {
+  /*text-align: right;*/
+}
+.findings-top-grid .findings-top-column .findings-top-container .num-findings-container {
+  display: inline-block;
+  margin: 14px 0 0 30px !important;
+}
+.findings-top-grid .findings-top-column .findings-top-container .num-findings-container #excluded_findings {
+  margin-left: 1em;
+  background-color: #eabd56;
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+.findings-top-grid .findings-top-column .findings-top-container .findings-temp-message-container {
+  display: inline-block;
+  margin-left: 30%;
+  color: #227d94;
+}
+.findings-top-grid .findings-top-column .findings-top-container .findings-sort-menu {
+  display: inline-block;
+  margin-left: 5em;
+}
+.findings-top-grid .findings-top-column .findings-top-container .findings-top-menu {
+  float: right;
+  margin: 10px 30px -5px;
+}
+.findings-top-grid .findings-top-column .findings-top-container .findings-top-menu .btn-delete-all-findings {
+  margin-left: 20px;
+}
+.findings-grid .tbl-findings thead {
+  line-height: 1px;
+  font-size: 0.94em;
+}
+.findings-grid .tbl-findings .tr-finding-folder {
+  text-align: center;
+  background-color: #d1e3e4;
+  line-height: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.findings-grid .tbl-findings .tr-finding {
+  display: none;
+}
+.findings-grid .tbl-findings .tr-finding .txta-finding-content {
+  resize: both;
+  height: auto;
+  min-height: 8em;
+  /*        height: auto;
+        min-height: auto;*/
+}
+.findings-grid .tbl-findings .tr-finding .btn-reset-document,
+.findings-grid .tbl-findings .tr-finding .btn-reset-compare {
+  float: right;
+  margin-top: 3px;
+  font-size: 0.6em;
+  padding: 0.68571429em 0.58571429em 0.58571429em;
+}
+.findings-grid .tbl-findings .tr-finding .btn-reset-document i,
+.findings-grid .tbl-findings .tr-finding .btn-reset-compare i {
+  font-size: 1.3em;
+}
+.findings-grid .tbl-findings .tr-finding.inactive {
+  background-color: #f9e4dc;
+}
+.findings-grid .tbl-findings th {
+  text-align: center !important;
+}
+.findings-grid .tbl-findings th.th-id {
+  width: 50px;
+}
+.findings-grid .tbl-findings th.th-severity {
+  width: 7em;
+}
+.findings-grid .tbl-findings th.th-domain {
+  width: 12em;
+}
+.findings-grid .tbl-findings th.th-cfr {
+  width: 150px;
+}
+.findings-grid .tbl-findings th.th-ichgcp {
+  width: 8em;
+}
+.findings-grid .tbl-findings th.th-document {
+  width: 12em;
+}
+.findings-grid .tbl-findings th.th-action {
+  width: 140px;
+}
+.findings-grid .tbl-findings td {
+  font-size: 0.9em;
+}
+.findings-grid .tbl-findings td.td-id {
+  text-align: center;
+}
+.findings-grid .tbl-findings .td-id.excluded {
+  background-color: #eabd56;
+}
+.findings-grid .tbl-findings td.td-action {
+  text-align: center;
+}
+.findings-grid .tbl-findings td.td-action .exclude-finding-container {
+  margin-top: 5px;
+}
+.findings-grid .tbl-findings td.td-action .exclude-finding-container .chbx-exclude-finding {
+  vertical-align: bottom;
+}
+.findings-grid .tbl-findings td.inactive {
+  color: #b7b5b5;
+}

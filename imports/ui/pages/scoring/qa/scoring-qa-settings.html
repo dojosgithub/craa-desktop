@@ -1,0 +1,103 @@
+<template name="ScoringQASettings">
+	{{> sAlert}}  
+  <div class="ui grid scoring-qa-settings-grid">
+    <div class="sixteen wide column scoring-qa-settings-container">
+         
+      <div class="top-container">
+      	<button class="circular ui mini red icon button btn-close-qa-settings">
+      		<i class="angle right icon"></i>
+      	</button>
+      </div>
+
+    	<div class="sim-info-container">
+    		{{#with Info}}
+				<table class="tbl-info">
+					<tbody>
+						<tr>
+							<th>Assessee:</th>
+							<td>{{this.fullname}}</td>
+						</tr>
+						<tr>
+							<th>Simulation:</th>
+							<td>{{this.simulationName}}</td>
+						</tr>
+						<tr>
+							<th>Scorer 1:</th>
+							<td>{{this.scorer1Name}}</td>
+						</tr>
+						<tr>
+							<th>Scorer 2:</th>
+							<td>{{this.scorer2Name}}</td>
+						</tr>
+						<tr>
+							<th>Adjudication:</th>
+							<td>{{orAnother this.adjudication 'false'}}</td>
+						</tr>						
+					</tbody>
+				</table>
+    		{{/with}}
+    	</div>
+
+			<h4 class="ui horizontal divider header">
+			  <i class="thumbtack icon"></i>
+			</h4>
+
+    	<div class="select-this-sim-container">
+    		
+	      <div class="onoffswitch" id="sqsCheckboxContainer" 
+	        data-tooltip="Currently {{#if selectedAsQASimulation}}On{{else}}Off{{/if}}">
+	        <input type="checkbox" name="ckb_qa_sim" class="onoffswitch-checkbox" 
+	          id="ckb_qa_sim" 
+	         {{checked selectedAsQASimulation 1}}>
+	        <label class="onoffswitch-label" for="ckb_qa_sim"></label>               
+	      </div>
+	      <div class="qasim-label-column">Use this scoring data/sim for QA</div>
+
+    	</div>
+
+			<h4 class="ui horizontal divider header">
+			  <i class="thumbtack icon"></i>
+			</h4>
+
+			<div class="scorers-container">		
+				{{#with Scorers}}
+
+				<div class="instructions">Select scorers for this QA simulation.</div>
+				<ul class="ul-scorers">
+					{{#each this.scorers}}
+					<li class="li-scorer">
+						<input type="checkbox" name="chb_scorer" class="chb-scorer" checked="{{this.checked}}" 
+						disabled="{{this.hasScored}}" value="{{this._id}}">
+						<span class="name">{{this.fullname}}</span>
+					</li>
+					{{/each}}
+					<li>&nbsp;</li>
+					{{#each this.admins}}
+					<li class="li-scorer">
+						<input type="checkbox" name="chb_scorer" class="chb-scorer" checked="{{this.checked}}" 
+						disabled="{{this.hasScored}}" value="{{this._id}}">
+						<span class="name">{{this.fullname}}</span>
+					</li>
+					{{/each}}					
+				</ul>
+
+				<!--<ul class="ul-admins">
+					{{#each this.admins}}
+					<li class="li-admin">
+						<input type="checkbox" name="chb_scorer" class="chb-scorer" checked="{{this.checked}}" 
+						disabled="{{this.hasScored}}" value="{{this._id}}">
+						<span class="name">{{this.fullname}}</span>
+					</li>
+					{{/each}}
+				</ul>-->
+
+				<div class="scorers-buttons">
+					<button class="mini teal basic ui button btn-save-scorers">SAVE</button>
+				</div>
+				{{/with}}				
+			</div>
+
+    </div>
+  </div>	
+
+</template>

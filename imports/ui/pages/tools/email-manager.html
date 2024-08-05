@@ -1,0 +1,39 @@
+<template name="EmailManager">
+  <div class="ui grid email-manager-grid">
+    <div class="fourteen wide column email-manager-column">
+      
+      <div class="header">
+        <span class="select-file-label">Select Email Excel file to review: </span>
+        <dis class="field">
+          <input type="file" id="email_manager_file">
+        </dis>  
+      </div>
+      <hr>
+      <div class="content email-manager-content">
+        <div class="description">
+          <div class="num-emails"><span id="num_emails"></span> Email(s)</div>
+          
+          <div class="field send-verification-message">
+            <input type="checkbox" id="chkb_send_verification_message"  
+            data-tooltip="Send verificatioin message if verification is not done yet"> send verification message
+          </div>
+
+          <dis class="field email-submit-container">
+            <button class="ui basic tiny blue button btn-submit-emails" disabled>Submit</button>
+          </dis>  
+
+          <div class="ui email-manager-search">
+            <div class="ui icon input">
+              <input class="prompt" type="text" id="search_field" placeholder="search">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"><span id="num_results">0</span> result(s)</div>
+          </div>      
+          <div id="emails_preview"></div>
+          <div id="emails_out"><ul></ul></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>

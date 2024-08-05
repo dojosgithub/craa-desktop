@@ -1,0 +1,203 @@
+<template name="FindingsTips">
+	
+<div class="ui padded grid findings-tips main">
+    <!-- {{Tips}} -->
+   <div class="three wide column left">
+        
+        <div class="ui styled accordion domains">
+            <div class="title trigger active">
+            <i class="dropdown icon"></i>
+            Domains (5)
+            </div>
+            <div class="domains content active">
+
+                <div class="ui small middle aligned divided celled list">
+                {{#each Domains}}
+                <div class="item {{#if eqInt (session 'FindingsTips.domain.id') this.id}}active{{/if}}">
+                    <div class="right floated content">
+                    <button class="ui mini button btn-view-domain-tips">View</button>
+                    </div>					    
+                    <div class="content">
+                    {{this.name}}
+                    </div>
+                </div>
+                {{/each}}
+                </div>
+
+            </div>    		
+        </div>
+
+    	<div class="ui styled accordion simulations">
+            <div class="title trigger {{#if eq (session 'FindingsTips.simulations.chosen') 'prehire'}}active{{/if}}">
+            <i class="dropdown icon"></i>
+            Prehire Simulations ({{PrehireCount}})
+            </div>
+            <div class="prehire content {{#if eq (session 'FindingsTips.simulations.chosen') 'prehire'}}active{{/if}}">
+
+                        <div class="ui small middle aligned divided celled list">
+                            {{#each Simulations.prehire.sims}}
+                        <div class="item {{#if eqInt (session 'FindingsTips.simulation.id') this.id}}active{{/if}}">
+                            <div class="right floated content">
+                            <button class="ui mini button btn-view-findings">View</button>
+                            </div>					    
+                            <div class="content">
+                            {{this.name}}
+                            </div>
+                        </div>
+                        {{/each}}
+                        </div>
+
+            </div>    		
+            <div class="title trigger {{#if eq (session 'FindingsTips.simulations.chosen') 'baseline'}}active{{/if}}">
+            <i class="dropdown icon"></i>
+            Baseline Simulations ({{BaselineCount}})
+            </div>
+            <div class="baseline content {{#if eq (session 'FindingsTips.simulations.chosen') 'baseline'}}active{{/if}}">
+                        <div class="ui small middle aligned divided celled list">
+                            {{#each Simulations.baseline.sims}}
+                        <div class="item {{#if eqInt (session 'FindingsTips.simulation.id') this.id}}active{{/if}}">
+                            <div class="right floated content">
+                            <div class="ui mini button btn-view-findings">View</div>
+                            </div>					    
+                            <div class="content">
+                            {{this.name}}
+                            </div>
+                        </div>
+                        {{/each}}
+                        </div>
+            </div>
+            <div class="title trigger {{#if eq (session 'FindingsTips.simulations.chosen') 'followup'}}active{{/if}}">
+            <i class="dropdown icon"></i>
+            Followup Simulations ({{FollowupCount}})
+            </div>
+            <div class="followup content {{#if eq (session 'FindingsTips.simulations.chosen') 'followup'}}active{{/if}}">
+                        <div class="ui small middle aligned divided celled list">
+                            {{#each Simulations.followup.sims}}
+                        <div class="item {{#if eqInt (session 'FindingsTips.simulation.id') this.id}}active{{/if}}">
+                            <div class="right floated content">
+                            <div class="ui mini button btn-view-findings">View</div>
+                            </div>					    
+                            <div class="content">
+                            {{this.name}}
+                            </div>
+                        </div>
+                        {{/each}}
+                        </div>       	
+            </div>
+    	</div>
+    </div> <!-- left -->
+
+	<div id="findings_tips_right_column" class="eight wide column right">			
+        
+        {{#with session 'FindingsTips.domain.id'}}
+        <div class="add-tip-container">
+            <form class="ui form form-add-tip">
+                <div class="inline fields">
+
+                    <div class="sixteen wide field">
+                        <label></label>
+                        <!-- <input type="text" name="new_simulation_name" id="new_simulation_name" placeholder="Name"> -->
+                        <!-- <textarea type="text" name="new_simulation_name" id="new_simulation_name" placeholder="Name"> -->
+                        <textarea name="txta_tip" class="txta-new-tip-content" id="txta_new_tip"></textarea>
+                    </div>
+                    <div class="field">
+                        <button class="circular mini ui teal icon button btn-add-new-tip">
+                        <i class="plus icon"></i> Add New Tip
+                        </button>              
+                    </div>
+
+                </div>            
+            </form>  
+        </div>        
+
+        {{#with DomainTips}}
+        <table class="tbl-findings-tips">
+            <thead>
+                <tr>
+                    <th class="th-entry"></th>
+                    <th class="th-tip">Tip</th>
+                    <th class="th-status">Status</th>
+                    <th class="th-action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each DomainTips}}
+            <tr class="tr-tip" id="t{{this.id}}">
+                <td class="td-entry">{{entry @index}}</td>
+                <td class="td-tip">
+                    <!-- <input class="prompt input-tip" type="text" id="t_{{this._id}}" value={{this.content}}> -->
+                    <textarea name="txta_tip" class="txta-tip-content" id="_tip_{{this._id}}">{{this.content}}</textarea>
+                </td>
+                <td class="td-status">{{status this.status}}</td>            
+                <td class="td-action">
+                    <button class="ui circular mini basic icon submit button btn-save-tip" 
+                    data-tooltip="save"><i class="save blue icon"></i></button>              
+                    {{#if eq this.status 1}}
+                    <button class="ui circular mini basic icon button btn-update-tip-status" 
+                    data-status="2" data-tooltip="deactivate"><i class="lock orange icon"></i> 
+                    </button>
+                    {{else}}
+                    <button class="ui circular mini basic icon button btn-update-tip-status" 
+                    data-status="1" data-tooltip="activate"><i class="unlock green icon"></i> 
+                    </button>
+                    {{/if}}
+                    <button class="ui circular mini basic icon button btn-update-tip-status" 
+                    data-status="4" data-tooltip="delete"><i class="trash red icon"></i> 
+                    </button>                 
+                </td>					
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+
+        {{/with}}{{/with}}
+
+        {{#with session 'FindingsTips.simulation.id'}}
+
+        <!-- <div class="title findings-title">Findings</div> -->
+        <table class="tbl-findings">
+            <thead>
+                <tr>
+                    <th class="th-id">ID</th>
+                    <th class="th-finding">Finding</th>
+                    <th class="th-domain">Domain</th>
+                    <th class="th-action"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each FindingsList}}
+                <tr class="tr-finding {{#if eqInt (session 'FindingsTips.finding.id') this.id}}active{{/if}}"  id="f{{this.id}}">
+                    <td class="td-id {{hasTips}}">{{this.id}}</td>
+                    <td class="td-finding">{{this.finding}}</td>
+                    <td class="td-domain" id="domain_{{this.category_id}}">{{this.category}}</td>
+                    <td class="td-action">
+                        <!-- <button class="ui mini button btn-view-finding-tips"><i class="lightbulb icon"></i> </button> -->
+                        <i class="circular inverted green lightbulb outline icon icon-view-finding-tips"></i>
+                    </td>					
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>        
+        
+
+        {{/with}}
+    
+    </div> <!-- Right 1 -->
+
+    <!-- {{#with session 'FindingsTips.finding.id'}} -->
+    <div id="findings_tips_right_most_column" class="five wide column right finding-tips-container">
+        {{#with session 'FindingsTips.finding.id'}}
+        <ul class="ul-finding-tips">            
+            {{#each ActiveDomainTips}}
+            <li class="li-finding-tip ui checkbox">
+                <input type="checkbox" class="chkb-finding-tip" {{hasThisTip this._id}}><label>{{this.content}}</label>
+            </li>
+            {{/each}}            
+        </ul>
+        {{/with}}
+    </div> <!-- Right 2 -->
+    <!-- {{/with}} -->
+
+  </div>
+
+</template>

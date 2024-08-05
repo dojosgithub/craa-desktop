@@ -1,0 +1,145 @@
+.scorer-management-grid {	
+	.scorer-management-column {
+		.scorer-management-top {
+			margin: 0 0 1em 1em;
+
+			.one-sim-at-a-time {
+				input {
+					margin-right: 0.2em;
+				}
+			}			
+		}
+
+		.scorer-management-container {
+			.tbl-scorer-management {
+				th, td {
+					text-align: center;
+				}
+
+				th.th-scorer-status,
+				th.th-scorer-workload,
+				th.th-scorer-buffer {
+					width: 35px;
+				}
+
+				th.th-scorer-name {
+					width: 150px;
+				}
+
+				th.th-last-scored {
+					width: 170px;
+				}
+
+				td.td-scorer-name {
+					text-align: left;
+					padding-left: 1.5em;
+				}
+
+				td.td-scorer-status {
+					button {
+						width: 30px;
+						padding: 0.5em 0;
+					}
+				}
+
+				td.td-waived-sims {
+					text-align: left;
+					button {
+						float: right;
+						padding: 0.5em;
+					}
+
+					div.label-waived-sim {
+						padding: 0.4em;
+						margin-bottom: 0.3em;
+					}
+				}
+
+				td.td-scorer-buffer {
+					input {
+						width: 30px;
+					}
+				}
+
+				td.td-scorer-action {
+					button {
+						padding: 0.3em;
+						margin-bottom: 0.4em;
+					}
+
+					button.btn-reset-workload {
+						width: 102px;
+					}
+				}
+
+				tr.tr-details {
+					display: none;
+					background-color: #f2f3f5;
+				}
+			}
+		}
+	}
+
+	.scorer-management-log {
+		.log-top {
+
+		}
+
+		.log-container {
+			padding: 1em;
+			background-color: #1b1a1a;
+			height: 100%;
+    	// margin-top: 10px;
+
+    	ul.ul-logs {
+    		list-style-type: none;
+    		padding: 0.1em 0;
+
+    		li.li-log {
+    			color: #e8e5d5;
+    		}
+    	}
+		}
+	}
+}
+
+.ui.modal.waived-simulations {
+	width: 640px;
+	margin-left: 25% !important;
+
+	.header {
+		text-align: center;
+	}
+
+	.content {
+		ul.ul-simulations {
+			list-style-type: none;
+
+			.li-simulation {
+				display: inline-block;
+				width: 270px;
+				padding: 0.1em 0;
+			}
+		}
+	}
+}
+
+.ui.modal.reset-workload {
+	width: 300px;
+	position: absolute;
+	left: 25%;
+
+	.header {
+		text-align: center;
+		font-size: 1.2em;
+	}
+
+	.content {
+		text-align: center;
+
+		input {
+			width: 70px;
+    	margin-left: 5px;
+		}
+	}
+}

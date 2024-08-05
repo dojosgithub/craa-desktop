@@ -1,0 +1,55 @@
+<template name="UBACollaborationAuditReviewed">
+	<button 
+		class="ui mini basic circular icon button {{#if this.data.reviewed}}reviewed{{else}}not-reviewed{{/if}} btn-checkbox btn-reviewed" 
+	  data-val="{{this.data.reviewed}}" data-tooltip="{{#if this.data.reviewed}}Reviewed{{else}}Not Reviewed{{/if}}">
+	  <i class="check icon"></i></button>	
+</template>
+
+<template name="UBACollaborationAuditComment">
+	<div class="collaboration-audit-comment-action">
+		{{#if this.data.comment}}
+	  <!-- <button class="ui circular mini basic icon button btn-view-comment" 
+	  	data-html="{{nr2br this.data.comment}}" data-inverted="" data-position="bottom right" data-variation="very wide">
+	    <i class="green eye icon"></i></button>		 -->
+		<button class="ui circular mini basic icon button btn-view-comment tooltip">
+			<i class="green eye icon"></i>
+			<span class="tooltiptext">{{{nr2br this.data.comment}}}</span>
+		  </button>		
+	  <button class="ui circular mini basic icon button btn-edit-comment" data-tooltip="Edit" data-position="left center">
+	    <i class="teal edit icon"></i></button>
+	  <button class="ui circular mini basic icon button btn-delete-comment" data-tooltip="Delete" data-position="right center">
+	    <i class="red trash icon"></i></button>
+	  {{else}}
+	  <button class="ui circular mini basic button btn-add-comment">
+	    <i class="plus icon"></i> add</button>
+		{{/if}}
+	</div>
+</template>
+
+<template name="UBACollaborationAuditCollaborated">
+	<div class="onoffswitch has-collaborated-container" 
+		data-val="{{this.data.collaborated}}" 
+	  data-tooltip="{{#if this.data.collaborated}}Collaborated{{else}}Not Collaborated{{/if}}">
+	  <input type="checkbox" class="onoffswitch-checkbox has-collaborated" {{checked this.data.collaborated true}}>
+	   <label class="onoffswitch-label"></label> 
+	</div>
+</template>
+
+<template name="UBACollaborationAuditU1Name">
+	{{#if this.data.excluded}}
+	<button class="ui mini icon button circular btn-include" data-d="1" data-tooltip="Include"><i class="icon plus"></i></button>
+	{{else}}
+	<button class="ui mini icon button circular btn-exclude" data-d="1" data-tooltip="Exclude"><i class="icon x"></i></button>
+	{{/if}}
+	<button class="ui mini icon button circular btn-recompute" data-d="1" data-tooltip="Re-compute"><i class="icon refresh"></i></button>
+</template>
+
+<template name="UBACollaborationAuditU2Name">
+	{{#if this.data.excluded}}
+	<button class="ui mini icon button circular btn-include" data-d="2" data-tooltip="Include"><i class="icon plus"></i></button>
+	{{else}}
+	<button class="ui mini icon button circular btn-exclude" data-d="2" data-tooltip="Exclude"><i class="icon x"></i></button>
+	{{/if}}
+	<button class="ui mini icon button circular btn-recompute" data-d="2" data-tooltip="Re-compute"><i class="icon refresh"></i></button>
+</template>
+

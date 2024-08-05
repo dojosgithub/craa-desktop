@@ -1,0 +1,57 @@
+<template name="ReviewRequest">
+  <div class="ui modal review-request-modal">
+    <div class="header">
+      Send Review Request
+    </div>
+    <div class="content">
+      <div class="description">        
+        <div class="reviewers">
+          <label class="reviewers-label">Reviewers: </label>
+          <ul class="ul-reviewers">
+          {{#each Reviewers}}
+            <li class="li-reviewer">
+              <div class="reviewer">
+                <span class="reviewer-name">{{this.fullname}}</span>
+                <button class="ui mini basic button btn-remove-reviewer" data-uid="{{this._id}}">
+                  <i class="remove icon"></i>
+                </button>                
+              </div>
+            </li>
+          {{/each}}
+          </ul>
+        </div>
+        <div class="ui divider"></div>
+        <div class="search-reviewers">
+          <label class="search-reviewers-label">Add: </label>
+          <!-- <form id="frm_search_reviewers"> -->
+          <div class="ui search reviewers">
+            <div class="ui icon input">
+              <input class="prompt input-reviewers" type="text" id="_input_reviewers">
+            </div>
+            <div class="results"></div>
+          </div>
+          <!-- </form>         -->
+        </div>
+        <div class="all-reviewers">
+          <label class="all-reviewers-label">Or, </label>
+          <button class="ui mini basic teal button btn-add-all-reviewers">Add All</button>
+        </div>
+        <div class="ignore-reviewers">
+          Or, 
+          <div class="ui checkbox chb-ingore-reviewers">
+            <input type="checkbox" name="ignore_reviewers" id="ignore_reviewers">
+            <label>Let me just submit with no reviewers.</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">    
+      <div class="ui basic cancel button">
+        Cancel          
+      </div>      
+      <div class="ui primary approve button btn-submit-review-request">
+        Submit          
+      </div>
+    </div>
+  </div>  
+</template>

@@ -1,0 +1,37 @@
+<template name="Requests">
+  <div class="ui grid breadcrumb-grid">
+    <div class="fourteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <div class="active section">Requests</div>
+      </div>
+    </div>
+  </div>
+  <div class="ui centered grid requests-grid">
+
+    <div class="three wide column requests-item-column">
+      <div class="ui vertical fluid tabular menu requests-menu">
+        <a class="active item">
+          All requests
+        </a>
+        <a class="item">
+          Assigned to me
+        </a>
+        <a class="item">
+          Created by me
+        </a>
+      </div>
+    </div>
+    <div class="eleven wide stretched column requests-segment-column">
+      <div class="ui segment">
+        <ul class="ul-request">        
+        {{#each RequestsAssigned}}
+          <li class="li-request">
+            {{this.category}}
+          </li>
+        {{/each}}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</template>

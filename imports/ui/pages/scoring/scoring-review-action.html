@@ -1,0 +1,15 @@
+<template name="ScoringReviewAction">
+  <div class="scoring-review-action-container">
+    <button class="ui mini basic blue button btn-view-viewport">
+     <i class="fa fa-eye"></i> view
+    </button>
+    <button class="ui mini {{#if this.row.qa}}{{else}}basic{{/if}} teal button btn-view-qa-settings">
+     <i class="fa fa-eye"></i> QA
+    </button>       
+<!--     <button class="ui mini basic teal button btn-view-results">
+     <i class="fa fa-judge"></i> results
+    </button>  -->   
+<!--     <button class="ui mini default button btn-view-s2">S 2</button>
+    <button class="ui mini default button btn-view-adj">ADJ</button> -->
+  </div>
+</template>

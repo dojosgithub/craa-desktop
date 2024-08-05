@@ -1,0 +1,18 @@
+<template name="V1Users">
+  <div class="ui grid v1-users-grid">
+    <div class="ui ten wide column v1-users-column">
+      {{> tabular table=TabularTables.v1Users class="table table-striped table-condensed" id="tbl_v1_users"}}        
+    </div>
+    <div class="ui six wide column v1-users-checker-column">
+      <div class="v1-users-checker-container">
+        <div class="v1-users-checker-title">User duplication checker</div>
+        <div class="v1-users-checker-legends">
+          <button class="ui button btn-v1">v1</button>
+          <button class="ui button btn-v2">v2</button>
+          <button class="ui button btn-both">both</button>
+        </div>
+        <div id="v1_users_checker_table"></div>        
+      </div>
+    </div>
+  </div>
+</template>

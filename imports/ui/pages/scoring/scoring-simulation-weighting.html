@@ -1,0 +1,61 @@
+<template name="ScoringSimulationWeighting">
+	<div class="ui grid simulation-weighting-grid">
+	  <div class="sixteen wide column simulation-weighting-column">
+			<div class="simulation-weighting-top">
+				<div class="simulation-weighting-sort">
+					<input type="checkbox" id="chbx_sort_by_workload_score" 
+					checked="{{session 'ScoringSimulationWeighting.sort'}}"> Sort by Work-load Score 
+					<select name="sel_sort_direction" id="sel_sort_direction">
+						<option value="1" 
+						selected="{{#if eq (session 'ScoringSimulationWeighting.sort.direction') 1}}selected{{/if}}">
+						Ascending</option>
+						<option value="-1" 
+						selected="{{#if eq (session 'ScoringSimulationWeighting.sort.direction') -1}}selected{{/if}}">
+						Descending</option>
+					</select>
+				</div>			
+			</div>	  	
+	    <div class="simulation-weighting-container">
+	      <table class="ui celled sortable small tbl-simulation-weighting table table-stripped table-condensed" 
+	      cellspacing="0" cellpadding="0">
+	        <thead>
+	          <tr>
+		        	<th class="th-simulation">Simulation</th>
+	            <th class="th-count-findings">Num. of Findings</th>
+	            <th class="th-duration">Duration (Hours)</th>
+	            <th class="th-difficulty-level">Difficulty Level (1~5)</th>
+	            <th class="th-fatigue-level">Fatigue Score</th>
+	            <th class="th-normalized-score">Normalized Score</th>	            
+	            <th class="th-buffer">Buffer/Salt</th>
+	            <th class="th-workload-unit-score">Work-load Score</th>
+	            <th class="th-action">Action</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	{{#each Simulations}}
+	        	<tr class="tr-simulation">
+	        		<td class="td-simulation-name">{{this.name}}</td>
+	        		<td class="td-count-findings" id="num_findings_{{this.id}}">{{this.workload.findings}}</td>
+							<td class="td-duration">
+								<input type="text" value="{{this.time_hour}}" id="duration_{{this.id}}">
+							</td>							
+							<td>
+								<input type="text" value="{{this.workload.difficulty}}" id="df_level_{{this.id}}">
+							</td>							
+							<td id="fatibue_{{this.id}}">{{this.workload.fatigue}}</td>
+							<td id="norm_{{this.id}}">{{this.workload.norm}}</td>							
+							<td>
+								<input type="text" value="{{this.workload.salt}}" id="salt_{{this.id}}">
+							</td>
+							<td id="unitScore_{{this.id}}">{{this.workload.unitScore}}</td>
+							<td>
+								<button class="ui mini basic blue button btn-save-simulation-weighting" type="button">Save</button>
+							</td>
+	        	</tr>
+	        	{{/each}}
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+</template>

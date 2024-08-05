@@ -1,0 +1,44 @@
+{
+  "name": "craa_admin_desktop",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "desktop": "meteor-desktop"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.11.2",
+    "ajv": "^6.12.3",
+    "app-builder-lib": "21.2.0",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^5.0.0",
+    "core-js": "^2.6.11",
+    "electron-builder-squirrel-windows": "^22.9.1",
+    "electron-packager": "^15.0.0",
+    "exceljs": "^4.3.0",
+    "jquery": "^3.6.0",
+    "knox": "^0.9.2",
+    "meteor-node-stubs": "~0.2.4",
+    "moment": "^2.29.1",
+    "original-fs": "^1.1.0",
+    "smalltalk": "^2.5.1",
+    "sortablejs": "^1.10.2",
+    "xlsx": "^0.11.19"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "electron": "6.1.7",
+    "electron-builder": "^22.9.1",
+    "meteor-desktop": "^2.2.5",
+    "postcss": "^6.0.23",
+    "postcss-load-config": "^1.2.0"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }
+  }
+}

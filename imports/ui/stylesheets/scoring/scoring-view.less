@@ -1,0 +1,293 @@
+.scoring-view-grid {
+  padding: 0 10px 0 10px !important;  
+
+  .scoring-view-monitoring-notes-column {
+    // margin: 10px 0 0 10px;
+    margin-top: 10px;
+    overflow-y: auto;
+    box-shadow: inset 0px -2px 5px -2px rgba(135,135,135,1);
+
+    .monitoring-notes-container {
+
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      font-size: 0.97em;
+      font-family: OpenSans, sans-serif;
+
+      .tbl-scoring-monitoring-notes {        
+        border-collapse: collapse;
+        border: 1px solid #999;
+        table-layout: fixed;
+        // margin-top: 49px; //-- This is related to the sticky header idea. (ie. top margin for height of thead)
+
+        // thead tr {          
+        //   position: sticky;
+        // }
+
+        thead {
+          // position: fixed; //-- This is critical to get a sticky header.
+          top: 0;
+          background-color: #fff;
+          width: 48.6%;
+          // height: 60px;
+          height: auto; //-- should be auto to get height dynamically w/ window resize
+          // padding-right: 1em;
+          // padding-left: 1em;
+        }
+
+        .tr-doc {
+          text-align: center;
+          // font-size: 1em;
+          // color: #fff;
+          // background: linear-gradient(to right, #787f84 0%, #5e676b 36%, #28343b 100%);
+          // color: gold;
+            // background: -webkit-linear-gradient(left, #141415 0%, #757777 36%, #1a1a1b 100%);
+            // background: -o-linear-gradient(left, #141415 0%, #757777 36%, #1a1a1b 100%);
+            // background: linear-gradient(to right, #141415 0%, #757777 36%, #1a1a1b 100%);          
+        
+          // background: -webkit-linear-gradient(left, #0d5c69 0%, #4d9a9a 36%, #1a5a69 100%);
+          // background: -o-linear-gradient(left, #0d5c69 0%, #4d9a9a 36%, #1a5a69 100%);
+          // background: linear-gradient(to right, #0d5c69 0%, #4d9a9a 36%, #1a5a69 100%);            
+          // background-color: #cdd0d2;
+
+          color: rgb(255, 255, 255);
+          font-weight: bold;
+          background: linear-gradient(to right, rgb(120, 127, 132) 0%, rgb(94, 103, 107) 36%, rgb(40, 52, 59) 100%);          
+        }
+
+        th {
+          // font-size: 0.9em;
+          // padding: 2px 5px;
+          border: 1px solid #aba5a5;
+        }
+
+        th.th-mn-viewed, th.th-mn-ne {
+          padding: 0;
+        }        
+/*
+        th.th-mn-viewed, td.td-mn-viewed {
+          width: 1%;
+        }
+
+        th.th-mn-ne, td.td-mn-ne {
+          width: 2%;
+        }*/
+
+        th.th-mn-viewed {
+          padding: 0 2px;
+        }
+        th.th-mn-viewed, td.td-mn-viewed {
+          width: 1%;
+        }
+
+        th.th-mn-viewed-sub, td.td-mn-viewed {
+          // display: inline-block;
+          // width: 26px;
+        }
+
+        th.th-mn-id {
+          width: 1%;
+        }
+
+        .th-qa-mnid {
+          width: 20px;
+        }
+
+        td.td-mn-id {
+          width: 24px;
+        }       
+
+        th.th-mn-page {
+          width: 1%;
+        }
+        td.td-mn-page {
+          width: 34px;
+        }
+
+        th.th-mn-content, td.td-mn-content {
+          width: auto;
+        }
+
+        th.th-mn-content {
+          padding: 0 10px;
+        }
+
+        th.th-mn-ne-sub {
+          // width: 2.5em;
+          width: 25px;
+        }
+
+        .th-mn-viewed-sub span {
+          color: red;
+          // font-weight: normal;
+        }
+
+        .th-mn-ne-sub span {
+          color: orange;
+          // font-weight: normal;
+        }
+
+        td {
+          padding: 5px 10px;
+          border: 1px solid #aba5a5;
+        }
+
+        .td-doc {
+          // font-size: 0.9em;
+          padding: 2px;
+        }
+
+        .td-mn-viewed,
+        .td-mn-id,
+        .td-mn-page,
+        .td-mn-ne {
+          text-align: center;
+          padding: 0;
+
+          i.icon {
+            margin: 0;
+            cursor: pointer;
+          }
+
+          i.ne.deleted {
+            color: red;
+          }
+        }
+
+        .td-mn-ne.s1, .td-mn-ne.s2 {
+          // width: 18px;
+          width: 25px;
+        }
+
+        .td-mn-ne.adj {
+          width: 25px;
+        }
+
+        .td-mn-content {
+          // font-size: 1em;
+        }
+
+        .td-mn-viewed {
+          padding: 0;
+
+          .not-viewed {
+            opacity: 0.5;
+          }
+        }
+
+      }
+
+    }
+  }
+
+  .scoring-view-findings-column {
+    margin-top: 10px;
+    overflow-y: auto;
+    box-shadow: inset 0px -2px 5px -2px rgba(135,135,135,1);
+
+    .findings-container {
+
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      font-size: 0.97em;
+      font-family: OpenSans, sans-serif;
+
+      .tbl-scoring-findings {
+
+        .tr-bh-doc {
+          text-align: center;
+          color: rgb(255, 255, 255);
+          font-weight: bold;
+          background: linear-gradient(to right, rgb(120, 127, 132) 0%, rgb(94, 103, 107) 36%, rgb(40, 52, 59) 100%);          
+        }
+
+        .td-bh-doc {          
+          padding: 2px;
+        }
+
+        th {          
+          padding: 2px 5px;
+          border: 1px solid #aba5a5;
+        }
+
+        th.th-bh-mnid, 
+        th.th-bh-status, 
+        th.th-bh-mnid-sub, 
+        th.th-bh-status-sub {
+          padding: 0;
+        }
+
+        td {
+          padding: 5px 10px;
+          border: 1px solid #aba5a5;
+        }
+
+        td.td-bh-mnid, 
+        td.td-bh-status {
+          padding: 0 5px;
+        } 
+
+        th.th-qa-score {
+          width: 75px;
+        }
+
+        td.td-qa-mnid {
+          .input-qa-mnid {
+            width: 40px;
+          }
+        }
+
+        td.td-qa-score {
+          .btn-identified, .btn-unidentified {
+            font-size: 1.2em;
+            cursor: pointer;
+          }
+
+          .grey {
+            color: #d8d8d5;
+          }
+        }
+
+        .th-bh-status-sub.s3 span {
+          color: orange;
+          // font-weight: normal;
+        }        
+
+      }
+    }
+  }
+}
+
+
+.mn-ne-info-container {
+  // position: absolute;  
+  // font-size: 12px;
+  padding: 10px;
+  // width: 400px;
+  /* height: 250px; */    
+  border-radius: 10px;
+  // background-color: #eee;
+  overflow:auto;
+  // z-index: 2;
+
+  .tbl-mn-ne-info {
+    border-collapse: collapse;
+    border: 1px solid #999;
+
+
+    tr {
+        height: 0;
+    }
+
+    th {
+        text-align: center;        
+    }
+
+    th, td {
+        border: 1px solid #999;  
+        padding: 5px;         
+    }   
+  }
+
+}
+

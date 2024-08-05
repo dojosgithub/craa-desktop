@@ -1,0 +1,158 @@
+<template name="ScoringView">
+  {{SimUsersSummary}}
+  <div class="ui grid scoring-view-grid">
+    <div class="eight wide column scoring-view-monitoring-notes-column">
+      <div class="monitoring-notes-container">
+        <table class="tbl-scoring tbl-scoring-monitoring-notes" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+                <th colspan="2" class="th-mn-viewed">Viewed</th>
+                <th rowspan="2" class="th-mn-id">MN ID</th>
+                <th rowspan="2" class="th-mn-page">Page</th>                
+                <th rowspan="2" class="th-mn-content">Monitoring Notes 
+                  (<span class="num-monitoring-notes">{{NumOfMonitoringNotes}}</span>)</th>
+                <th colspan="3" class="th-mn-ne" data-tooltip="Non-Error">Non-error</th>
+            </tr>
+            <tr>
+              <th class="th-mn-viewed-sub s1" data-tooltip="{{Scorer1}}" data-position="bottom left">S1<br>
+                <span>{{NumOfScoringViewed.s1}}</span></th>
+              <th class="th-mn-viewed-sub s2" data-tooltip="{{Scorer2}}" data-position="bottom left">S2<br>
+                <span>{{NumOfScoringViewed.s2}}</span></th>
+              <th class="th-mn-ne-sub s1" data-tooltip="{{Scorer1}}" data-position="bottom right">S1<br>
+                <span>{{NumOfNonErrors.s1}}</span></th>
+              <th class="th-mn-ne-sub s2" data-tooltip="{{Scorer2}}" data-position="bottom right">S2<br>
+                <span>{{NumOfNonErrors.s2}}</span></th>
+              <th class="th-mn-ne-sub s3" data-tooltip="{{Adjudicator}}" data-position="bottom right">Adj<br>
+                <span>{{NumOfNonErrors.s3}}</span></th>
+            </tr>
+          </thead>
+          <tbody>            
+            {{#each DocumentFolders}}
+              {{#each Documents}}
+                {{#each MonitoringNotes}}                
+                  {{#if eq @index 0}}
+                  <tr class="tr-doc">
+                    <td class="td-doc" colspan="8">{{../name}}</td>
+                  </tr>
+                  {{/if}}    
+                  <tr>
+                    <td class="td-mn-viewed s1">
+                      <i class="large check circle  
+                        {{#if ScroingViewed.s1}}green{{else}}grey not-viewed{{/if}} icon"></i>                      
+                    </td>
+                    <td class="td-mn-viewed s2">
+                      <i class="large check circle  
+                        {{#if ScroingViewed.s2}}green{{else}}grey not-viewed{{/if}} icon"></i>                      
+                    </td>
+                    <td class="td-mn-id" data-tooltip="Note ID: {{this.key}}">{{this.key}}</td>
+                    <td class="td-mn-page" data-tooltip="Doc Page: {{this.page}}">{{this.page}}</td>
+                    <td class="td-mn-content">{{{nr2br this.content}}}</td>
+                    <td class="td-mn-ne s1" data-nid="{{NonError._id}}" data-assessor="1">
+                      {{#with NonError.s1}}
+                      <i class="file text outline icon btn-view-nonerror ne s1 {{#if eq this.status 4}}deleted{{/if}}"></i>
+                      {{/with}}
+                    </td>
+                    <td class="td-mn-ne s2" data-nid="{{NonError._id}}" data-assessor="2">
+                      {{#with NonError.s2}}
+                      <i class="file text outline icon btn-view-nonerror ne s2 {{#if eq this.status 4}}deleted{{/if}}"></i>
+                      {{/with}}
+                    </td>
+                    <td class="td-mn-ne adj" data-nid="{{NonError._id}}" data-assessor="3">
+                      {{#with NonError.adj}}
+                      <i class="file text outline icon btn-view-nonerror ne s3 {{#if eq this.status 4}}deleted{{/if}}"></i>
+                      {{/with}}
+                    </td>                    
+                  </tr>
+                {{/each}}
+              {{/each}}
+            {{/each}}   
+          </tbody>          
+        </table>
+      </div>
+    </div>
+    <div class="eight wide column scoring-view-findings-column">
+      <div class="findings-container">
+        <table class="tbl-scoring tbl-scoring-findings">
+          <thead>
+            <tr>
+              <th colspan="3" class="th-bh-mnid">MN ID</th>
+              <th colspan="3" class="th-bh-status">Identified</th>
+              {{#if isqa}}
+              <th colspan="2" class="th-bh-content">QA Answers</th>
+              {{/if}}              
+              <th rowspan="2" class="th-bh-content">Findings</th>
+            </tr>
+            <tr>
+              <th class="th-bh-mnid-sub" data-tooltip="{{Scorer1}}" data-position="bottom left">S1</th>
+              <th class="th-bh-mnid-sub" data-tooltip="{{Scorer2}}" data-position="bottom left">S2</th>
+              <th class="th-bh-mnid-sub" data-tooltip="{{Adjudicator}}" data-position="bottom left">Adj</th>
+              <th class="th-bh-status-sub" data-tooltip="{{Scorer1}}" data-position="bottom left">S1</th>
+              <th class="th-bh-status-sub" data-tooltip="{{Scorer2}}" data-position="bottom left">S2</th>
+              <th class="th-bh-status-sub s3" data-tooltip="{{Adjudicator}}" data-position="bottom left">Adj<br>
+                <span>{{NumOfAdjudication}}</span>
+              </th>
+              {{#if isqa}}
+              <th class="th-qa-mnid" data-tooltip="MNID" data-position="bottom left">MNID</th>
+              <th class="th-qa-score" data-tooltip="Identified or not" data-position="bottom left">Identified</th>
+              {{/if}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each DocumentFolders}}
+            {{#each Documents}}
+            {{#each Findings}}
+              {{#if eq @index 0}}
+              <tr class="tr-bh-doc">
+                <td class="td-bh-doc" colspan="{{#if isqa}}9{{else}}7{{/if}}">{{../name}}</td>
+              </tr>
+              {{/if}}
+               {{#with ScoringBehaviors}} 
+                <tr class="tr-finding">
+                  <td class="td-bh-mnid">{{this.assessor1.mnid}}</td>
+                  <td class="td-bh-mnid">{{this.assessor2.mnid}}</td>
+                  <td class="td-bh-mnid">{{this.adjudicator.mnid}}</td>
+                  <!-- <td class="td-bh-mnid">{{this.behavior.id}}</td> -->
+                  <td class="td-bh-status">
+                    {{#if this.assessor1}}
+                    <i class="icon {{#if this.assessor1.identified}}green check circle{{else}}red remove{{/if}}"></i>
+                    {{else}}
+                    <i class="icon grey minus"></i>
+                    {{/if}}
+                  </td>                    
+                  <td class="td-bh-status">
+                    {{#if this.assessor2}}
+                    <i class="icon {{#if this.assessor2.identified}}green check circle{{else}}red remove{{/if}}"></i>
+                    {{else}}
+                    <i class="icon grey minus"></i>
+                    {{/if}}                    
+                  </td>
+                  <td class="td-bh-status">
+                    {{#if this.adjudicator}}
+                    <i class="icon {{#if this.adjudicator.identified}}green check circle{{else}}red remove{{/if}} bh s3">
+                      </i>
+                    {{/if}}
+                  </td>
+                  {{#if isqa}}
+                  <td class="td-qa-mnid">
+                    <input type="text" name="qa_mnid" class="input-qa-mnid" id="qa_mnid_{{this.id}}" 
+                    value="{{this.qaAnswer.mnid}}">
+                  </td>
+                  <td class="td-qa-score">
+                    <i class="icon {{#if this.qaAnswer.identified}}green{{else}}grey{{/if}} check circle btn-identified" 
+                    id="btn_identified_{{this.id}}"></i>
+                    <i class="icon {{#if eq this.qaAnswer.identified false}}red{{else}}grey{{/if}} remove circle btn-unidentified" 
+                    id="btn_unidentified_{{this.id}}"></i>
+                  </td>
+                  {{/if}}
+                  <td class="td-bh-content">{{{../finding}}}</td>
+                </tr>
+                {{/with}}
+            {{/each}}
+            {{/each}}
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>

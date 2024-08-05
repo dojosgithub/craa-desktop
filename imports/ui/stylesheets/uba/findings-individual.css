@@ -1,0 +1,56 @@
+.sel-findings-individual-simulation {
+  min-width: 241px !important;
+}
+.findings-individual-buttons {
+  margin-top: 2em !important;
+}
+.uba-findings-individual-summary {
+  float: right;
+}
+.uba-findings-individual-summary span.label {
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 2em;
+}
+.uba-findings-individual-summary .btn-view-compliance-data {
+  margin-left: 2em;
+}
+.uba-findings-individual-simil-info {
+  float: right;
+  margin-right: 15em;
+  margin-bottom: -2em;
+  font-size: 0.8em;
+}
+.uba-findings-individual-table {
+  margin-top: 0.3em !important;
+}
+.uba-findings-individual-table th.th-note {
+  width: 27%;
+}
+.uba-findings-individual-table th.th-saved-at {
+  width: 100px;
+}
+.uba-findings-individual-table td.identified {
+  background-color: #54a54d;
+}
+.uba-findings-individual-table td.unidentified {
+  background-color: #fc0d1b;
+}
+.uba-findings-individual-table td.match {
+  background-color: #5dbdc1;
+}
+.uba-findings-individual-table td.dismatch {
+  background-color: #e2a314;
+}
+.uba-findings-individual-table td.high-simil {
+  background-color: #efe78d;
+}
+.uba-findings-individual-table td.higher-simil {
+  background-color: #f7aaaf;
+}
+.uba-findings-individual-table td.high-time {
+  background-color: #d6cd68;
+}
+.uba-findings-individual-table td.highest-time {
+  background-color: #f78b92;
+}

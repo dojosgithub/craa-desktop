@@ -1,0 +1,33 @@
+<template name="Tools">
+  <!--<div class="ui secondary pointing menu">
+    <a class="item">
+      Email Manager
+    </a>
+  </div>
+  <div class="ui segment email-manager-segment">
+    {{> EmailManager}}
+  </div>-->
+
+  <div class="ui grid breadcrumb-grid">
+    <div class="sixteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <div class="active section">Tools</div>
+      </div>
+    </div>
+  </div>
+  <div class="ui grid tools-grid">
+    <div class="sixteen wide column tools-column">
+      
+      <div class="ui top attached tabular menu tools-menu">        
+        <a class="active first item" data-tab="first">Email Manager</a>
+        <a class="second item" data-tab="second">Doc-Folder Colors</a>        
+      </div>     
+      <div class="ui bottom active attached tab first segment" data-tab="first">
+        {{>Template.dynamic template=EmailManager}}
+      </div>
+      <div class="ui bottom attached tab sescond segment" data-tab="second">
+        {{>Template.dynamic template=DocumentFolderColors}}
+      </div>
+    </div>
+  </div>  
+</template>

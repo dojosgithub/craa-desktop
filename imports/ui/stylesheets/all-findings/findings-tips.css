@@ -1,0 +1,147 @@
+.ui.grid.findings-tips.main .left .ui.accordion.domains {
+  padding: 0;
+  margin-bottom: 1em;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.domains .content .list .item {
+  margin-left: 1em;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.domains .content .list .item .content {
+  padding: 0;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.domains .content .list .item .content .button {
+  padding: 0.4em 1em;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.domains .content .list .item.active {
+  background-color: #dee6bd;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.simulations {
+  padding: 0;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.simulations .content .list .item {
+  margin-left: 1em;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.simulations .content .list .item .content {
+  padding: 0;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.simulations .content .list .item .content .button {
+  padding: 0.4em 1em;
+}
+.ui.grid.findings-tips.main .left .ui.accordion.simulations .content .list .item.active {
+  background-color: #dee6bd;
+}
+.ui.grid.findings-tips.main .right .add-tip-container {
+  padding-left: 25%;
+}
+.ui.grid.findings-tips.main .right .add-tip-container .txta-new-tip-content {
+  min-height: 3em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 50px;
+  overflow: hidden;
+}
+.ui.grid.findings-tips.main .right .add-tip-container .btn-add-new-tip {
+  width: 110px;
+  height: 30px;
+}
+.ui.grid.findings-tips.main .right .title {
+  font-weight: bold;
+}
+.ui.grid.findings-tips.main .right .findings-tips-list .findings-tips-title {
+  color: #e86f30;
+}
+.ui.grid.findings-tips.main .right .findings-title {
+  margin-top: 3em;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips,
+.ui.grid.findings-tips.main .right .tbl-tips {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93em;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips th,
+.ui.grid.findings-tips.main .right .tbl-tips th,
+.ui.grid.findings-tips.main .right .tbl-findings-tips td,
+.ui.grid.findings-tips.main .right .tbl-tips td {
+  border: 1px solid #c1c7c7;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips td,
+.ui.grid.findings-tips.main .right .tbl-tips td {
+  padding: 5px;
+  text-align: center;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .td-id,
+.ui.grid.findings-tips.main .right .tbl-tips .td-id {
+  background-color: #f7f9f6;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .td-domain,
+.ui.grid.findings-tips.main .right .tbl-tips .td-domain,
+.ui.grid.findings-tips.main .right .tbl-findings-tips .td-action,
+.ui.grid.findings-tips.main .right .tbl-tips .td-action {
+  text-align: center;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips thead > tr {
+  background-color: #f7f5f3;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .th-entry {
+  width: 50px;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .th-status {
+  width: 80px;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .th-action {
+  width: 130px;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .td-tip input.input-tip {
+  width: 100%;
+}
+.ui.grid.findings-tips.main .right .tbl-findings-tips .td-tip textarea.txta-tip-content {
+  width: 98%;
+  border-radius: 5px;
+  border: 1px solid #c1bdbd;
+  padding: 5px;
+}
+.ui.grid.findings-tips.main .right .tbl-findings {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93em;
+}
+.ui.grid.findings-tips.main .right .tbl-findings th,
+.ui.grid.findings-tips.main .right .tbl-findings td {
+  border: 1px solid #c1c7c7;
+}
+.ui.grid.findings-tips.main .right .tbl-findings td {
+  padding: 5px;
+  text-align: center;
+}
+.ui.grid.findings-tips.main .right .tbl-findings .td-id {
+  background-color: #f7f9f6;
+}
+.ui.grid.findings-tips.main .right .tbl-findings .td-id.has-tips {
+  background-color: #cfecf5;
+}
+.ui.grid.findings-tips.main .right .tbl-findings .td-domain,
+.ui.grid.findings-tips.main .right .tbl-findings .td-action {
+  text-align: center;
+}
+.ui.grid.findings-tips.main .right .tbl-findings .icon-view-finding-tips {
+  font-size: 0.75em;
+  cursor: pointer;
+}
+.ui.grid.findings-tips.main .right .tbl-findings .tr-finding.active {
+  background-color: #dee6bd;
+}
+.ui.grid.findings-tips.main .finding-tips-container ul.ul-finding-tips {
+  list-style-type: none;
+  padding: 0;
+}
+.ui.grid.findings-tips.main .finding-tips-container ul.ul-finding-tips li.li-finding-tip {
+  display: block;
+  padding: 4px;
+  font-size: 0.96em;
+}
+.ui.grid.findings-tips.main .finding-tips-container ul.ul-finding-tips li.li-finding-tip label {
+  color: #000;
+}
+.findings-tips-modal .findings-tips-dropdown {
+  width: 100%;
+}

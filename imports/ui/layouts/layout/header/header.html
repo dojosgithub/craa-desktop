@@ -1,0 +1,187 @@
+<template name="Header">
+  <div class="top-menu-container">
+    <div class="ui relaxed grid">
+      <div class="five wide column top-menu-left">
+        <div class="ui horizontal list menu-list">
+          <div class="item ui small icon button btn-view-all-simulations">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted teal desktop icon"></i>
+              </div>
+              <span>Simulations</span>
+            </div>
+          </div>
+          <div class="item ui small icon button btn-view-all-findings">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted blue clipboard icon"></i>
+              </div>
+              <span>Findings</span>
+            </div>
+          </div>
+          <div class="item ui small icon button btn-view-findings-requirements">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted purple clipboard list icon"></i>
+              </div>
+              <span>Findings-Req</span>
+            </div>
+          </div>
+          <div class="item ui small icon button btn-view-findings-tips">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted orange lightbulb outline icon"></i>
+              </div>
+              <span>Findings-Tips</span>
+            </div>
+          </div>
+          <div class="item ui small icon button btn-view-findings-selected">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted green check icon"></i>
+              </div>
+              <span class="findings-selected">Findings-Selctd</span>
+            </div>
+          </div>          
+<!--           <div class="item ui small icon button btn-view-all-requests">
+            <div class="content">
+              <div class="header">
+                <i class="icons">
+                  <i class="circular inverted orange unordered list icon"></i>          
+                  <i class="corner checkmark icon"></i>
+                </i>
+              </div>
+              <span>Requests</span>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="eleven wide column top-menu-right">
+        <div class="ui horizontal list menu-list">
+          
+          {{#if eq currentUser.profile.role '1'}}          
+          <div class="item ui small icon button btn-view-etl">        
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted green database icon"></i>
+              </div>
+              <span>ETL</span>
+            </div>
+          </div>
+          <!--<div class="item ui small icon button btn-view-dashboard">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted orange dashboard icon"></i>
+              </div>
+              <span>Dashboard</span>
+            </div>
+          </div> -->        
+          {{/if}}
+          {{#if currentUser}}
+          <div class="item ui small icon button btn-view-uba">        
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted green treatment icon"></i>
+              </div>
+              <span>UBA</span>
+            </div>
+          </div>          
+          <div class="item ui small icon button btn-view-datadump">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted orange database icon"></i>
+              </div>
+              <span>Datadump</span>
+            </div>
+          </div>          
+          <div class="item ui small icon button btn-view-scoring">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted violet legal icon"></i>
+              </div>
+              <span>Scoring</span>
+            </div>
+          </div>            
+          <div class="item ui small icon button btn-view-training">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted brown student icon"></i>
+              </div>
+              <span>Training</span>
+            </div>
+          </div>
+          <div class="item ui small icon button btn-view-users">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted orange users icon"></i>
+              </div>
+              <span>Users</span>
+            </div>
+          </div>                     
+          <div class="item ui small icon button btn-view-regions">        
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted blue world icon"></i>
+              </div>
+              <span>Regions</span>
+            </div>
+          </div>          
+          <div class="item ui small icon button btn-view-exports">        
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted teal file excel outline icon"></i>
+              </div>
+              <span>Export</span>
+            </div>
+          </div>                    
+          <div class="item ui small icon button btn-view-tools">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted yellow configure icon"></i>
+              </div>
+              <span>Tools</span>
+            </div>
+          </div>
+                    
+          <!--<div class="item ui small icon button btn-view-notices">
+            <div class="content">
+              <div class="header">
+                <i class="circular inverted olive bullhorn icon"></i>
+              </div>
+              <span>Notice</span>
+            </div>
+          </div>--> 
+          
+<!--           <div class="item ui small icon button btn-view-settings">
+            <div class="content">
+              <div class="header"> 
+                  <i class="circular inverted green user icon"></i>                
+              </div>
+              <span>Settings</span>
+            </div>
+          </div>  -->
+          <!--<div class="item ui small icon button header-menu-settings">
+            <div class="content">
+              <div class="ui dropdown icon item">
+                <i class="circular inverted green user icon"></i>
+                <div class="menu settings">-->
+<!--                   <div class="item">Settings</div>
+                  <div class="divider"></div>
+                  <div class="item">Profile</div>
+                  <div class="divider"></div> -->
+<!--                   <div class="item header-menu-item-signout">
+                   Sign out
+                  </div> -->
+                <!--</div>
+              </div>
+              <span>{{currentUser.profile.firstname}}</span>
+            </div>
+          </div> -->
+
+          {{/if}}
+        </div>
+      </div> 
+
+    </div>
+  </div>
+</template>

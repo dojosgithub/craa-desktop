@@ -1,0 +1,11 @@
+<template name="QAScorers">
+	<div class="qa-scorers-container">
+		<ul class="ul-qa-scorers">
+			{{#each Scorers}}
+			<li class="li-qa-scorer">
+				{{this.profile.fullname}}
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>

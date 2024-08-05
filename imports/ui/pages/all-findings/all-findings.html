@@ -1,0 +1,115 @@
+<template name="AllFindings">
+  <!--<div class="ui grid findings top">
+    <div class="sixteen wide column findings-top">
+    	Top
+    </div>
+  </div>-->
+
+  <div class="ui padded grid findings main">
+    <div class="four wide column left">
+    	
+    	<div class="ui styled accordion simulations">
+        <div class="title trigger {{#if eq (session 'Findings.simulations.chosen') 'prehire'}}active{{/if}}">
+           <i class="dropdown icon"></i>
+          Prehire Simulations ({{PrehireCount}})
+        </div>
+        <div class="prehire content {{#if eq (session 'Findings.simulations.chosen') 'prehire'}}active{{/if}}">
+
+					<div class="ui small middle aligned divided celled list">
+						{{#each Simulations.prehire.sims}}
+					  <div class="item {{#if eqInt (session 'Findings.simulation.id') this.id}}active{{/if}}">
+					    <div class="right floated content">
+					      <button class="ui mini button btn-view-findings">View</button>
+					    </div>					    
+					    <div class="content">
+					      {{this.name}}
+					    </div>
+					  </div>
+					 {{/each}}
+					</div>
+
+        </div>    		
+        <div class="title trigger {{#if eq (session 'Findings.simulations.chosen') 'baseline'}}active{{/if}}">
+           <i class="dropdown icon"></i>
+          Baseline Simulations ({{BaselineCount}})
+        </div>
+        <div class="baseline content {{#if eq (session 'Findings.simulations.chosen') 'baseline'}}active{{/if}}">
+					<div class="ui small middle aligned divided celled list">
+						{{#each Simulations.baseline.sims}}
+					  <div class="item {{#if eqInt (session 'Findings.simulation.id') this.id}}active{{/if}}">
+					    <div class="right floated content">
+					      <div class="ui mini button btn-view-findings">View</div>
+					    </div>					    
+					    <div class="content">
+					      {{this.name}}
+					    </div>
+					  </div>
+					 {{/each}}
+					</div>
+        </div>
+        <div class="title trigger {{#if eq (session 'Findings.simulations.chosen') 'followup'}}active{{/if}}">
+           <i class="dropdown icon"></i>
+          Followup Simulations ({{FollowupCount}})
+        </div>
+        <div class="followup content {{#if eq (session 'Findings.simulations.chosen') 'followup'}}active{{/if}}">
+					<div class="ui small middle aligned divided celled list">
+						{{#each Simulations.followup.sims}}
+					  <div class="item {{#if eqInt (session 'Findings.simulation.id') this.id}}active{{/if}}">
+					    <div class="right floated content">
+					      <div class="ui mini button btn-view-findings">View</div>
+					    </div>					    
+					    <div class="content">
+					      {{this.name}}
+					    </div>
+					  </div>
+					 {{/each}}
+					</div>       	
+        </div>          		
+    	</div>
+    </div>
+    <div class="ten wide column right">
+    	{{#with FindingsList}}
+      <div class="findings-main-top-container">
+        <div class="field field-drag-option">
+          <input type="checkbox" id="findings_drag_option" {{checked findingsDragToReorder true}}> 
+          <span class="drag-option-label">Drag to re-order findings</span>
+        </div>
+        <!--<button class="ui circular mini basic icon button btn-save-findings-order 
+        	{{#if findingsOrderChanged}}teal{{else}}{{/if}}" id="btn_save_findings_order" 
+        	disabled="{{not findingsOrderChanged}}">-->
+        <button class="ui circular mini basic icon button btn-save-findings-order teal" id="btn_save_findings_order">        	
+          <i class="save grey icon"></i> Save current findings order</button>
+          
+        <div class="findings-order-last-updated">
+        	{{#if findingsOrderLastUpdated}}
+        	[<span class="label">Last updated on</span> {{dateFormatNHMS findingsOrderLastUpdated}}]
+        	{{else}}
+        	[<span class="label">Never updated</span>]
+        	{{/if}}
+        </div>
+        <div class="findings-order-export">
+	    		<button class="ui circular mini teal button btn-export-all-findings">
+	      		<i class="file excel outline icon"></i> Export</button>         	
+        </div>
+      </div>
+      {{/with}}
+			<div class="findings" id="findings_list">
+				<!--{{#each FindingsList}}-->
+				<!--<div class="finding-item" data-fid="{{this.id}}">
+					<span class="ui order teal label finding-order" id="forder_{{this.id}}"></span>-->
+					<!--<span class="ui order teal label finding-order">{{findingOrder this.order @index}}</span>-->
+					<!--<span class="ui order teal label finding-order">{{findingOrderByIndex @index this.order}}</span>-->
+					<!--<span class="ui order teal label finding-order">{{this.order}}</span>-->
+					<!--<span class="ui id label">{{this.id}}</span>
+					<span class="finding" id="finding_{{this.id}}">{{this.finding}}</span>					
+				</div>
+				{{/each}}-->
+			</div>
+    </div>
+		<div class="two wide column right">
+			<!--<div class="findings-history-container">
+				Findings history
+			</div>-->
+		</div>
+  </div>
+</template>

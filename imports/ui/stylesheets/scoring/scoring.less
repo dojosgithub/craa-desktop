@@ -1,0 +1,137 @@
+.scoring-grid-container {
+  margin-top: 0.3em !important;
+
+  .scoring-column {
+    margin: 0 auto;
+
+    #tbl_scoring_container_length {
+      display: inline-block;
+    }
+
+    #tbl_scoring_container_filter {
+      display: inline-block;
+      float: right;
+    }
+
+    #tbl_scoring_container {
+      width: 100% !important;
+
+      thead tr {
+        line-height: 0px;
+      }
+
+      tbody td {
+        padding: 3px 7px;
+      }
+
+      th {
+        text-align: center;
+        line-height: 1em;
+      }
+
+      .scoring-action-container {
+        // text-align: center
+      }
+
+      td.scorer-name {
+        color: #d4d0d0;
+      }
+
+      td.adjudicator-name {
+        color: #d4d0d0;
+      }
+
+      .Scored, .Adjudicated {  
+        background-color: #16ab39 !important;
+        color: #fff !important;
+      }
+      .Scoring, .Adjudicating {        
+        background-color: #eaae00 !important;
+        color: #fff !important;        
+      }
+
+      .not-zero {
+        // color: #eff793 !important;
+      }
+      // .Adjudicated {
+      //   color: #24c124 !important;
+      // }
+      // .Adjudicating {
+      //   color: #d0b730 !important;
+      // }
+
+      td.scoring-time {
+        font-size: 0.9em;
+        color: #747575;
+      } 
+
+      td.monitoring-notes {
+        font-size: 0.84em;
+        text-align: center;
+      }
+
+      td.non-errors {
+        font-size: 0.84em;
+        text-align: center;
+        color: #980b0b;
+      }
+
+      .result-stage {
+        text-align: center;
+        font-size: 0.9em;
+      }    
+    }
+
+    #tbl_scoring_container_info {
+      margin: 10px;
+      display: inline-block;
+    }
+
+    #tbl_scoring_container_paginate {
+      display: inline-block;
+      margin-left: 20%;
+      /*float: right;*/
+
+      a.paginate_button { 
+        cursor: pointer;       
+        color: #000;
+        padding: 2px 7px;        
+        min-width: 100px;        
+      }
+
+      a.paginate_button.previous {
+
+      }
+
+      a.paginate_button.next {
+
+      }
+
+      a.paginate_button.disabled {
+        color: #9e9b9b;
+      }      
+
+      a.paginate_button.current {
+         // border: 1px solid #999;
+         // border-radius: 3px;
+        color: #333 !important;
+        border: 1px solid #979797;
+        background-color: white;         
+        background: -webkit-linear-gradient(#fff 0%, #dcdcdc 100%);
+        background: -o-linear-gradient(#fff 0%, #dcdcdc 100%);
+        background: linear-gradient(#fff 0%, #dcdcdc 100%);
+
+      } 
+
+    }
+
+    .scoring-action-container {
+      text-align: center;
+
+      button {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}

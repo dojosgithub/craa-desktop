@@ -1,0 +1,217 @@
+<template name="EDCManagement">
+  <div class="ui grid edc-top-grid">
+    <div class="eight wide column edc-management-top-container">
+        <div class="edc-add-protocol-container">
+          <form class="ui mini form form-add-protocol">
+            <div class="inline fields">
+              <div class="five wide field">
+                <label>Name</label>
+                <input type="text" name="new_protocol_name" id="new_protocol_name" placeholder="Name">
+              </div>
+              <div class="five wide field">
+                <label>Label</label>
+                <input type="text" name="new_protocol_label" id="new_protocol_label" placeholder="Label">
+              </div>
+              <div class="five wide field">
+                <button class="circular tiny ui teal icon button btn-add-protocol">
+                  <i class="plus icon"></i> add a new protocol
+                </button>              
+              </div>
+            </div>
+            <input type="hidden" name="simulation_id" value="{{simulationId}}">
+          </form>
+        </div>
+    </div>
+  </div>
+
+  <div class="ui grid edc-main-grid">
+
+    <div class="six wide column edc-management-main-container">
+      
+      <div id="accordion_edc_management" class="ui styled accordion protocols">
+      {{#each EDCProtocols}}        
+        <div class="protocol title" id="{{this.id}}">
+          <span class="trigger">
+            <i class="folder open icon"></i>    
+            <span class="protocol-name {{#if eq this.status 0}}inactive{{/if}}" 
+              id="_protocol_name_{{this.id}}">{{this.name}}</span>                
+          </span>
+          <div class="protocol-action-container" data-dfid="{{this.id}}">
+            <button class="ui circular mini basic button btn-edit-protocol">
+              <i class="edit icon"></i> edit</button>
+            {{#if eq this.status 1}}
+            <button class="ui circular mini basic button btn-status btn-update-protocol-status" 
+              data-status="0"><i class="lock orange icon"></i> deactivate</button>
+            {{else}}
+            <button class="ui circular mini basic button btn-status btn-update-protocol-status" 
+              data-status="1"><i class="unlock green icon"></i> activate</button>
+            {{/if}}
+            <button class="ui circular mini basic button btn-status btn-update-protocol-status" 
+              data-status="4"><i class="trash red icon"></i> delete</button>
+          </div>                          
+        </div>
+        <div class="content">
+          <div class="ui container site-add-container">
+
+            <form class="ui mini form form-add-site">
+              <div class="inline fields">
+                <div class="six wide field">
+                  <label>Name</label>
+                  <input type="text" name="new_site_name" id="new_site_name" placeholder="Name">
+                </div>
+                <div class="six wide field">
+                  <label>Label</label>
+                  <input type="text" name="new_site_label" id="new_site_label" placeholder="Label">
+                </div>
+                <div class="five wide field">
+                  <button class="circular tiny ui teal icon button btn-add-site">
+                    <i class="plus icon"></i> add site
+                  </button>              
+                </div>
+              </div>
+              <input type="hidden" name="simulation_id" value="{{simulationId}}">
+              <input type="hidden" name="protocol_id" value="{{this.id}}">
+              <input type="hidden" name="index" value="{{@index}}">
+            </form>
+          </div>
+
+          <div id="accordion_edc_site" class="accordion sites">
+          {{#each EDCSites this.id}}                                                            
+
+            <div class="site title" id="{{this.id}}">
+              <span class="trigger">
+                <i class="folder open icon"></i>
+                <span class="site-name {{#if eq this.status 0}}inactive{{/if}}" 
+                  id="_site_name_{{this.id}}">{{this.name}}</span>                
+              </span>
+              <div class="site-action-container" data-dfid="{{this.id}}">
+                <button class="ui circular mini basic button btn-edit-site">
+                  <i class="edit icon"></i> edit</button>
+                {{#if eq this.status 1}}
+                <button class="ui circular mini basic button btn-status btn-update-site-status" 
+                  data-status="0"><i class="lock orange icon"></i> deactivate</button>
+                {{else}}
+                <button class="ui circular mini basic button btn-status btn-update-site-status" 
+                  data-status="1"><i class="unlock green icon"></i> activate</button>
+                {{/if}}
+                <button class="ui circular mini basic button btn-status btn-update-site-status" 
+                  data-status="4"><i class="trash red icon"></i> delete</button>
+              </div>                          
+            </div>
+            <div class="content">
+              <div class="ui container subject-add-container">
+
+                <div class="five wide field">
+                  <button class="circular tiny ui teal icon button btn-add-subject" 
+                    data-idx="{{@index}}"
+                    data-simid="{{simulationId}}"
+                    data-protoid="{{../id}}"
+                    data-siteid="{{this.id}}"
+                    >
+                    <i class="plus icon"></i> add subject
+                  </button>              
+                </div>
+
+              </div>
+
+              <div id="accordion_edc_subject" class="accordion subjects">
+              {{#each EDCSubjects this.id}}                                                            
+
+                <div class="subject title" id="{{this.id}}">
+                  <span class="trigger">
+                    <i class="folder open icon"></i>
+                    <span class="subject-name {{#if eq this.status 0}}inactive{{/if}}" 
+                      id="_subject_name_{{this.id}}">{{this.name}}</span>                
+                  </span>
+                  <div class="subject-action-container" data-dfid="{{this.id}}">
+                    <button class="ui circular mini basic button btn-edit-subject">
+                      <i class="edit icon"></i> edit</button>
+                    {{#if eq this.status 1}}
+                    <button class="ui circular mini basic button btn-status btn-update-subject-status" 
+                      data-status="0"><i class="lock orange icon"></i> deactivate</button>
+                    {{else}}
+                    <button class="ui circular mini basic button btn-status btn-update-subject-status" 
+                      data-status="1"><i class="unlock green icon"></i> activate</button>
+                    {{/if}}
+                    <button class="ui circular mini basic button btn-status btn-update-subject-status" 
+                      data-status="4"><i class="trash red icon"></i> delete</button>
+                  </div>                          
+                </div>
+                <div class="subject content" id="{{this.id}}">
+
+                  <div id="accordion_edc_visits" class="accordion visits">
+                    <div class="visits title" id="{{this.id}}">
+                      <span class="trigger">
+                        <i class="folder open icon"></i>
+                        <span class="subject-name {{#if eq this.status 0}}inactive{{/if}}" 
+                          id="_subject_name_{{this.id}}">Visits</span>                
+                      </span>                         
+                    </div>                    
+                  {{#each EDCVisits this.id}}
+                    
+                  {{/each}}
+                  </div> <!-- Visits accordion -->
+                </div> <!-- Subject content -->
+
+              {{/each}}
+              </div> <!-- Subject accordion -->
+
+            </div> <!-- Site Content -->
+
+          {{/each}}
+          </div> <!-- Sites accordion -->
+        </div> <!-- Protocol Content -->
+      {{/each}}
+    </div> <!-- Protocols accordion -->
+
+    </div>
+    <div class="ten wide column edc-management-main-container">
+    </div>
+
+
+    <div class="ui mini edc-management add-subject modal">
+      
+      <i class="close icon"></i>
+      <div class="ui small header center aligned">
+        Add a New Subject
+      </div>
+
+      <div class="content">
+
+        <form class="ui small form form-add-subject">
+        <div class="description">            
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label>Name</label>
+              <input type="text" name="new_subject_name" id="new_subject_name" placeholder="Name">
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label>Label</label>
+              <input type="text" name="new_subject_label" id="new_subject_label" placeholder="Label">
+            </div>
+          </div>
+          <input type="hidden" name="simulation_id" value="{{simulationId}}">
+          <input type="hidden" name="protocol_id" value="{{protocolId}}">
+          <input type="hidden" name="site_id" value="{{siteId}}">
+        </div>
+
+        <div class="ui edc-management add-subject actions">
+          <button class="ui mini green button add-subject">
+            Submit
+          </button>
+        </div>
+        </form>
+
+        <button class="ui mini button add-subject-cancel">
+          Close
+        </button>
+
+      </div>
+
+    </div> <!-- add-subject modal -->
+
+  </div> <!-- edc-main-grid -->
+
+</template>

@@ -1,0 +1,133 @@
+.email-manager-segment {
+  box-shadow: none !important;
+  border: none !important;
+
+  .email-manager-column {
+    margin: 0 auto;
+    padding: 0px;
+
+    .header {
+      font-weight: normal;
+      font-size: 1em;
+
+      .select-file-label {
+        padding-right: 10px;
+        font-size: 0.9em;
+        font-weight: bold;    
+      }
+
+      .field {
+        #email_manager_file {
+          font-weight: normal;
+          font-size: 0.9em;
+        }
+      }
+    }
+
+    .email-manager-content {
+
+      padding: 0.5em 0.6em 2.5rem 0.6em !important;
+
+      #emails_preview {
+        display: inline-block;
+        width:40%;
+        font-size: 0.95em;
+        margin-top: 10px;
+        margin-bottom: 5px;
+
+        td.search-result {
+            background: #b2f6fb;
+            /*color: #583707;*/
+        }
+
+        .invalid-email-format {
+          background-color: #d01515;
+          color: #fff;
+        }
+
+        .email-exists-ok {
+          background-color: #b9ecac;
+        } 
+        .email-exists-nok {
+          background-color: #ffff00;
+        }
+
+        .email-not-exist {
+          background-color: #ffff00;
+        }
+      }
+
+      .num-emails {
+        display: none;
+        margin-left: 10px;
+      }
+
+      .send-verification-message {        
+        display: none;
+        margin-left: 40px;        
+      }
+
+      .email-submit-container {        
+        margin-left: 4em;
+
+        .btn-submit-emails {
+          padding: 5px 10px;
+        }
+      }
+
+      .email-manager-search {
+        display: none;
+        // text-align: center;
+        margin-left: 6em;
+
+        #search_field {        
+          border-radius: 15px;
+          height: 30px;
+        }
+
+        .results {
+          display: inline-block;
+          margin-left: 10px;
+        }
+      }
+
+      #email_manager {
+        margin-top: 5px;
+      }
+
+      #emails_out {
+        display: none;
+        float: right;
+        width: 60%;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 10px;
+/*        background-color: #000;
+        color: #fff;*/
+
+        ul {
+          list-style: none;
+
+          li {
+            padding: 2px;
+
+            div {
+              display: inline-block;
+            }
+            div.target {
+              width: 250px;
+              background-color: #dedbdb;
+              border-radius: 5px;
+              text-align: center;            
+            }
+            div.fullname {
+              width: 200px;
+            } 
+            
+          }          
+        }
+      }
+    }
+
+  }
+}

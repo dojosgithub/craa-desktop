@@ -1,0 +1,73 @@
+<template name="SimulationManagement">
+
+  <div class="ui grid breadcrumb-grid">
+    <div class="fifteen wide column breadcrumb-column">
+      <div class="ui small breadcrumb">        
+        <a class="section" href="/{{session '___aR'}}/simulations">Simulations</a>
+        <i class="divider"> / </i>
+        <div class="section">{{session 'Simulations.name'}} 
+<!--           <button class="ui small basic icon button btn-config-simulation" 
+            data-tooltip="Open simulation settings"><i class="chevron circle down icon"></i></button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui grid simulation-management-grid-container">
+    <div class="fifteen wide column simulation-management-column-container">
+
+      <div class="ui top attached tabular menu simulation-management-menu">
+        <a class="active fourth item" data-tab="fourth">Preferences</a>
+        <a class="first item" data-tab="first">Document Management 
+<!--           <button class="ui basic mini button icon tab-icon btn-export-document-list" 
+          data-tooltip="{{#if gt (length (session 'Documents.list')) 0}}Export document list{{else}}No document to export{{/if}}">
+          <i class="{{#if gt (length (session 'Documents.list')) 0}}orange{{else}}grey{{/if}} download icon"></i>
+          </button>   -->  
+
+          <div class="ui left pointing dropdown icon button btn-document-options">
+            <i class="setting icon"></i>
+            <div class="menu">
+              <div class="item">
+<!--                 <button class="ui basic mini button icon tab-icon btn-export-document-list" 
+                data-tooltip="{{#if gt (length (session 'Documents.count')) 0}}Export document list{{else}}No document to export{{/if}}">
+                <i class="{{#if gt (length (session 'Documents.count')) 0}}orange{{else}}grey{{/if}} download icon"></i> 
+                Export document list
+                </button>   --> 
+                <button class="ui basic mini button icon tab-icon btn-export-document-list" 
+                data-tooltip="Export document list">
+                <i class="orange download icon"></i> 
+                Export document list
+                </button>                   
+              </div>
+              <div class="item">
+                <div class="field field-drag-option">
+                  <input type="checkbox" id="drag_option" {{checked dragToReorder true}}> 
+                  <span class="drag-option-label">Drag to re-order documents/folders</span>
+                </div>      
+              </div>
+            </div>
+          </div>
+
+        </a>
+        <!--<a class="fifth item" data-tab="fifth">EDC Management</a>-->
+        <a class="second item" data-tab="second">Protocol Management</a>
+        <a class="third item" data-tab="third">Findings</a>
+      </div>
+      <div class="ui bottom attached tab first segment" data-tab="first">
+        {{>Template.dynamic template=DocumentManagement}}
+      </div>
+      <div class="ui bottom attached tab second segment" data-tab="second">        
+        {{>Template.dynamic template=Protocols}}
+      </div>
+      <div class="ui bottom attached tab third segment" data-tab="third">        
+        {{>Template.dynamic template=Findings}}
+      </div>
+      <div class="ui bottom attached tab active fourth segment" data-tab="fourth">        
+        {{>Template.dynamic template=SimulationPreferences}}
+      </div>      
+      <div class="ui bottom attached tab fifth segment" data-tab="fifth">        
+        {{>Template.dynamic template=EDCManagement}}
+      </div>
+    </div>
+  </div>
+
+</template>

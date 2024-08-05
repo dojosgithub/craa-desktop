@@ -1,0 +1,108 @@
+.fc-summary-grid {
+	.fc-input-column {
+		.label-file-name {
+			margin-left: 2em !important;
+		}
+
+		#file_name {
+			width: 300px;
+		}
+
+		#fc_excel_file {
+			margin-left: 2em;
+		}
+
+		.btn-submit-comparison {
+			margin-left: 2em;
+		}
+	}
+}
+
+.ui.grid.fc-output-grid {
+	margin-top: 0;
+
+	.fus-findings {
+		padding-bottom: 0;
+
+		.tbl-fus-findings {
+			border-collapse: collapse;
+
+			td, th {
+				border: 1px solid #a7a2a2;
+			}
+
+			.th-fus-id {
+				padding: 0 15px;
+			}
+			.td-fus-id {
+				text-align: center;
+				background-color: #dad8a6;
+			}
+			.td-fus-finding {
+				padding: 5px 10px;
+			}
+
+			.th-entry {
+				border-top: 0;
+				border-left: 0;
+			}
+
+			.th-fus-id {
+				border-top: 0;
+				border-left: 0;
+			}
+
+			.th-fus-baseline-id {
+				border-top: 0;
+				border-right: 0;
+			}
+
+			.td-entry, .td-fus-domain {
+				text-align: center;
+			}
+
+			.td-fus-baseline-id {
+				border-right: 0;
+				border-top: 0;
+				border-bottom: 0;
+
+				input {
+					width: 60px;
+					margin-left: 5px;
+				}			
+			}
+
+		}
+
+	}
+	
+	.baseline-findings {
+		padding-bottom: 0;
+
+		#ul_baseline_findings {
+			list-style-type: none;
+			padding-top: 5px;
+			padding-left: 5px;
+
+			.li-baseline-finding {
+				border-radius: 5px;
+				margin-bottom: 5px;
+				padding: 5px 5px;
+				border: 1px solid #bbb6b6;
+				
+				.baseline-finding-id {
+					padding: 2px 5px;
+					border-radius: 5px;
+					border: 1px solid #666;
+					background-color: #ece3c9;
+					// margin-right: 10px;
+					font-size: 0.9em;
+				}
+
+				.baseline-finding-domain-id {
+					margin-right: 10px;
+				}
+			}
+		}
+	}	
+}

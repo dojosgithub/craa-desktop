@@ -1,0 +1,87 @@
+{
+    "name": "CRAA Admin v.2",
+    "version": "1.0.1",
+    "projectName": "CRAAAdminDesktop",
+    "devTools": true,
+    "devtron": true,
+    "desktopHCP": true,
+    "desktopHCPIgnoreCompatibilityVersion": false,
+    "squirrel": {
+        "autoUpdateFeedUrl": "http://127.0.0.1/update/:platform/:version",        
+        "autoUpdateFeedHeaders": {},
+        "autoUpdateCheckOnStart": true
+    },    
+    "rebuildNativeNodeModules": false,
+    "webAppStartupTimeout": 60000,
+    "exposeLocalFilesystem": false,  
+    "window": {
+        "icon": "@assets/craa.png",
+        "_windows": {
+            "icon": "@assets/craa.ico"
+        },
+        "width": 1024,
+        "height": 600
+    },
+    "windowDev": {
+    },
+    "uglify": true,
+    "plugins": {
+        "meteor-desktop-splash-screen": {
+            "version": "0.3.0",
+            "windowSettings": {
+                "width": 400,
+                "height": 300
+            }
+        }
+    },
+    "dependencies": {},
+    "packageJsonFields": {
+        "description": "CRA Assessmentns.com Admin Application",
+        "author": "CRAAssessments.com",
+        "private": true
+    },
+    "builderOptions": {
+        "win": {            
+            "target": "nsis"
+        },
+        "squirrelWindows": {
+            "iconUrl": "https://github.com/wojtkowiak/meteor-desktop/blob/beta/scaffold/assets/craa.ico?raw=true",
+            "loadingGif": ".desktop/assets/loading.gif"
+        },
+        "icon": ".desktop/assets/craa.ico",
+        "appId": "CRAAAdminDesktop.v2.app",
+        "productName": "CRAA Admin",
+        "compression": "maximum",
+        "mac": {
+            "icon": ".desktop/assets/craa.icns"
+        },
+        "dmg": {
+            "icon": ".desktop/assets/craa.icns",
+            "background": ".desktop/assets/dmgBackground.png",
+            "iconSize": 54,
+            "contents": [
+                { "x": 377, "y": 190, "type": "link", "path": "/Applications" },
+                { "x": 63, "y": 190, "type": "file" }
+            ],
+            "window": {
+                "width": 480,
+                "height": 300
+            }
+        }    },
+    "packagerOptions": {
+        "icon": ".desktop/assets/craa.ico",
+        "_osx": {
+            "icon": ".desktop/assets/craa.icns"
+        },
+        "version-string": {
+            "CompanyName": "CRA Assessments",
+            "LegalCopyright": "Copyright 2021 CRAAssessments.com - All rights reserved.",
+            "FileDescription": "CRAA Admin Application",
+            "OriginalFilename": "CRAAAdmin.v2.exe",
+            "FileVersion": "@version",
+            "ProductVersion": "@version",
+            "ProductName": "CRAAAdmin",
+            "InternalName": "CRAAAdmin.v2.exe"
+        }
+    }
+}

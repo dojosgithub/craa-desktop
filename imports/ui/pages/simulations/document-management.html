@@ -1,0 +1,427 @@
+<template name="DocumentManagement">
+  <div class="ui grid" id="document_management_grid">
+    
+    <div class="ten wide column document-list-container">
+      
+      <div id="accordion_doc_management" class="ui styled accordion">  
+          <div class="doc-folder-group" id="doc_folder_list">
+          {{#each DocumentFolders}}
+
+          {{#if eq this.status 4}}
+            <div class="doc-folder-item deleted"></div>
+          {{else}}
+          <div class="doc-folder-item" data-dfid="{{this.id}}">
+            <div class="title">
+              <span class="trigger">
+                <i class="folder open icon"></i>
+                <span class="doc-folder-name {{#if eq this.status 0}}inactive{{/if}}" 
+                  id="_doc_folder_name_{{this.id}}">{{this.name}}</span>
+                <span class="num-documents">({{countDocs (session 'DocumentFolders.documents.count') this.id}})</span>
+              </span>
+              <div class="document-folder-action" data-dfid="{{this.id}}">
+                <button class="ui circular mini basic button btn-edit-document-folder">
+                  <i class="edit icon"></i> edit</button>
+                {{#if eq this.status 1}}
+                <button class="ui circular mini basic button btn-status btn-update-document-folder-status" 
+                  data-status="0"><i class="lock orange icon"></i> deactivate</button>
+                {{else}}
+                <button class="ui circular mini basic button btn-status btn-update-document-folder-status" 
+                  data-status="1"><i class="unlock green icon"></i> activate</button>
+                {{/if}}
+                <button class="ui circular mini basic button btn-status btn-update-document-folder-status" 
+                  data-status="4"><i class="trash red icon"></i> delete</button>
+              </div>
+            </div>
+            <div class="content">
+              <div class="ui container document-add-button-container">
+                <button class="ui circular mini basic icon button btn-add-document">
+                  <i class="plus blue icon"></i> add document</button>
+                <button class="ui circular mini basic icon button btn-save-document-order" 
+                id="btn_save_doc_order_{{this.id}}">
+                  <i class="save grey icon"></i> save current document order</button>                  
+              </div>
+              <div class="accordion ">                
+                <div class="doc-group" id="doc_group_{{this.id}}">        
+                {{#each Documents}}
+                  {{#if eq this.status 4}}
+                    <div class="doc-item deleted"></div>
+                  {{else}}
+                    <div class="doc-item" id="_doc_item_{{this.id}}" data-did="{{this.id}}"> <!-- Document -->
+                      <div class="title">
+                          <span class="trigger">
+                            <a class="ui basic label">
+                              <i class="file icon {{#if eq this.status 0}}grey{{else}}green{{/if}}"></i>
+                              <span class="label">{{this.id}}</span>
+                            </a>                            
+                            <span class="doc-name {{#if eq this.status 0}}inactive{{/if}}" 
+                              id="_doc_name_{{this.id}}">{{this.name}}</span>
+                            <span class="num-files">
+                            ({{#if eq this.has_pills 1}}1{{else}}
+                            {{countDocs (session 'Documents.files.count') this.id}}{{/if}})</span>
+                          </span>
+
+                          <div class="document-action" data-did="{{this.id}}">
+                            <button class="ui circular mini icon button btn-edit-document" data-tooltip="edit">
+                              <i class="edit icon"></i></button>
+                            {{#if eq this.status 1}}
+                            <button class="ui circular mini icon button btn-update-document-status" 
+                              data-status="0" data-tooltip="deactivate"><i class="lock orange icon"></i></button>
+                            {{else}}
+                            <button class="ui circular mini icon button btn-update-document-status" 
+                              data-status="1" data-tooltip="activate"><i class="unlock green icon"></i></button>
+                            {{/if}}
+                            <button class="ui circular mini icon button btn-update-document-status" 
+                              data-status="4" data-tooltip="delete"><i class="trash red icon"></i></button>
+                          </div>
+                      </div>
+
+                      {{#if eq this.has_pills 1}}
+                        <div class="content medication-content">
+                          <div class="medication-table">
+                            <table>
+                              <tbody class="ui form">
+                                {{#if or (eq this.medication_type 1) (eq rpp 1)}}
+                                <tr>
+                                  <th class="th-label">Type: </th>                                  
+                                  <td>
+                                    <select class="sel-medication-type" name="sel_medication_type" 
+                                      id="sel_medication_type_{{this.id}}" data-did="{{this.id}}">
+                                      <option value="1" {{selectedIf this.medication_type 1}}>Study Medication</option>
+                                      <option value="2" {{selectedIf this.medication_type 2}}>Rescue Medication</option>
+                                    </select>
+                                  </td>                                
+                                </tr>
+                                <tr>
+                                  <th class="th-label">No. of Pills to show: </th>                              
+                                  <td><input type="text" value="{{this.pills}}" id="pills_to_show_{{this.id}}"></td> 
+                                </tr>
+                                <tr>
+                                  <th class="th-label">No. of Pills taken by subject: </th>
+                                  <td><input type="text" value="{{this.pills_taken}}" id="pills_taken_{{this.id}}"></td>
+                                </tr>
+                                <tr id="hidden_pills_prescribed_{{this.id}}">
+                                  <th class="th-label">No. of Pills prescribed: </th>                              
+                                  <td><input type="text" value="{{this.pills_prescribed}}" 
+                                    id="pills_prescribed_{{this.id}}"></td>
+                                </tr>
+                                {{else}}                                
+                                <tr>
+                                  <th class="th-label">Type: </th>                                  
+                                  <td>
+                                    <select class="sel-medication-type" name="sel_medication_type" 
+                                      id="sel_medication_type_{{this.id}}" data-did="{{this.id}}">
+                                      <option value="1" {{selectedIf this.medication_type 1}}>Study Medication</option>
+                                      <option value="2" {{selectedIf this.medication_type 2}}>Rescue Medication</option>
+                                    </select>
+                                  </td>                                
+                                </tr>
+                                <tr>
+                                  <th class="th-label">No. of Pills to show: </th>                              
+                                  <td><input type="text" value="{{this.pills}}" id="pills_to_show_{{this.id}}"></td> 
+                                </tr>
+                                <tr>
+                                  <th class="th-label">No. of Pills taken by subject: </th>
+                                  <td><input type="text" value="{{this.pills_taken}}" id="pills_taken_{{this.id}}"></td>
+                                </tr>
+                                <tr class="hidden_pills_prescribed" id="hidden_pills_prescribed_{{this.id}}">
+                                  <th class="th-label">No. of Pills prescribed: </th>                              
+                                  <td><input type="text" value="{{this.pills_prescribed}}" 
+                                    id="pills_prescribed_{{this.id}}"></td>
+                                </tr>                                
+                                {{/if}}
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="medication-action">
+                            <button class="ui mini basic button btn-save-medication-document" data-did="{{this.id}}">
+                            <i class="edit icon"></i> save</button>
+                          </div>                          
+                        </div>
+                      {{else}}                  
+                        
+                        <div class="content"> 
+                          <div class="ui container document-file-add-button-container">
+                            <button class="ui circular mini basic icon button btn-add-document-file">
+                              <i class="plus blue icon"></i> add file</button>
+                          </div>                            
+                          <div class="accordion ">
+                            {{#each DocumentFiles}}
+                              {{#if this.name}}
+                                {{#if eq this.status 4}}
+                                <div class="content document-file-content deleted"></div> 
+                                {{else}}
+                                <div class="content document-file-content">                       
+
+                                  <i class="file pdf outline {{#if eq this.status 1}}red{{/if}} icon"></i>
+                                  <span class="doc-file-name {{#if eq this.status 0}}inactive{{/if}}">{{this.name}}</span>
+
+                                  <div class="file-action" data-fid="{{this.id}}">
+<!--                                     <button class="ui basic circular mini icon button btn-view-file" 
+                                      data-tooltip="view" data-fid="{{this.id}}"><i class="eye icon"></i></button> -->
+                  <a href="https://s3.amazonaws.com/craav2-us-east-1-uploads/documents/{{this.name}}"                  
+                    class="ui circular mini basic icon button" 
+                    data-fid="{{this.id}}" data-tooltip="download: {{this.name}}" download="{{this.name}}"><i class="download icon"></i></a>                                       
+                                    {{#if eq this.status 1}}
+                                    <button class="ui basic circular mini icon button btn-update-file-status" 
+                                      data-status="0" data-tooltip="deactivate" data-fid="{{this.id}}">
+                                      <i class="lock orange icon"></i></button>
+                                    {{else}}
+                                    <button class="ui basic circular mini icon button btn-update-file-status" 
+                                      data-status="1" data-tooltip="activate" data-fid="{{this.id}}">
+                                      <i class="unlock green icon"></i></button>
+                                    {{/if}}
+                                    <button class="ui basic circular mini icon button btn-update-file-status" 
+                                      data-status="4" data-tooltip="delete" data-fid="{{this.id}}">
+                                      <i class="trash red icon"></i></button>
+                                  </div>
+
+                                </div>
+                                {{/if}}
+                              {{/if}}                        
+                            {{/each}}
+                          </div>
+                        </div>
+                      
+                    {{/if}}
+                  </div> <!-- Document -->
+                  {{/if}}
+
+                {{/each}}
+                </div>
+              </div>
+            </div>
+          </div> <!-- Document Folder -->
+          {{/if}}
+          {{/each}}    
+        </div>
+      </div>
+
+    </div>
+
+    <div class="six wide column document-management-forms-container">
+      <div class="container folder-button">
+        <button class="ui mini circular basic icon button btn-add-folder">
+          <i class="blue plus icon"></i> add folder</button>
+      </div>     
+
+      <div class="ui sticky">
+        
+        <div class="ui shape  document-management-shape">
+          <div class="sides">
+
+            <div class="active side document-folder-add-form-container">
+              <div class="ui card" id="new_folder_form">     
+
+                <div class="content">
+                  <a class="ui blue right ribbon label">Folder</a>
+                  <div class="header">New Folder</div>
+                  <div class="meta">add a new folder</div>
+                  <div class="description">
+                    <div class="ui form " >
+                      <div class="fields">
+                        <div class="sixteen wide field">
+                          <label>Name: </label>
+                          <input type="text" name="name" placeholder="folder name">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    <button class="ui mini basic submit button btn-new-folder">Submit New Folder</button>
+                  </span>
+                </div>              
+              </div>
+            </div>
+
+            <div class=" side document-folder-edit-form-container">
+              <div class="ui card" id="edit_folder_form">
+                <div class="content">
+                  <a class="ui blue right ribbon label">Folder</a>
+                  <div class="header">Edit Folder</div>
+                  <div class="meta">
+                    <div class="meta">update folder metadata</div>
+                  </div>
+                  <div class="description">
+                    <div class="ui form " >
+                      <div class="fields">
+                        <div class="sixteen wide field">
+                          <label>Name: </label>
+                          <input type="text" name="name" placeholder="folder name">
+                        </div>                     
+                      </div>
+                    </div>                  
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    <button class="ui mini basic submit button btn-edit-folder">Update Folder</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="side document-add-form-container">
+              <div class="ui card" id="new_document_form">     
+
+                <div class="content">
+                  <a class="ui orange right ribbon label">Document</a>
+                  <div class="header">New Document</div>
+                  <div class="meta">add a new document</div>
+                  <div class="description">
+                    <div class="ui form " >
+                      <div class="fields">
+                        <div class="sixteen wide field">
+                          <label>Name: </label>
+                          <input type="text" name="name" placeholder="document name">
+                        </div>
+                      </div>
+                      <div class="inline fields medication-fields" id="medication_fields">
+                            <table class="tbl-medication-fields">
+                              <tbody class="ui form">
+                                <tr>
+                                  <th class="th-label">No. of Pills to show: </th>                              
+                                  <td><input type="text" name="new_pills_to_show" id="new_pills_to_show"></td> 
+                                </tr>
+                                <tr>
+                                  <th class="th-label">No. of Pills taken by subject: </th>
+                                  <td><input type="text" id="new_pills_taken"></td>
+                                </tr>
+                                <tr id="new_hidden_pills_prescribed" 
+                                  style="display:{{#if eq rpp 1}}table-row !important;
+                                  {{else}}none !important;{{/if}}">
+                                  <th class="th-label">No. of Pills prescribed: </th>                              
+                                  <td><input type="text" id="new_pills_prescribed"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                      </div>
+                      <div class="inline fields medication-type-fields">
+                        <div class="one wide field"></div>
+                        <div class="seven wide field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" name="rdo_medication_type" checked="" tabindex="0" 
+                              class="rdo-medication-type hidden" value="1">
+                            <label>Study Medication</label>
+                          </div>                          
+                        </div>
+                        <div class="seven wide field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" name="rdo_medication_type" checked="" tabindex="0" 
+                              class="rdo-medication-type hidden" value="2">
+                            <label>Rescue Medication</label>
+                          </div>                          
+                        </div>                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    <button class="ui mini basic reset button btn-reset-new-document-form">Reset</button>
+                    <button class="ui mini basic submit button btn-new-document">Submit New Document</button>
+                  </span>
+                </div>              
+              </div>
+            </div>        
+
+            <div class="side document-edit-form-container">
+              <div class="ui card" id="edit_document_form">     
+
+                <div class="content">
+                  <a class="ui orange right ribbon label">Document</a>
+                  <div class="header">Edit Document</div>
+                  <div class="meta">update document</div>
+                  <div class="description">
+                    <div class="ui form " >
+                      <div class="fields">
+                        <div class="sixteen wide field">
+                          <label>Name: </label>
+                          <input type="text" name="name" placeholder="document name">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    <button class="ui mini basic submit button btn-edit-document">Update Document</button>
+                  </span>
+                </div>              
+              </div>
+            </div> 
+
+            <div class="side document-file-add-form-container">
+              <div class="ui card" id="new_document_file_form">     
+
+                <div class="content">
+                  <a class="ui red right ribbon label">File</a>
+                  <div class="header">New File</div>
+                  <div class="meta">add a new document file</div>
+                  <div class="description">
+                    <div class="ui form " >
+                      <div class="fields">
+                        <div class="sixteen wide field">                          
+                          <input type="file" name="document_file" id="document_file">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-info-name">
+                        <span class="file-info-label">Name: </span><span class="file-name"></span>
+                      </div>
+                      <div class="file-lastmodified">
+                        <span class="file-info-label">Modified: </span><span class="file-modified"></span>
+                      </div>
+                      <div class="file-info-size">
+                        <span class="file-info-label">Size: </span><span class="file-size"></span>
+                      </div>                      
+                    </div>
+                    {{#with DocumentFileBeingUploaded}}
+                    <div class="ui tiny progress document-file-upload-progress">
+                      <div class="bar"><div class="progress"></div></div>  
+                    </div>
+                    {{/with}}
+                  </div>
+                </div>
+                <div class="extra content">
+                  <span class="right floated">
+                    <button class="ui mini basic submit button btn-upload-document-file">Upload</button>
+                  </span>
+                </div>              
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="ui modal" id="doc_viewer">
+    <i class="close yellow icon"></i>
+    <!-- <webview> -->
+<!--     <object id="obj" data="{{session 'docFile'}}?#zoom=75&toolbar=1&view=FitH,0&pagemode=thumbs" 
+    type="application/pdf" width="100%" height="100%">
+      alt : <a href="{{session 'docFile'}}">Click this to view the document.</a>
+
+    </object>  -->
+    <!-- </webview> -->
+
+<!-- <iframe style="width:100%;height:500px" 
+  src='http://127.0.0.1:3000/pdfjs/web/viewer.html?file={{session "docFile"}}'></iframe>   
+  </div> -->
+
+<!-- <iframe src="http://docs.google.com/gview?url={{session 'docFile'}}&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> -->
+
+<!-- <embed src="{{session 'docFile'}}" width="600" height="500" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"> -->
+
+</div>
+
+</template>

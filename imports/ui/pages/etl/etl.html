@@ -1,0 +1,257 @@
+<template name="ETL">
+  <!-- <div class="ui grid container etl-grid-container"> -->
+  <div class="etl-grid-container">
+    <div class="sixteen wide column">
+
+      <div class="ui top attached tabular menu">
+        <a class="active item" data-tab="first">Findings</a>
+        <a class="item" data-tab="second">Simulations</a>
+        <a class="item" data-tab="third">Documents</a>
+        <a class="item" data-tab="fourth">Protocols</a>
+        <a class="item" data-tab="sixth">Monitoring Notes</a>
+        <a class="item" data-tab="seventh">Regions</a>
+        <a class="item" data-tab="eighth">Users</a>
+        <a class="item" data-tab="ninth">Datadump</a>
+        <a class="item" data-tab="tenth">Training</a>
+        <a class="item" data-tab="eleventh">Scoring Behaviors</a>
+        <a class="item" data-tab="twelfth">Logs</a>
+        <a class="item" data-tab="thirteenth">USS</a>
+        <a class="item" data-tab="fourteenth">SUS</a>
+        <a class="item" data-tab="fifteenth">DM</a>
+        <a class="item" data-tab="sixteenth">Coll Audit</a>
+      </div>
+      <div class="ui bottom attached active tab segment" data-tab="first">
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-findings" 
+            data-tooltip="Transfer Findings data to MongoDB">Transfer Findings Data to Mongo</button>
+        </div>       
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="second">
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-simulations" 
+            data-tooltip="Transfer Simulation data to MongoDB">Transfer Simulation Data to Mongo</button>
+        </div>        
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="third">
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-document-folders" 
+            data-tooltip="Transfer Document Folders data to MongoDB">Transfer Document Folders Data to Mongo</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-documents" 
+            data-tooltip="Transfer Documents data to MongoDB">Transfer Documents Data to Mongo</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-document-files" 
+            data-tooltip="Transfer Document Files data to MongoDB">Transfer Document Files Data to Mongo</button>
+        </div>                
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="fourth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-protocols" 
+            data-tooltip="Transfer Protocols data to MongoDB">Transfer Protocols Data to Mongo</button>
+        </div>        
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="sixth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-monitoring-notes-modifed-date" 
+            data-tooltip="Manipulate modifed date of old monitoring notes">Migrate old Monitoring Notes/ModifiedAt</button>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="seventh">
+        <div class="ui form">
+          <button class="ui mini basic button btn-update-quintiles-user-regions" 
+            data-tooltip="Add Region data to Quintiles users">Update Quintiles users' regions</button>
+        </div>        
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="eighth">
+
+        <h4 class="page-header">Upload a CSV</h4>
+
+        <div class="ui form">
+          {{#unless uploading}}
+            <input type="file" name="v1_user_csv">
+          {{else}}
+            <p><i class="fa fa-spin fa-refresh"></i> Uploading files...</p>
+          {{/unless}}          
+      <!--     <button class="ui mini basic button btn-import-v1-users" 
+            data-tooltip="Import legacy v1 users: csv needed">Import v1 users</button> -->
+
+            <hr>
+
+            <button class="ui mini basic button btn-quintiles-to-iqvia-email" 
+            data-tooltip="Quintiles to IQVIA Email address">Change Quintiles-to-IQVIA Email</button>
+
+        </div>        
+      </div> 
+      <div class="ui bottom attached tab segment" data-tab="ninth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-process-user-scores-for-datadump" 
+            data-tooltip="Process User Scores for Datadump">Process User Scores for Datadump</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-cast-score-summary-to-int" 
+            data-tooltip="Cast Percent in Users-Score-Summary to Int">
+          Cast Percent in Users-Score-Summary to Int</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-compute-domain-score-total" 
+            data-tooltip="Compute Users Domain Total Score">Compute Users Domain Total Score</button>
+        </div>         
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="tenth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-process-tr-quiz-scores-for-datadump" 
+            data-tooltip="Process TR Quiz Scores for Datadump">Process TR Quiz Scores for Datadump</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-process-simulation-assign-date" 
+            data-tooltip="Process Simulation Assign Date">Process Simulation Assign Date</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-process-simulation-ostart-date" 
+            data-tooltip="Process Simulation oStarted Date">Process Simulation oStarted Date</button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-transfer-user-profile-training-modules-data" 
+            data-tooltip="Transfer User Profile Training-modules data">Transfer User Profile Training-modules data</button>
+        </div>         
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="eleventh">
+        <div class="ui form">
+          <button class="ui mini basic button btn-update-sb-severity" 
+            data-tooltip="Update Severity of Baseline-OA-NA--1 Scoring Behaviors data ">
+            Update Severity of Baseline-OA-NA--1 Scoring Behaviors data </button>
+        </div>
+        <div class="ui form">
+          <button class="ui mini basic button btn-update-ss-severity" 
+            data-tooltip="Update Severity scores of Baseline-OA-NA--1 Scores Summary">
+            Update Severity scores of Baseline-OA-NA--1 Scores Summary</button>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="twelfth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-reduce-user-field" 
+            data-tooltip="Remove extra fields in user field except _id">
+            Remove extra fields in user field except _id </button>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="thirteenth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-add-findings-total" 
+            data-tooltip="Remove extra fields in user field except _id">
+            Add column for the total number of findings to USS</button>
+          <button class="ui mini basic button btn-add-identified-total-to-domain-summary" 
+            data-tooltip="Add Identified and Total to domainSummary">
+            Add Identified and Total to domainSummary</button>
+          <button class="ui mini basic button btn-add-new-domain-score" 
+            data-tooltip="New domainScore without IRB/IEC Reporting score">
+            Add a new domainScore that excludes IRB/IEC Reporting score</button>
+            <button class="ui mini basic button btn-add-identified-findings" 
+            data-tooltip="Add Identified Findings to score">
+            Add identified findings to domainSummary</button>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="fourteenth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-create-sus-by-date" 
+            data-tooltip="Remove extra fields in user field except _id">
+            Create SUS-by-Date collection</button>
+          <button class="ui mini basic button btn-create-susrt-by-date" 
+            data-tooltip="Remove extra fields in user field except _id">
+            Create SUSRT-by-Date collection</button>
+          <button class="ui mini basic button btn-update-sus-data" 
+            data-tooltip="Update SimUsersStatus/-RT data adding missing pieces">
+            Update SimUsersStatus/-RT data</button>
+
+          <button class="ui mini basic button btn-add-reopened-to-sus" 
+            data-tooltip="Update Sim Users Summary with Re-opened key">
+            Update SimUsersSummary w/ Re-opened key</button>
+
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="fifteenth">
+        <div class="ui form">
+          <button class="ui mini basic button btn-integrate-v1-users" 
+            data-tooltip="Integrate v1 users, assessees, assessments, scorings, etc. data">
+            Integrate V1 Users Data</button>
+          <button class="ui mini basic button btn-integrate-v1-scorings" 
+            data-tooltip="Process integrated v1 data to create v2 scorings (e.g. v1_scorings_temp)">
+            Integrate V1 Scorings Data</button>
+          <button class="ui mini basic button btn-create-v1-users-score-summary" 
+            data-tooltip="Process v1_scorings_temp data to create v1_users_score_summary_temp">
+            Create V1 Score Summary Temp Data</button>
+          <button class="ui mini basic button btn-add-mn-to-v1-users-score-summary" 
+            data-tooltip="Process v1 comments and add them to v1_users_score_summary_temp">
+            Add M.N. Data to V1 Score Summary Temp</button>
+          <button class="ui mini basic button btn-create-timer-temp-data" 
+            data-tooltip="create v1_temp_timer_log-temp">
+            Create V1 Timer Log Temp</button><br>
+
+          <!-- V1 Temp to V2 -->
+          <button class="ui mini basic button btn-update-v2-w-v1-users-temp-data" 
+            data-tooltip="Update V2 users data with V1 users-temp data">
+            Update V2 Users with V1 Users-Temp Data</button><br>
+
+          <button class="ui mini basic button btn-update-v2-w-v1-users-summary-temp-data" 
+            data-tooltip="Update V2 users summary data with V1 users-summary-temp data">
+            Update V2 UsersSummary with V1 Users-Summary-Temp Data</button><br>
+
+          <button class="ui mini basic button btn-update-v2-w-v1-users-demographic-temp-data" 
+            data-tooltip="Update V2 users demographic data with V1 users-demographic-temp data">
+            Update V2 UsersDemographic with V1 Users-Demographic-Temp Data</button><br>          
+
+          <button class="ui mini basic button btn-update-v2-w-v1-assessments-temp-data" 
+            data-tooltip="Update V2 assessments data with V1 assessments-temp data">
+            Update V2 Assessments with V1 Assessments-Temp Data</button><br> 
+
+          <button class="ui mini basic button btn-update-v2-w-v1-sim-users-summary-temp-data" 
+            data-tooltip="Update V2 sim users summary data with V1 sim-users-summary-temp data">
+            Update V2 SimUsersSummary with V1 Sim-Users-Summary-Temp Data</button><br> 
+
+          <button class="ui mini basic button btn-update-v2-w-v1-users-score-summary-temp-data" 
+            data-tooltip="Update V2 users score summary data with V1 users-score-summary-temp data">
+            Update V2 UsersScoreSummary with V1 Users-Score-Summary-Temp Data</button><br> 
+
+          <button class="ui mini basic button btn-update-v2-w-v1-monitoring-notes-temp-data" 
+            data-tooltip="Update V2 monitoring notes data with V1 monitoring-notes-temp data">
+            Update V2 MonitoringNotes with V1 Monitoring-Notes-Temp Data</button><br> 
+
+          <button class="ui mini basic button btn-update-v2-w-v1-compliance-notes-temp-data" 
+            data-tooltip="Update V2 compliance notes data with V1 compliance-notes-temp data">
+            Update V2 ComplianceNotes with V1 Compliance-Notes-Temp Data</button><br>
+
+          <button class="ui mini basic button btn-update-v2-w-v1-timer-log-temp-data" 
+            data-tooltip="Update V2 timer data with V1 timer-log-temp data">
+            Update V2 Timer with V1 Timer-Log-Temp Data</button><br>
+
+          <button class="ui mini basic button btn-update-v2-w-v1-temp-timer-log-temp-data" 
+            data-tooltip="Update V2 timer data with V1 temp-timer-log-temp data">
+            Update V2 Temp Timer with V1 Temp-Timer-Log-Temp Data</button><br><br>
+
+          <button class="ui teal mini basic button btn-update-duplicated-user-data" 
+            data-tooltip="Update duplicated user data">
+            Update Duplicated User Data</button><br><br>
+
+          <!-- Remove all V1 Temp data -->
+          <button class="ui pink mini basic button btn-remove-v1-temp-data" 
+            data-tooltip="Remove all V1 Temp Data">
+            Remove all V1 Temp Data</button> 
+          <!-- Remove all V1 Temp data from V2 -->
+          <button class="ui red mini basic button btn-remove-v1-data-from-v2" 
+            data-tooltip="Remove V1 Data from V2">
+            Remove V1 Data from V2</button>            
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="sixteenth">
+        <div class="ui form">
+          <!-- Remove duplicated u1-u2 pairs -->
+          <button class="ui teal mini basic button btn-remove-duplicated-coll-audit-pairs" 
+            data-tooltip="Remove Duplicated Collaboration Audit User Pairs">
+            Remove Duplicated Coll. Audit User Pairs</button>           
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>

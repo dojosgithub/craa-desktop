@@ -1,0 +1,147 @@
+<template name="UBAFindingsIndividual">
+
+  <div class="ui form">
+    <div class="fields">
+      <div class="field">
+        <label>Simulations</label>
+        <select class="ui dropdown sel-findings-individual-simulation" id="sel_findings_individual_simulation">
+          <option value="-1">Select Simulation</option>
+          {{#each Simulations}}
+          <option value="{{this.id}}" selected="{{simSelected}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="field">
+        <label>Source user</label>
+        <div class="ui search uba-findings-individual-source-user-search">
+          <input class="prompt uba-findings-individual-user" type="text" placeholder="Name" 
+          id="uba_findings_individual_source_user">
+          <div class="results"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Target user</label>        
+        <div class="ui search uba-findings-individual-target-user-search">
+          <input class="prompt uba-findings-individual-user" type="text" placeholder="Name" 
+          id="uba_findings_individual_target_user">
+          <div class="results"></div>
+        </div>        
+      </div>
+
+      <div class="field findings-individual-buttons">
+        <button class="ui teal mini basic button btn-compare-findings-individual">Compare</button>
+        <!-- {{#with Total}} -->
+        <button class="ui orange mini basic button btn-reset-findings-individual">Reset</button>
+        <!-- {{/with}}              -->
+      </div>
+
+    </div>
+  </div>
+  
+  {{#with Total}}
+  <div class="ui grid">
+    <div class="sixteen wide column">
+<!--       <div class="uba-findings-individual-users-info">
+        {{sourceUserName}} {{targetUserName}}
+      </div> -->
+      <div class="uba-findings-individual-summary">
+        <span class="label">Findings:</span> {{Total.findings}}
+        <span class="label">Match:</span> {{Total.percent}}% ({{Total.matched}}/{{Total.findings}}) 
+        <span class="label">Submission Time Diff:</span> {{Total.diff}}
+        <span class="label">Time overlapped within 1 minute:</span> 
+        {{Total.tDup1mPercent}}% ({{Total.tDup1m}}/{{Total.tDupTotal}})
+        <span class="label">within 5 minutes:</span> 
+        {{Total.tDup5mPercent}}% ({{Total.tDup5m}}/{{Total.tDupTotal}})        
+
+        {{#if hasStudy}}
+        <button class="ui olive mini basic button btn-view-compliance-data">View Comp. Calc.</button>
+        {{/if}}
+      </div>
+      <div class=clear-both></div>
+      <div class="uba-findings-individual-simil-info">
+        (Similarity: 1. First note sentence 2. Full note texts 3. Source note cf. Finding 4. Target note cf. Finding)
+      </div>  
+    </div>
+  </div>
+  <div class="ui grid uba-findings-individual-table">
+    <div class="sixteen wide column">
+      
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="th-finding">Finding</th>
+            <th>Source User</th>
+            <th>Target User</th>
+            <th>Match</th>
+            <th class="th-note">Source Note</th>
+            <th class="th-note">Target Note</th>
+            <th class="th-simil">Simil. 1</th>
+            <th class="th-simil">Simil. 2</th>
+            <th class="th-simil">Simil. 3</th>
+            <th class="th-simil">Simil. 4</th>
+            <th class="th-saved-at">Source At</th>
+            <th class="th-saved-at">Target At</th> 
+          </tr>
+        </thead>
+        <tbody>
+        {{#each Results}}          
+          <tr>
+            <td>{{this.id}}</td>
+            <td>{{finding}}</td>
+            <td class="{{#if source}}identified{{else}}unidentified{{/if}}">
+              {{#if source}}
+              <i class="icon green check circle"></i>i
+              {{else}}
+              <i class="red remove icon"></i>u
+              {{/if}}
+            </td>
+            <td class="{{#if target}}identified{{else}}unidentified{{/if}}">
+              {{#if target}}
+              <i class="icon green check circle"></i>i
+              {{else}}
+              <i class="red remove icon"></i>u
+              {{/if}}              
+            </td>
+            <td class="{{#if match}}match{{else}}dismatch{{/if}}">
+              {{#if match}}
+              TRUE
+              {{else}}
+              FALSE
+              {{/if}}              
+            </td>
+            <td>{{sNote.content}}</td>
+            <td>{{tNote.content}}</td>
+            <td class="{{#if gte this.similF '0.9'}}higher-simil{{else}}
+            {{#if gte this.similF '0.8' true}}high-simil{{/if}}{{/if}}">{{this.similF}}</td>            
+            <td class="{{#if gte this.simil '0.9'}}higher-simil{{else}}
+            {{#if gte this.simil '0.8' true}}high-simil{{/if}}{{/if}}">{{this.simil}}</td>
+            <td class="{{#if gte this.simil3 '0.9'}}higher-simil{{else}}
+            {{#if gte this.simil3 '0.8' true}}high-simil{{/if}}{{/if}}">{{this.simil3}}</td>            
+            <td class="{{#if gte this.simil4 '0.9'}}higher-simil{{else}}
+            {{#if gte this.simil4 '0.8' true}}high-simil{{/if}}{{/if}}">{{this.simil4}}</td>            
+            <td>{{dateFormatHMS sNote.modifiedAt}}</td>            
+            <td class="{{this.cAtClass}}">{{dateFormatHMS tNote.modifiedAt}}</td>
+          </tr>
+        {{/each}}
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>{{Total.percent}}%</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  {{/with}}
+</template>

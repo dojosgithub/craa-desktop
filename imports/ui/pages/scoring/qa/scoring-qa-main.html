@@ -1,0 +1,13 @@
+<template name="ScoringQAMain">
+  <div class="ui grid scoring-qa-main-grid">
+    <div class="sixteen wide column scoring-qa-main-column">
+    	<div class="qa-export-container">
+    		<button class="ui mini basic blue button btn-export-qa-scores">
+    			<i class="icon file excel"></i> Export
+    		</button>
+    	</div>
+      {{> tabular table=TabularTables.ScoringQAMain class="table table-striped table-condensed ui celled" 
+        selector=scoringQAMainSelector id="tbl_scoring_qa_main"}}        
+    </div>
+  </div>
+</template>

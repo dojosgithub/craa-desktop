@@ -1,0 +1,30 @@
+<template name="Scoring">
+  <div class="ui centered grid scoring-grid-container">
+    <div class="fifteen wide column scoring-column">
+
+      <div class="ui top attached tabular menu">
+        <a class="active item" data-tab="first">Scorer Report</a>
+        <a class="item" data-tab="second">Scoring Review</a>
+        <a class="item" data-tab="third">QA Review</a>
+        <a class="item" data-tab="fourth">Simulation Weighting</a>
+        <a class="item" data-tab="fifth">Scorer Management</a>
+      </div>
+      <div class="ui bottom attached active tab segment first" data-tab="first">
+        {{>Template.dynamic template=ScoringScorers}}
+      </div>
+      <div class="ui bottom attached tab segment second" data-tab="second">
+        {{>Template.dynamic template=ScoringReview}}
+      </div>
+      <div class="ui bottom attached tab segment third" data-tab="third">
+        {{>Template.dynamic template=ScoringQAMain}}
+      </div>  
+      <div class="ui bottom attached tab segment fourth" data-tab="fourth">
+        {{>Template.dynamic template=ScoringSimulationWeighting}}
+      </div>
+      <div class="ui bottom attached tab segment fifth" data-tab="fifth">
+        {{>Template.dynamic template=ScoringScorerManagement}}
+      </div>
+    </div>
+  </div>
+</template>
+
